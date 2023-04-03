@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>网络 on 大宝的博客</title>
+    <link>https://dabao-zhao.gitee.io/tags/%E7%BD%91%E7%BB%9C/</link>
+    <description>Recent content in 网络 on 大宝的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 30 Mar 2023 17:26:49 +0800</lastBuildDate><atom:link href="https://dabao-zhao.gitee.io/tags/%E7%BD%91%E7%BB%9C/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>计算机网络分层模型</title>
+      <link>https://dabao-zhao.gitee.io/post/hierarchical-model-of-computer-network/</link>
+      <pubDate>Thu, 30 Mar 2023 17:26:49 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.gitee.io/post/hierarchical-model-of-computer-network/</guid>
+      <description>计算机网络分层模型是指将网络通信划分为若干个层次，每个层次都有特定的功能和服务，并使用特定的协议来实现。目前最常用的计算机网络分层模型是OSI参考模型和TCP/IP协议模型。 OSI参考模型 OSI参考模型是国际标准化组织（ISO）制定的计算机网络分层模型，共分为七层，从下至上依次为</description>
+    </item>
+    
+    <item>
+      <title>Tcp 简介</title>
+      <link>https://dabao-zhao.gitee.io/post/tcp/</link>
+      <pubDate>Thu, 30 Mar 2023 16:06:25 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.gitee.io/post/tcp/</guid>
+      <description>TCP（Transmission Control Protocol）是一种面向连接的协议，它提供了一种可靠的数据传输机制，广泛用于互联网和局域网中的数据传输。TCP 协议通过建立连接、确认、重传和流控制等机制，确保数据的可靠性和完整性，适用于需要保证数据传输质量和数据顺序的应用程序。 TCP 协议的连接建</description>
+    </item>
+    
+    <item>
+      <title>Tcp 和 Udp</title>
+      <link>https://dabao-zhao.gitee.io/post/tcp-and-udp/</link>
+      <pubDate>Thu, 30 Mar 2023 15:42:41 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.gitee.io/post/tcp-and-udp/</guid>
+      <description>TCP 和 UDP 是两种常见的互联网传输协议。虽然它们都在传输数据，但它们的工作方式有所不同，适用于不同的应用场景。 TCP（Transmission Control Protocol）是一种面向连接的协议。这意味着在进行数据传输之前，客户端和服务器必须建立一个连接。在这个连接建立之后，客户端和服务器之间可以</description>
+    </item>
+    
+  </channel>
+</rss>
