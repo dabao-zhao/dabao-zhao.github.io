@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>操作系统 on 大宝的博客</title>
-    <link>https://dabao-zhao.gitee.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+    <link>https://dabao-zhao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
     <description>Recent content in 操作系统 on 大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 30 Mar 2023 10:29:02 +0800</lastBuildDate><atom:link href="https://dabao-zhao.gitee.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Mar 2023 10:29:02 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何理解内核空间和用户空间</title>
-      <link>https://dabao-zhao.gitee.io/post/how-to-understand-kernel-space-and-user-space/</link>
+      <link>https://dabao-zhao.github.io/post/how-to-understand-kernel-space-and-user-space/</link>
       <pubDate>Thu, 30 Mar 2023 10:29:02 +0800</pubDate>
       
-      <guid>https://dabao-zhao.gitee.io/post/how-to-understand-kernel-space-and-user-space/</guid>
+      <guid>https://dabao-zhao.github.io/post/how-to-understand-kernel-space-and-user-space/</guid>
       <description>在计算机操作系统中，内核空间和用户空间是指操作系统运行时的两个不同的虚拟内存空间。 用户空间是指进程可访问的虚拟内存空间，这个空间是属于用户进程的，其中包含了进程的代码、数据和堆栈等信息。用户空间中的进程不能直接访问内核空间中的代码和数据，需要通过系统调用来向操作系统内核发送请求，</description>
     </item>
     
     <item>
       <title>栈上分配和堆上分配有什么区别</title>
-      <link>https://dabao-zhao.gitee.io/post/what-is-the-difference-between-on-stack-allocation-and-on-heap-allocation/</link>
+      <link>https://dabao-zhao.github.io/post/what-is-the-difference-between-on-stack-allocation-and-on-heap-allocation/</link>
       <pubDate>Thu, 30 Mar 2023 10:10:14 +0800</pubDate>
       
-      <guid>https://dabao-zhao.gitee.io/post/what-is-the-difference-between-on-stack-allocation-and-on-heap-allocation/</guid>
+      <guid>https://dabao-zhao.github.io/post/what-is-the-difference-between-on-stack-allocation-and-on-heap-allocation/</guid>
       <description>栈上分配和堆上分配是指计算机程序中数据分配的两种方式。 栈上分配是指在程序运行时，将数据存储在计算机内存中的栈空间，通常由编译器自动管理。栈空间是有限的，它的大小通常由操作系统预设，当程序运行时，每个线程都会分配一个栈，栈空间会根据函数调用和返回不断地被分配和释放，变量的生命周期也</description>
     </item>
     
     <item>
       <title>如何理解进程、线程、协程</title>
-      <link>https://dabao-zhao.gitee.io/post/how-to-understand-processes-threads-and-collaborations/</link>
+      <link>https://dabao-zhao.github.io/post/how-to-understand-processes-threads-and-collaborations/</link>
       <pubDate>Thu, 30 Mar 2023 09:41:10 +0800</pubDate>
       
-      <guid>https://dabao-zhao.gitee.io/post/how-to-understand-processes-threads-and-collaborations/</guid>
+      <guid>https://dabao-zhao.github.io/post/how-to-understand-processes-threads-and-collaborations/</guid>
       <description>进程、线程和协程是计算机中用于实现多任务处理的概念s。 一个进程是一个独立的执行单元，包含了程序执行所需要的资源，如内存、文件句柄等。每个进程都有自己的独立地址空间，进程之间需要使用 IPC（Interprocess Communication）机制进行通信。 一个线程是一个进程中的一个</description>
     </item>
     
