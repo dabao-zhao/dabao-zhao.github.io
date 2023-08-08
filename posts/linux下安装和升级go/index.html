@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn" prefix="og: http://ogp.me/ns#">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="Hugo 0.116.1">
@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="赵大宝" />
-  <meta property="og:url" content="https://dabao-zhao.github.io/" />
-  <link rel="canonical" href="https://dabao-zhao.github.io/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
+  <meta property="og:url" content="https://dabao-zhao.github.io/posts/linux%E4%B8%8B%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7go/" />
+  <link rel="canonical" href="https://dabao-zhao.github.io/posts/linux%E4%B8%8B%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7go/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
   <link rel="icon" href="images/favicon.ico" />
   <link rel="shortcut" href="images/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://dabao-zhao.github.ioindex.xml" title="赵大宝的博客">
 
@@ -20,10 +20,10 @@
            "@type": "WebPage",
            "@id": "https:\/\/dabao-zhao.github.io"
       },
-      "articleSection" : "",
-      "name" : "赵大宝的博客",
-      "headline" : "赵大宝的博客",
-      "description" : "以无用之事，修自在之心",
+      "articleSection" : "posts",
+      "name" : "Linux 下安装和升级 Go",
+      "headline" : "Linux 下安装和升级 Go",
+      "description" : "安装 wget https:\/\/golang.google.cn\/dl\/go1.20.7.linux-amd64.tar.gz rm -rf \/usr\/local\/go tar -C \/usr\/local -xzf go1.20.7.linux-amd64.tar.gz 打开 ~\/.bashrc 并输入\nexport GOROOT=\/usr\/local\/go export GOPATH=$HOME\/gowork export GOBIN=$GOPATH\/bin export PATH=$GOPATH:$GOBIN:$GOROOT\/bin:$PATH 保存并关闭文件，输入以下命令以使更改生效\nsource ~\/.bashrc 升级 操作与安装一致",
       "inLanguage" : "en-US",
       "author" : "赵大宝",
       "creator" : "赵大宝",
@@ -33,15 +33,19 @@
       "copyrightYear" : "2023",
       "datePublished": "2023-08-08 09:56:13 \u002b0800 CST",
       "dateModified" : "2023-08-08 09:56:13 \u002b0800 CST",
-      "url" : "https:\/\/dabao-zhao.github.io\/",
+      "url" : "https:\/\/dabao-zhao.github.io\/posts\/linux%E4%B8%8B%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7go\/",
       "keywords" : [  ]
   }
 </script>
-<title>赵大宝的博客</title>
-  <meta property="og:title" content="赵大宝的博客" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="以无用之事，修自在之心" />
-  <meta name="description" content="以无用之事，修自在之心" />
+<title>Linux 下安装和升级 Go</title>
+  <meta property="og:title" content="Linux 下安装和升级 Go" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="安装 wget https://golang.google.cn/dl/go1.20.7.linux-amd64.tar.gz rm -rf /usr/local/go tar -C /usr/local -xzf go1.20.7.linux-amd64.tar.gz 打开 ~/.bashrc 并输入
+export GOROOT=/usr/local/go export GOPATH=$HOME/gowork export GOBIN=$GOPATH/bin export PATH=$GOPATH:$GOBIN:$GOROOT/bin:$PATH 保存并关闭文件，输入以下命令以使更改生效
+source ~/.bashrc 升级 操作与安装一致" />
+  <meta name="description" content="安装 wget https://golang.google.cn/dl/go1.20.7.linux-amd64.tar.gz rm -rf /usr/local/go tar -C /usr/local -xzf go1.20.7.linux-amd64.tar.gz 打开 ~/.bashrc 并输入
+export GOROOT=/usr/local/go export GOPATH=$HOME/gowork export GOBIN=$GOPATH/bin export PATH=$GOPATH:$GOBIN:$GOROOT/bin:$PATH 保存并关闭文件，输入以下命令以使更改生效
+source ~/.bashrc 升级 操作与安装一致" />
   <meta property="og:locale" content="zh-cn" /><meta property="og:image" content="images/favicon.ico" />
   
 
@@ -68,10 +72,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -92,30 +97,68 @@
 </div>
 <div class="header-line"></div>
 
-        <div id="posts-list">
-          <section>
-            <h1 class="site-date-catalog">2023</h1>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-08-08 09:56:13 CST">Aug 08</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/linux%E4%B8%8B%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7go/">Linux 下安装和升级 Go</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          
         </div>
+        <header class="post-header">
+          <h1 class="post-title">Linux 下安装和升级 Go</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-08-08 09:56:13 CST">
+                08 Aug 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://dabao-zhao.github.io">@赵大宝</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="安装">安装</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>wget https://golang.google.cn/dl/go1.20.7.linux-amd64.tar.gz
+</span></span><span style="display:flex;"><span>rm -rf /usr/local/go
+</span></span><span style="display:flex;"><span>tar -C /usr/local -xzf go1.20.7.linux-amd64.tar.gz
+</span></span></code></pre></div><p>打开 ~/.bashrc 并输入</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>export GOROOT<span style="color:#f92672">=</span>/usr/local/go
+</span></span><span style="display:flex;"><span>export GOPATH<span style="color:#f92672">=</span>$HOME/gowork
+</span></span><span style="display:flex;"><span>export GOBIN<span style="color:#f92672">=</span>$GOPATH/bin
+</span></span><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span>$GOPATH:$GOBIN:$GOROOT/bin:$PATH
+</span></span></code></pre></div><p>保存并关闭文件，输入以下命令以使更改生效</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>source ~/.bashrc
+</span></span></code></pre></div><h2 id="升级">升级</h2>
+<p>操作与安装一致</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -135,6 +178,8 @@
     
   
 </script>
+
+  
 
 </body>
 
