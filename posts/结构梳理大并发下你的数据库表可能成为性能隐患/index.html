@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="赵大宝" />
-  <meta property="og:url" content="https://dabao-zhao.github.io/posts/" />
-  <link rel="canonical" href="https://dabao-zhao.github.io/posts/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
+  <meta property="og:url" content="https://dabao-zhao.github.io/posts/%E7%BB%93%E6%9E%84%E6%A2%B3%E7%90%86%E5%A4%A7%E5%B9%B6%E5%8F%91%E4%B8%8B%E4%BD%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E5%8F%AF%E8%83%BD%E6%88%90%E4%B8%BA%E6%80%A7%E8%83%BD%E9%9A%90%E6%82%A3/" />
+  <link rel="canonical" href="https://dabao-zhao.github.io/posts/%E7%BB%93%E6%9E%84%E6%A2%B3%E7%90%86%E5%A4%A7%E5%B9%B6%E5%8F%91%E4%B8%8B%E4%BD%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E5%8F%AF%E8%83%BD%E6%88%90%E4%B8%BA%E6%80%A7%E8%83%BD%E9%9A%90%E6%82%A3/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
   <link rel="icon" href="images/favicon.ico" />
   <link rel="shortcut" href="images/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://dabao-zhao.github.ioindex.xml" title="赵大宝的博客">
 
@@ -21,9 +21,9 @@
            "@id": "https:\/\/dabao-zhao.github.io"
       },
       "articleSection" : "posts",
-      "name" : "Posts",
-      "headline" : "Posts",
-      "description" : "",
+      "name" : "结构梳理：大并发下，你的数据库表可能成为性能隐患",
+      "headline" : "结构梳理：大并发下，你的数据库表可能成为性能隐患",
+      "description" : "主要以用户中心为例，讲解如何对读多写少的系统进行高并发优化。\n将数据分为了四种类型：数据实体表，辅助查询表，实体关系表，历史数据表。然后根据不同类型讲述了不同的缓存策略。\n数据实体表 每行数据代表一个实体，会存在一个唯一 ID。 需要根据业务需要对表进行精简，只保留所需字段，其他字段可以纵向拆分到辅助查询表。 数据小了之后，能减少 B\u002bTree 的层次，查询和传输也会更快。 对于这个表来说，一般会使用 前缀_ID 作为 key 进行缓存。对于一些组合条件或者对数据会做计算的一般会采用定期更新缓存的办法或者单独分出一个从库。\n辅助查询表 目的是拆分出使用频率不高的字段。这里主要是提醒要定期对数据进行整理核对来保障数据的同步和完整。\n实体关系表 三种关系：1:n、n:1、m:n\n尽量减少 m:n 出现的可能性，如果出现要额外用一个关系表来维护关联关系。关系表在高并发系统中一般会降低一致性 要求来满足高并发的情况。主要可能会出现多级依赖。\n历史数据表 一般不会去做缓存，数据量大而且增长量也大\n判断是否适合缓存的核心思路 能够通过 ID 快速匹配的实体，以及通过关系快速查询的数据，适合放在长期缓存当中 通过组合条件筛选统计的数据，也可以放到临时缓存，但是更新有延迟 数据增长量大或者跟设计初衷不一样的表数据，这种不适合、也不建议去做做缓存 总结 核心就是要对数据进行归类，然后再根据归类做对应的处理",
       "inLanguage" : "en-US",
       "author" : "赵大宝",
       "creator" : "赵大宝",
@@ -33,15 +33,29 @@
       "copyrightYear" : "2023",
       "datePublished": "2023-08-08 14:12:36 \u002b0800 CST",
       "dateModified" : "2023-08-08 14:12:36 \u002b0800 CST",
-      "url" : "https:\/\/dabao-zhao.github.io\/posts\/",
-      "keywords" : [  ]
+      "url" : "https:\/\/dabao-zhao.github.io\/posts\/%E7%BB%93%E6%9E%84%E6%A2%B3%E7%90%86%E5%A4%A7%E5%B9%B6%E5%8F%91%E4%B8%8B%E4%BD%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E5%8F%AF%E8%83%BD%E6%88%90%E4%B8%BA%E6%80%A7%E8%83%BD%E9%9A%90%E6%82%A3\/",
+      "keywords" : [ "高并发系统实战课", ]
   }
 </script>
-<title>Posts</title>
-  <meta property="og:title" content="Posts" />
+<title>结构梳理：大并发下，你的数据库表可能成为性能隐患</title>
+  <meta property="og:title" content="结构梳理：大并发下，你的数据库表可能成为性能隐患" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="主要以用户中心为例，讲解如何对读多写少的系统进行高并发优化。
+将数据分为了四种类型：数据实体表，辅助查询表，实体关系表，历史数据表。然后根据不同类型讲述了不同的缓存策略。
+数据实体表 每行数据代表一个实体，会存在一个唯一 ID。 需要根据业务需要对表进行精简，只保留所需字段，其他字段可以纵向拆分到辅助查询表。 数据小了之后，能减少 B&#43;Tree 的层次，查询和传输也会更快。 对于这个表来说，一般会使用 前缀_ID 作为 key 进行缓存。对于一些组合条件或者对数据会做计算的一般会采用定期更新缓存的办法或者单独分出一个从库。
+辅助查询表 目的是拆分出使用频率不高的字段。这里主要是提醒要定期对数据进行整理核对来保障数据的同步和完整。
+实体关系表 三种关系：1:n、n:1、m:n
+尽量减少 m:n 出现的可能性，如果出现要额外用一个关系表来维护关联关系。关系表在高并发系统中一般会降低一致性 要求来满足高并发的情况。主要可能会出现多级依赖。
+历史数据表 一般不会去做缓存，数据量大而且增长量也大
+判断是否适合缓存的核心思路 能够通过 ID 快速匹配的实体，以及通过关系快速查询的数据，适合放在长期缓存当中 通过组合条件筛选统计的数据，也可以放到临时缓存，但是更新有延迟 数据增长量大或者跟设计初衷不一样的表数据，这种不适合、也不建议去做做缓存 总结 核心就是要对数据进行归类，然后再根据归类做对应的处理" />
+  <meta name="description" content="主要以用户中心为例，讲解如何对读多写少的系统进行高并发优化。
+将数据分为了四种类型：数据实体表，辅助查询表，实体关系表，历史数据表。然后根据不同类型讲述了不同的缓存策略。
+数据实体表 每行数据代表一个实体，会存在一个唯一 ID。 需要根据业务需要对表进行精简，只保留所需字段，其他字段可以纵向拆分到辅助查询表。 数据小了之后，能减少 B&#43;Tree 的层次，查询和传输也会更快。 对于这个表来说，一般会使用 前缀_ID 作为 key 进行缓存。对于一些组合条件或者对数据会做计算的一般会采用定期更新缓存的办法或者单独分出一个从库。
+辅助查询表 目的是拆分出使用频率不高的字段。这里主要是提醒要定期对数据进行整理核对来保障数据的同步和完整。
+实体关系表 三种关系：1:n、n:1、m:n
+尽量减少 m:n 出现的可能性，如果出现要额外用一个关系表来维护关联关系。关系表在高并发系统中一般会降低一致性 要求来满足高并发的情况。主要可能会出现多级依赖。
+历史数据表 一般不会去做缓存，数据量大而且增长量也大
+判断是否适合缓存的核心思路 能够通过 ID 快速匹配的实体，以及通过关系快速查询的数据，适合放在长期缓存当中 通过组合条件筛选统计的数据，也可以放到临时缓存，但是更新有延迟 数据增长量大或者跟设计初衷不一样的表数据，这种不适合、也不建议去做做缓存 总结 核心就是要对数据进行归类，然后再根据归类做对应的处理" />
   <meta property="og:locale" content="zh-cn" /><meta property="og:image" content="images/favicon.ico" />
   
 
@@ -68,10 +82,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -92,42 +107,83 @@
 </div>
 <div class="header-line"></div>
 
-
-        <h1 class="taxonomy-term"></h1>
-        <div id="posts-list">
-          <section>
-            <h1 class="site-date-catalog">2023</h1>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-08 14:12:36 CST">Aug 08</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E7%BB%93%E6%9E%84%E6%A2%B3%E7%90%86%E5%A4%A7%E5%B9%B6%E5%8F%91%E4%B8%8B%E4%BD%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E5%8F%AF%E8%83%BD%E6%88%90%E4%B8%BA%E6%80%A7%E8%83%BD%E9%9A%90%E6%82%A3/">结构梳理：大并发下，你的数据库表可能成为性能隐患</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-08 09:56:13 CST">Aug 08</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/linux%E4%B8%8B%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7go/">Linux 下安装和升级 Go</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          
         </div>
+        <header class="post-header">
+          <h1 class="post-title">结构梳理：大并发下，你的数据库表可能成为性能隐患</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-08-08 14:12:36 CST">
+                08 Aug 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://dabao-zhao.github.io">@赵大宝</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <p>主要以用户中心为例，讲解如何对读多写少的系统进行高并发优化。</p>
+<p>将数据分为了四种类型：数据实体表，辅助查询表，实体关系表，历史数据表。然后根据不同类型讲述了不同的缓存策略。</p>
+<h4 id="数据实体表">数据实体表</h4>
+<p>每行数据代表一个实体，会存在一个唯一 ID。
+需要根据业务需要对表进行精简，只保留所需字段，其他字段可以纵向拆分到辅助查询表。
+数据小了之后，能减少 B+Tree 的层次，查询和传输也会更快。
+对于这个表来说，一般会使用 <code>前缀_ID</code> 作为 key 进行缓存。对于一些组合条件或者对数据会做计算的一般会采用定期更新缓存的办法或者单独分出一个从库。</p>
+<h4 id="辅助查询表">辅助查询表</h4>
+<p>目的是拆分出使用频率不高的字段。这里主要是提醒要定期对数据进行整理核对来保障数据的同步和完整。</p>
+<h4 id="实体关系表">实体关系表</h4>
+<p>三种关系：1:n、n:1、m:n</p>
+<p>尽量减少 m:n 出现的可能性，如果出现要额外用一个关系表来维护关联关系。关系表在高并发系统中一般会降低一致性 要求来满足高并发的情况。主要可能会出现多级依赖。</p>
+<h4 id="历史数据表">历史数据表</h4>
+<p>一般不会去做缓存，数据量大而且增长量也大</p>
+<h4 id="判断是否适合缓存的核心思路">判断是否适合缓存的核心思路</h4>
+<ul>
+<li>能够通过 ID 快速匹配的实体，以及通过关系快速查询的数据，适合放在长期缓存当中</li>
+<li>通过组合条件筛选统计的数据，也可以放到临时缓存，但是更新有延迟</li>
+<li>数据增长量大或者跟设计初衷不一样的表数据，这种不适合、也不建议去做做缓存</li>
+</ul>
+<h4 id="总结">总结</h4>
+<p>核心就是要对数据进行归类，然后再根据归类做对应的处理</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+            <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%AE%9E%E6%88%98%E8%AF%BE/">
+                高并发系统实战课
+              </a>
+            </div>
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -147,6 +203,8 @@
     
   
 </script>
+
+  
 
 </body>
 
