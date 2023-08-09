@@ -6,7 +6,19 @@
     <description>Recent content in Posts on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 08 Aug 2023 17:21:24 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 09 Aug 2023 10:58:10 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>同城双活：如何实现机房之间的数据同步</title>
+      <link>https://dabao-zhao.github.io/posts/%E5%90%8C%E5%9F%8E%E5%8F%8C%E6%B4%BB%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%9C%BA%E6%88%BF%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/</link>
+      <pubDate>Wed, 09 Aug 2023 10:58:10 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E5%90%8C%E5%9F%8E%E5%8F%8C%E6%B4%BB%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%9C%BA%E6%88%BF%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/</guid>
+      <description>答：otter
+后面再找一个 otter 的教程吧
+常见的网络延迟参考 指一次 RTT 请求
+同机房服务器：0.1 ms 同城服务器（100 公里以内）：1ms 北京到上海：38ms 北京到广州：53ms </description>
+    </item>
+    
     <item>
       <title>Token：如何降低用户身份鉴权的流量压力？</title>
       <link>https://dabao-zhao.github.io/posts/token%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8E%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E9%89%B4%E6%9D%83%E7%9A%84%E6%B5%81%E9%87%8F%E5%8E%8B%E5%8A%9B/</link>
