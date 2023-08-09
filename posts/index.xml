@@ -6,7 +6,17 @@
     <description>Recent content in Posts on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 08 Aug 2023 15:22:18 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Aug 2023 17:21:24 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Token：如何降低用户身份鉴权的流量压力？</title>
+      <link>https://dabao-zhao.github.io/posts/token%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8E%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E9%89%B4%E6%9D%83%E7%9A%84%E6%B5%81%E9%87%8F%E5%8E%8B%E5%8A%9B/</link>
+      <pubDate>Tue, 08 Aug 2023 17:21:24 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/token%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8E%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E9%89%B4%E6%9D%83%E7%9A%84%E6%B5%81%E9%87%8F%E5%8E%8B%E5%8A%9B/</guid>
+      <description>答：用 JWT
+后面再找一个 JWT 的教程吧</description>
+    </item>
+    
     <item>
       <title>缓存一致：读多写少时，如何解决数据更新缓存不同步</title>
       <link>https://dabao-zhao.github.io/posts/%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E8%AF%BB%E5%A4%9A%E5%86%99%E5%B0%91%E6%97%B6%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E7%BC%93%E5%AD%98%E4%B8%8D%E5%90%8C%E6%AD%A5/</link>
