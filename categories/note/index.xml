@@ -6,7 +6,18 @@
     <description>Recent content in Note on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 09 Aug 2023 10:58:10 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/note/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 09 Aug 2023 11:20:37 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/note/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>共识Raft：如何保证多机房数据的一致性</title>
+      <link>https://dabao-zhao.github.io/posts/%E5%85%B1%E8%AF%86raft%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%A4%9A%E6%9C%BA%E6%88%BF%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7/</link>
+      <pubDate>Wed, 09 Aug 2023 11:20:37 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E5%85%B1%E8%AF%86raft%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%A4%9A%E6%9C%BA%E6%88%BF%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7/</guid>
+      <description>答：基于 Raft 协议的分布式数据服务
+raft 算法的动画展示
+主要讲 Raft 的原理，后面找一个教程</description>
+    </item>
+    
     <item>
       <title>同城双活：如何实现机房之间的数据同步</title>
       <link>https://dabao-zhao.github.io/posts/%E5%90%8C%E5%9F%8E%E5%8F%8C%E6%B4%BB%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%9C%BA%E6%88%BF%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/</link>
