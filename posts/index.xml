@@ -6,7 +6,28 @@
     <description>Recent content in Posts on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 10 Aug 2023 16:36:39 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Aug 2023 17:10:18 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>领域拆分：如何合理地拆分系统</title>
+      <link>https://dabao-zhao.github.io/posts/%E9%A2%86%E5%9F%9F%E6%8B%86%E5%88%86%E5%A6%82%E4%BD%95%E5%90%88%E7%90%86%E5%9C%B0%E6%8B%86%E5%88%86%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Thu, 10 Aug 2023 17:10:18 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E9%A2%86%E5%9F%9F%E6%8B%86%E5%88%86%E5%A6%82%E4%BD%95%E5%90%88%E7%90%86%E5%9C%B0%E6%8B%86%E5%88%86%E7%B3%BB%E7%BB%9F/</guid>
+      <description>以供货协商流程为例讲述了如何拆分系统。
+首先进行流程分析，要多和产品、研发团队沟通，以确定主要流程的数据走向和系统数据的依赖关系没有问题。 然后以一个数据实体不能承载太多职能为原则，将承担太多职能的部分进行拆分。 然后再分析系统的核心是否和当前系统实现的一致，如果不一致需要对模块进行拆分。 然后根据角色和流程梳理后的结果，按角色和其所需要的动作整理出新的流程图。 总体来讲，主要是根据流程、角色和关键元素做为切入点，然后将不同流程划分出不同阶段来归类分析，根据不同阶段拆分出不同的模块，然后再和产品和研发论证可行性。
+上面主要讲了大体上应该怎么拆，下面主要讲细节上该怎么入手。
+一般来说，系统功能从表拆分比较容易，因为业务流程基本都会围绕实体表运转，并关联多个实体进行交互。主要的拆分依据是：
+数据实体职能只做最核心的一件事 业务流程归类按涉及实体进行归类，看能否分为多个阶段 由数据依赖交叉的频率决定是否把模块拆分，如果交互频繁可以合并 然后就是抽象的处理，越是底层的服务，越要注意抽象，主要为了减少变更，避免影响其他服务，因为很难确认底层的变更对上游系统的影响范围。
+几个常见的抽象思路：
+被动抽象法 如果两个或多个服务使用同一个业务逻辑，就把这个业务逻辑抽象成公共服务。适合代码量不大、维护人员很少、处于探索阶段的系统。
+同层级之间的模块是禁止相互调用的。如果调用了，就需要将两个服务抽象成公共服务，让上层对两个服务进行聚合，目的是为了让系统结构从上到下是一个倒置的树形， 保证不会出现引用交叉循环的情况
+动态辅助表 适用于规模稍微大一点的团队或系统。
+如果一个表被多个开发组使用，而不同的业务特性也不同，可以在主表内存储 type，然后再根据 type 去对应不同的辅助表。例如：普通商品保存在表 order 和表 order_product_extra 中，定制类商品保存在 order_customize_extra 中。
+强制标准接口 底层服务只做标准的服务，业务的个性部分都由业务自己完成。算是比较常见的做法。
+总结 先从上到下做业务流程梳理，将流程归类聚合；然后从不同的领域聚合中找出交互所需主要实体，根据流程中主要实体之间的数据依赖程度决定是否拆分（从下到上看）； 把不同的实体和动作拆分成多个模块后，再根据业务流程归类，划分出最终的模块（最终汇总）。
+极客时间的课，总结往往特别精华……</description>
+    </item>
+    
     <item>
       <title>Raft一致性算法论文中文翻译</title>
       <link>https://dabao-zhao.github.io/posts/raft%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95%E8%AE%BA%E6%96%87%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91/</link>
