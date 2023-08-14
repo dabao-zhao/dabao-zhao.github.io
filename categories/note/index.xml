@@ -6,7 +6,18 @@
     <description>Recent content in Note on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 14 Aug 2023 11:11:17 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/note/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 14 Aug 2023 14:07:19 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/note/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>系统隔离：如何应对高并发流量冲击</title>
+      <link>https://dabao-zhao.github.io/posts/%E7%B3%BB%E7%BB%9F%E9%9A%94%E7%A6%BB%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%E9%AB%98%E5%B9%B6%E5%8F%91%E6%B5%81%E9%87%8F%E5%86%B2%E5%87%BB/</link>
+      <pubDate>Mon, 14 Aug 2023 14:07:19 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E7%B3%BB%E7%BB%9F%E9%9A%94%E7%A6%BB%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%E9%AB%98%E5%B9%B6%E5%8F%91%E6%B5%81%E9%87%8F%E5%86%B2%E5%87%BB/</guid>
+      <description>感觉又是水的一篇
+首先是部署的隔离，内网和外网部署要物理隔离 然后是网关的隔离，内网网关和外网网关隔离，流量经过外网网关、外网、内网网关才能到内网。其中外网网关和内网网关都可以做限流和熔断。外网服务要保证内网 网关断开后，仍旧能正常独立运转一小时以上。 然后是减少外网和内网的 api 互动，内外通过缓存来交互数据，但要保证数据同步是单向的。如果内网想要修改数据可以通过请求外网接口，外网对内网的数据同步可以通过消息队列。 然后是讲了消息队列的优点：
+队列拥有良好吞吐并且能够动态扩容，可应对各种流量冲击场景； 可通过动态控制内网消费线程数，从而实现内网流量可控； 内网消费服务在高峰期可以暂时离线，内网服务可以临时做一些停机升级操作； 内网服务如果出现 bug，导致消费数据丢失，可以对队列消息进行回放实现重新消费； Kafka 是分区消息同步，消息是顺序的，很少会乱序，可以帮我们实现顺序同步； 消息内容可以保存很久，加入 TraceID 后查找方便并且透明，利于排查各种问题。 感觉水的一部分原因是太理论了，和实战没啥关系……</description>
+    </item>
+    
     <item>
       <title>强一致锁：如何解决高并发下的库存争抢问题</title>
       <link>https://dabao-zhao.github.io/posts/%E5%BC%BA%E4%B8%80%E8%87%B4%E9%94%81%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B8%8B%E7%9A%84%E5%BA%93%E5%AD%98%E4%BA%89%E6%8A%A2%E9%97%AE%E9%A2%98/</link>

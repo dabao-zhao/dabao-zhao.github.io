@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn" prefix="og: http://ogp.me/ns#">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="Hugo 0.116.1">
@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="赵大宝" />
-  <meta property="og:url" content="https://dabao-zhao.github.io/" />
-  <link rel="canonical" href="https://dabao-zhao.github.io/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
+  <meta property="og:url" content="https://dabao-zhao.github.io/posts/%E7%B3%BB%E7%BB%9F%E9%9A%94%E7%A6%BB%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%E9%AB%98%E5%B9%B6%E5%8F%91%E6%B5%81%E9%87%8F%E5%86%B2%E5%87%BB/" />
+  <link rel="canonical" href="https://dabao-zhao.github.io/posts/%E7%B3%BB%E7%BB%9F%E9%9A%94%E7%A6%BB%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%E9%AB%98%E5%B9%B6%E5%8F%91%E6%B5%81%E9%87%8F%E5%86%B2%E5%87%BB/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
   <link rel="icon" href="images/favicon.ico" />
   <link rel="shortcut" href="images/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://dabao-zhao.github.ioindex.xml" title="赵大宝的博客">
 
@@ -20,10 +20,10 @@
            "@type": "WebPage",
            "@id": "https:\/\/dabao-zhao.github.io"
       },
-      "articleSection" : "",
-      "name" : "赵大宝的博客",
-      "headline" : "赵大宝的博客",
-      "description" : "以无用之事，修自在之心",
+      "articleSection" : "posts",
+      "name" : "系统隔离：如何应对高并发流量冲击",
+      "headline" : "系统隔离：如何应对高并发流量冲击",
+      "description" : "感觉又是水的一篇\n首先是部署的隔离，内网和外网部署要物理隔离 然后是网关的隔离，内网网关和外网网关隔离，流量经过外网网关、外网、内网网关才能到内网。其中外网网关和内网网关都可以做限流和熔断。外网服务要保证内网 网关断开后，仍旧能正常独立运转一小时以上。 然后是减少外网和内网的 api 互动，内外通过缓存来交互数据，但要保证数据同步是单向的。如果内网想要修改数据可以通过请求外网接口，外网对内网的数据同步可以通过消息队列。 然后是讲了消息队列的优点：\n队列拥有良好吞吐并且能够动态扩容，可应对各种流量冲击场景； 可通过动态控制内网消费线程数，从而实现内网流量可控； 内网消费服务在高峰期可以暂时离线，内网服务可以临时做一些停机升级操作； 内网服务如果出现 bug，导致消费数据丢失，可以对队列消息进行回放实现重新消费； Kafka 是分区消息同步，消息是顺序的，很少会乱序，可以帮我们实现顺序同步； 消息内容可以保存很久，加入 TraceID 后查找方便并且透明，利于排查各种问题。 感觉水的一部分原因是太理论了，和实战没啥关系……",
       "inLanguage" : "en-US",
       "author" : "赵大宝",
       "creator" : "赵大宝",
@@ -33,15 +33,19 @@
       "copyrightYear" : "2023",
       "datePublished": "2023-08-14 14:07:19 \u002b0800 CST",
       "dateModified" : "2023-08-14 14:07:19 \u002b0800 CST",
-      "url" : "https:\/\/dabao-zhao.github.io\/",
-      "keywords" : [  ]
+      "url" : "https:\/\/dabao-zhao.github.io\/posts\/%E7%B3%BB%E7%BB%9F%E9%9A%94%E7%A6%BB%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%E9%AB%98%E5%B9%B6%E5%8F%91%E6%B5%81%E9%87%8F%E5%86%B2%E5%87%BB\/",
+      "keywords" : [ "高并发系统实战课", ]
   }
 </script>
-<title>赵大宝的博客</title>
-  <meta property="og:title" content="赵大宝的博客" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="以无用之事，修自在之心" />
-  <meta name="description" content="以无用之事，修自在之心" />
+<title>系统隔离：如何应对高并发流量冲击</title>
+  <meta property="og:title" content="系统隔离：如何应对高并发流量冲击" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="感觉又是水的一篇
+首先是部署的隔离，内网和外网部署要物理隔离 然后是网关的隔离，内网网关和外网网关隔离，流量经过外网网关、外网、内网网关才能到内网。其中外网网关和内网网关都可以做限流和熔断。外网服务要保证内网 网关断开后，仍旧能正常独立运转一小时以上。 然后是减少外网和内网的 api 互动，内外通过缓存来交互数据，但要保证数据同步是单向的。如果内网想要修改数据可以通过请求外网接口，外网对内网的数据同步可以通过消息队列。 然后是讲了消息队列的优点：
+队列拥有良好吞吐并且能够动态扩容，可应对各种流量冲击场景； 可通过动态控制内网消费线程数，从而实现内网流量可控； 内网消费服务在高峰期可以暂时离线，内网服务可以临时做一些停机升级操作； 内网服务如果出现 bug，导致消费数据丢失，可以对队列消息进行回放实现重新消费； Kafka 是分区消息同步，消息是顺序的，很少会乱序，可以帮我们实现顺序同步； 消息内容可以保存很久，加入 TraceID 后查找方便并且透明，利于排查各种问题。 感觉水的一部分原因是太理论了，和实战没啥关系……" />
+  <meta name="description" content="感觉又是水的一篇
+首先是部署的隔离，内网和外网部署要物理隔离 然后是网关的隔离，内网网关和外网网关隔离，流量经过外网网关、外网、内网网关才能到内网。其中外网网关和内网网关都可以做限流和熔断。外网服务要保证内网 网关断开后，仍旧能正常独立运转一小时以上。 然后是减少外网和内网的 api 互动，内外通过缓存来交互数据，但要保证数据同步是单向的。如果内网想要修改数据可以通过请求外网接口，外网对内网的数据同步可以通过消息队列。 然后是讲了消息队列的优点：
+队列拥有良好吞吐并且能够动态扩容，可应对各种流量冲击场景； 可通过动态控制内网消费线程数，从而实现内网流量可控； 内网消费服务在高峰期可以暂时离线，内网服务可以临时做一些停机升级操作； 内网服务如果出现 bug，导致消费数据丢失，可以对队列消息进行回放实现重新消费； Kafka 是分区消息同步，消息是顺序的，很少会乱序，可以帮我们实现顺序同步； 消息内容可以保存很久，加入 TraceID 后查找方便并且透明，利于排查各种问题。 感觉水的一部分原因是太理论了，和实战没啥关系……" />
   <meta property="og:locale" content="zh-cn" /><meta property="og:image" content="images/favicon.ico" />
   
 
@@ -68,10 +72,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -92,214 +97,93 @@
 </div>
 <div class="header-line"></div>
 
-        <div id="posts-list">
-          <section>
-            <h1 class="site-date-catalog">2023</h1>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-08-14 14:07:19 CST">Aug 14</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E7%B3%BB%E7%BB%9F%E9%9A%94%E7%A6%BB%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%E9%AB%98%E5%B9%B6%E5%8F%91%E6%B5%81%E9%87%8F%E5%86%B2%E5%87%BB/">系统隔离：如何应对高并发流量冲击</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/note/"><strong>Note</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-08-14 11:11:17 CST">Aug 14</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E5%BC%BA%E4%B8%80%E8%87%B4%E9%94%81%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B8%8B%E7%9A%84%E5%BA%93%E5%AD%98%E4%BA%89%E6%8A%A2%E9%97%AE%E9%A2%98/">强一致锁：如何解决高并发下的库存争抢问题</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/note/"><strong>Note</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-08-10 17:10:18 CST">Aug 10</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E9%A2%86%E5%9F%9F%E6%8B%86%E5%88%86%E5%A6%82%E4%BD%95%E5%90%88%E7%90%86%E5%9C%B0%E6%8B%86%E5%88%86%E7%B3%BB%E7%BB%9F/">领域拆分：如何合理地拆分系统</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/note/"><strong>Note</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-08-10 16:36:39 CST">Aug 10</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/raft%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95%E8%AE%BA%E6%96%87%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91/">Raft一致性算法论文中文翻译</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/copy/"><strong>Copy</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-08-09 11:20:37 CST">Aug 09</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E5%85%B1%E8%AF%86raft%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%A4%9A%E6%9C%BA%E6%88%BF%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7/">共识Raft：如何保证多机房数据的一致性</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/note/"><strong>Note</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-08-09 10:58:10 CST">Aug 09</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E5%90%8C%E5%9F%8E%E5%8F%8C%E6%B4%BB%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%9C%BA%E6%88%BF%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/">同城双活：如何实现机房之间的数据同步</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/note/"><strong>Note</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-08-08 17:21:24 CST">Aug 08</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/token%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8E%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E9%89%B4%E6%9D%83%E7%9A%84%E6%B5%81%E9%87%8F%E5%8E%8B%E5%8A%9B/">Token：如何降低用户身份鉴权的流量压力？</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/note/"><strong>Note</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-08-08 15:22:18 CST">Aug 08</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E8%AF%BB%E5%A4%9A%E5%86%99%E5%B0%91%E6%97%B6%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E7%BC%93%E5%AD%98%E4%B8%8D%E5%90%8C%E6%AD%A5/">缓存一致：读多写少时，如何解决数据更新缓存不同步</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/note/"><strong>Note</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-08-08 14:12:36 CST">Aug 08</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/%E7%BB%93%E6%9E%84%E6%A2%B3%E7%90%86%E5%A4%A7%E5%B9%B6%E5%8F%91%E4%B8%8B%E4%BD%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E5%8F%AF%E8%83%BD%E6%88%90%E4%B8%BA%E6%80%A7%E8%83%BD%E9%9A%90%E6%82%A3/">结构梳理：大并发下，你的数据库表可能成为性能隐患</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/note/"><strong>Note</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-3 col-sm-2">
-                <time datetime="2023-08-08 09:56:13 CST">Aug 08</time>
-              </div>
-              <div class="posts-title col-xs-9 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-11 col-sm-10">
-                    <a href="/posts/linux%E4%B8%8B%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7go/">Linux 下安装和升级 Go</a>
-                  </div>
-                  <div class="col-xs-1 col-sm-2 posts-categories">
-                    
-                    <div class="posts-category">
-                      <a href="/categories/golang/"><strong>Golang</strong></a>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          
         </div>
+        <header class="post-header">
+          <h1 class="post-title">系统隔离：如何应对高并发流量冲击</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-08-14 14:07:19 CST">
+                14 Aug 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://dabao-zhao.github.io">@赵大宝</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <blockquote>
+<p>感觉又是水的一篇</p>
+</blockquote>
+<p>首先是部署的隔离，内网和外网部署要物理隔离
+然后是网关的隔离，内网网关和外网网关隔离，流量经过外网网关、外网、内网网关才能到内网。其中外网网关和内网网关都可以做限流和熔断。外网服务要保证内网
+网关断开后，仍旧能正常独立运转一小时以上。
+然后是减少外网和内网的 api 互动，内外通过缓存来交互数据，但要保证数据同步是单向的。如果内网想要修改数据可以通过请求外网接口，外网对内网的数据同步可以通过消息队列。
+然后是讲了消息队列的优点：</p>
+<ul>
+<li>队列拥有良好吞吐并且能够动态扩容，可应对各种流量冲击场景；</li>
+<li>可通过动态控制内网消费线程数，从而实现内网流量可控；</li>
+<li>内网消费服务在高峰期可以暂时离线，内网服务可以临时做一些停机升级操作；</li>
+<li>内网服务如果出现 bug，导致消费数据丢失，可以对队列消息进行回放实现重新消费；</li>
+<li>Kafka 是分区消息同步，消息是顺序的，很少会乱序，可以帮我们实现顺序同步；</li>
+<li>消息内容可以保存很久，加入 TraceID 后查找方便并且透明，利于排查各种问题。</li>
+</ul>
+<blockquote>
+<p>感觉水的一部分原因是太理论了，和实战没啥关系……</p>
+</blockquote>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+            <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%AE%9E%E6%88%98%E8%AF%BE/">
+                高并发系统实战课
+              </a>
+            </div>
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+<div class="related-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/posts/%E5%BC%BA%E4%B8%80%E8%87%B4%E9%94%81%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B8%8B%E7%9A%84%E5%BA%93%E5%AD%98%E4%BA%89%E6%8A%A2%E9%97%AE%E9%A2%98/">强一致锁：如何解决高并发下的库存争抢问题</a></li>
+    
+    <li><a href="/posts/%E9%A2%86%E5%9F%9F%E6%8B%86%E5%88%86%E5%A6%82%E4%BD%95%E5%90%88%E7%90%86%E5%9C%B0%E6%8B%86%E5%88%86%E7%B3%BB%E7%BB%9F/">领域拆分：如何合理地拆分系统</a></li>
+    
+    <li><a href="/posts/%E5%85%B1%E8%AF%86raft%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%A4%9A%E6%9C%BA%E6%88%BF%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7/">共识Raft：如何保证多机房数据的一致性</a></li>
+    
+  </ul>
+</div>
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -319,6 +203,8 @@
     
   
 </script>
+
+  
 
 </body>
 
