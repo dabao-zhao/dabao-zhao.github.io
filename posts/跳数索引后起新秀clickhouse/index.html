@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="赵大宝" />
-  <meta property="og:url" content="https://dabao-zhao.github.io/posts/" />
-  <link rel="canonical" href="https://dabao-zhao.github.io/posts/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
+  <meta property="og:url" content="https://dabao-zhao.github.io/posts/%E8%B7%B3%E6%95%B0%E7%B4%A2%E5%BC%95%E5%90%8E%E8%B5%B7%E6%96%B0%E7%A7%80clickhouse/" />
+  <link rel="canonical" href="https://dabao-zhao.github.io/posts/%E8%B7%B3%E6%95%B0%E7%B4%A2%E5%BC%95%E5%90%8E%E8%B5%B7%E6%96%B0%E7%A7%80clickhouse/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
   <link rel="icon" href="images/favicon.ico" />
   <link rel="shortcut" href="images/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://dabao-zhao.github.ioindex.xml" title="赵大宝的博客">
 
@@ -21,9 +21,9 @@
            "@id": "https:\/\/dabao-zhao.github.io"
       },
       "articleSection" : "posts",
-      "name" : "Posts",
-      "headline" : "Posts",
-      "description" : "",
+      "name" : "跳数索引：后起新秀ClickHouse",
+      "headline" : "跳数索引：后起新秀ClickHouse",
+      "description" : "并行能力 CPU 吞吐和性能 ClickHouse 会充分利用多核，对本地大量数据做快速的计算，所以一个请求就可以用光所有系统资源，官方建议 ClickHouse 的查询 QPS 限制在 100 左右。\nClickHouse 的场景如果是对用户服务的，最好对这种查询做缓存。而且，界面在加载时要设置 30 秒以上的等待时间，因为我们的请求可能在排队等待别的查询。\n推荐的优化思路是：基于排序字段做范围查询过滤后，再做聚合查询。高并发查询数据的服务和缓慢查询的服务需要隔离开。\n批量写入优化 批量插入数据时，客户端会将要插入的数据先在本地缓存一段时间，直到积累足够配置的 block_size 后才会把数据批量提交到服务端，以此提高写入的性能。\n除了客户端做的合并，ClickHouse 的引擎 MergeTree 也做了类似的工作。MergeTree 采用了批量写入磁盘、定期合并方式（batch write-merge）。\n当我们批量输入的数据量小于 min_bytes_for_wide_part 设置时，会按 compact part 方式落盘。这种方式会将落盘的数据放到一个 data.bin 文件中， merge 时会有很好的写效率，这种方式适合于小量业务数据筛选使用。\n当我们批量输入的数据量大于 min_bytes_for_wide_part 设置时，会按 wide part 方式落盘，落盘数据的时候会按字段生成不同的文件。这个方式适用于字 段较多的数据，merge 相对会慢一些，但是对于指定参与计算列的统计计算，并行吞吐写入和计算能力会更强，适合分析指定小范围的列计算。\n查询效率 Clickhouse 有两种索引方式，一种是主键索引，这个是在建表时就需要指定的；另一种是跳表索引，用来跳过一些数据。\nClickHouse 的查询工作流程：\n根据查询条件，查询过滤出要查询需要读取的 data part 文件夹范围； 根据 data part 内数据的主键索引、过滤出要查询的 granule； 使用跳表索引跳过不符合的 granule； 范围内数据进行计算、汇总、统计、筛选、排序； 返回结果。 只有第四步里的几个操作是并行的\n很难做索引查询优化的原因：\n大部分数据的特征不是很明显、建立的索引区分度不够 目录过多，有多份数据同时散落在多个 data parts 文件夹内，需要加载所有 date part 的索引挨个查询 其他特性 物化视图 物化视图会将数据源的数据通过聚合函数实时统计计算，每次我们查询这个表，就能获得表规定的统计结果",
       "inLanguage" : "en-US",
       "author" : "赵大宝",
       "creator" : "赵大宝",
@@ -33,15 +33,37 @@
       "copyrightYear" : "2023",
       "datePublished": "2023-08-16 15:31:25 \u002b0800 CST",
       "dateModified" : "2023-08-16 15:31:25 \u002b0800 CST",
-      "url" : "https:\/\/dabao-zhao.github.io\/posts\/",
-      "keywords" : [  ]
+      "url" : "https:\/\/dabao-zhao.github.io\/posts\/%E8%B7%B3%E6%95%B0%E7%B4%A2%E5%BC%95%E5%90%8E%E8%B5%B7%E6%96%B0%E7%A7%80clickhouse\/",
+      "keywords" : [ "高并发系统实战课", ]
   }
 </script>
-<title>Posts</title>
-  <meta property="og:title" content="Posts" />
+<title>跳数索引：后起新秀ClickHouse</title>
+  <meta property="og:title" content="跳数索引：后起新秀ClickHouse" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="并行能力 CPU 吞吐和性能 ClickHouse 会充分利用多核，对本地大量数据做快速的计算，所以一个请求就可以用光所有系统资源，官方建议 ClickHouse 的查询 QPS 限制在 100 左右。
+ClickHouse 的场景如果是对用户服务的，最好对这种查询做缓存。而且，界面在加载时要设置 30 秒以上的等待时间，因为我们的请求可能在排队等待别的查询。
+推荐的优化思路是：基于排序字段做范围查询过滤后，再做聚合查询。高并发查询数据的服务和缓慢查询的服务需要隔离开。
+批量写入优化 批量插入数据时，客户端会将要插入的数据先在本地缓存一段时间，直到积累足够配置的 block_size 后才会把数据批量提交到服务端，以此提高写入的性能。
+除了客户端做的合并，ClickHouse 的引擎 MergeTree 也做了类似的工作。MergeTree 采用了批量写入磁盘、定期合并方式（batch write-merge）。
+当我们批量输入的数据量小于 min_bytes_for_wide_part 设置时，会按 compact part 方式落盘。这种方式会将落盘的数据放到一个 data.bin 文件中， merge 时会有很好的写效率，这种方式适合于小量业务数据筛选使用。
+当我们批量输入的数据量大于 min_bytes_for_wide_part 设置时，会按 wide part 方式落盘，落盘数据的时候会按字段生成不同的文件。这个方式适用于字 段较多的数据，merge 相对会慢一些，但是对于指定参与计算列的统计计算，并行吞吐写入和计算能力会更强，适合分析指定小范围的列计算。
+查询效率 Clickhouse 有两种索引方式，一种是主键索引，这个是在建表时就需要指定的；另一种是跳表索引，用来跳过一些数据。
+ClickHouse 的查询工作流程：
+根据查询条件，查询过滤出要查询需要读取的 data part 文件夹范围； 根据 data part 内数据的主键索引、过滤出要查询的 granule； 使用跳表索引跳过不符合的 granule； 范围内数据进行计算、汇总、统计、筛选、排序； 返回结果。 只有第四步里的几个操作是并行的
+很难做索引查询优化的原因：
+大部分数据的特征不是很明显、建立的索引区分度不够 目录过多，有多份数据同时散落在多个 data parts 文件夹内，需要加载所有 date part 的索引挨个查询 其他特性 物化视图 物化视图会将数据源的数据通过聚合函数实时统计计算，每次我们查询这个表，就能获得表规定的统计结果" />
+  <meta name="description" content="并行能力 CPU 吞吐和性能 ClickHouse 会充分利用多核，对本地大量数据做快速的计算，所以一个请求就可以用光所有系统资源，官方建议 ClickHouse 的查询 QPS 限制在 100 左右。
+ClickHouse 的场景如果是对用户服务的，最好对这种查询做缓存。而且，界面在加载时要设置 30 秒以上的等待时间，因为我们的请求可能在排队等待别的查询。
+推荐的优化思路是：基于排序字段做范围查询过滤后，再做聚合查询。高并发查询数据的服务和缓慢查询的服务需要隔离开。
+批量写入优化 批量插入数据时，客户端会将要插入的数据先在本地缓存一段时间，直到积累足够配置的 block_size 后才会把数据批量提交到服务端，以此提高写入的性能。
+除了客户端做的合并，ClickHouse 的引擎 MergeTree 也做了类似的工作。MergeTree 采用了批量写入磁盘、定期合并方式（batch write-merge）。
+当我们批量输入的数据量小于 min_bytes_for_wide_part 设置时，会按 compact part 方式落盘。这种方式会将落盘的数据放到一个 data.bin 文件中， merge 时会有很好的写效率，这种方式适合于小量业务数据筛选使用。
+当我们批量输入的数据量大于 min_bytes_for_wide_part 设置时，会按 wide part 方式落盘，落盘数据的时候会按字段生成不同的文件。这个方式适用于字 段较多的数据，merge 相对会慢一些，但是对于指定参与计算列的统计计算，并行吞吐写入和计算能力会更强，适合分析指定小范围的列计算。
+查询效率 Clickhouse 有两种索引方式，一种是主键索引，这个是在建表时就需要指定的；另一种是跳表索引，用来跳过一些数据。
+ClickHouse 的查询工作流程：
+根据查询条件，查询过滤出要查询需要读取的 data part 文件夹范围； 根据 data part 内数据的主键索引、过滤出要查询的 granule； 使用跳表索引跳过不符合的 granule； 范围内数据进行计算、汇总、统计、筛选、排序； 返回结果。 只有第四步里的几个操作是并行的
+很难做索引查询优化的原因：
+大部分数据的特征不是很明显、建立的索引区分度不够 目录过多，有多份数据同时散落在多个 data parts 文件夹内，需要加载所有 date part 的索引挨个查询 其他特性 物化视图 物化视图会将数据源的数据通过聚合函数实时统计计算，每次我们查询这个表，就能获得表规定的统计结果" />
   <meta property="og:locale" content="zh-cn" /><meta property="og:image" content="images/favicon.ico" />
   
 
@@ -68,10 +90,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -92,222 +115,120 @@
 </div>
 <div class="header-line"></div>
 
-
-        <h1 class="taxonomy-term"></h1>
-        <div id="posts-list">
-          <section>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-16 15:31:25 CST">2023-08-16</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E8%B7%B3%E6%95%B0%E7%B4%A2%E5%BC%95%E5%90%8E%E8%B5%B7%E6%96%B0%E7%A7%80clickhouse/">跳数索引：后起新秀ClickHouse</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-16 14:27:45 CST">2023-08-16</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%AE%9E%E6%97%B6%E7%BB%9F%E8%AE%A1%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA%E5%AE%9E%E6%97%B6%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%94%A8%E7%AE%97%E6%B3%95/">实时统计：链路跟踪实时计算中的实用算法</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-16 10:24:58 CST">2023-08-16</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%BC%95%E6%93%8E%E5%88%86%E7%89%87elasticsearch%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A3%80%E7%B4%A2/">引擎分片：Elasticsearch如何实现大数据检索</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-15 15:50:03 CST">2023-08-15</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA%E5%A6%82%E4%BD%95%E5%AE%9A%E5%88%B6%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA%E7%B3%BB%E7%BB%9F/">链路追踪：如何定制一个分布式链路跟踪系统</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-15 09:51:35 CST">2023-08-15</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E7%A8%80%E7%96%8F%E7%B4%A2%E5%BC%95%E4%B8%BA%E4%BB%80%E4%B9%88%E9%AB%98%E5%B9%B6%E5%8F%91%E5%86%99%E4%B8%8D%E6%8E%A8%E8%8D%90%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/">稀疏索引：为什么高并发写不推荐关系数据库</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-14 14:51:34 CST">2023-08-14</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E5%A4%9A%E6%9C%8D%E5%8A%A1%E7%9A%842pctcc%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84/">分布式事务：多服务的2PC、TCC都是怎么实现的</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-14 14:07:19 CST">2023-08-14</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E7%B3%BB%E7%BB%9F%E9%9A%94%E7%A6%BB%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%E9%AB%98%E5%B9%B6%E5%8F%91%E6%B5%81%E9%87%8F%E5%86%B2%E5%87%BB/">系统隔离：如何应对高并发流量冲击</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-14 11:11:17 CST">2023-08-14</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%BC%BA%E4%B8%80%E8%87%B4%E9%94%81%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B8%8B%E7%9A%84%E5%BA%93%E5%AD%98%E4%BA%89%E6%8A%A2%E9%97%AE%E9%A2%98/">强一致锁：如何解决高并发下的库存争抢问题</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-10 17:10:18 CST">2023-08-10</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E9%A2%86%E5%9F%9F%E6%8B%86%E5%88%86%E5%A6%82%E4%BD%95%E5%90%88%E7%90%86%E5%9C%B0%E6%8B%86%E5%88%86%E7%B3%BB%E7%BB%9F/">领域拆分：如何合理地拆分系统</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-10 16:36:39 CST">2023-08-10</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/raft%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95%E8%AE%BA%E6%96%87%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91/">Raft一致性算法论文中文翻译</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-09 11:20:37 CST">2023-08-09</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%85%B1%E8%AF%86raft%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%A4%9A%E6%9C%BA%E6%88%BF%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7/">共识Raft：如何保证多机房数据的一致性</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-09 10:58:10 CST">2023-08-09</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%90%8C%E5%9F%8E%E5%8F%8C%E6%B4%BB%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%9C%BA%E6%88%BF%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/">同城双活：如何实现机房之间的数据同步</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-08 17:21:24 CST">2023-08-08</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/token%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8E%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E9%89%B4%E6%9D%83%E7%9A%84%E6%B5%81%E9%87%8F%E5%8E%8B%E5%8A%9B/">Token：如何降低用户身份鉴权的流量压力？</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-08 15:22:18 CST">2023-08-08</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E8%AF%BB%E5%A4%9A%E5%86%99%E5%B0%91%E6%97%B6%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E7%BC%93%E5%AD%98%E4%B8%8D%E5%90%8C%E6%AD%A5/">缓存一致：读多写少时，如何解决数据更新缓存不同步</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-08 14:12:36 CST">2023-08-08</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E7%BB%93%E6%9E%84%E6%A2%B3%E7%90%86%E5%A4%A7%E5%B9%B6%E5%8F%91%E4%B8%8B%E4%BD%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E5%8F%AF%E8%83%BD%E6%88%90%E4%B8%BA%E6%80%A7%E8%83%BD%E9%9A%90%E6%82%A3/">结构梳理：大并发下，你的数据库表可能成为性能隐患</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-08 09:56:13 CST">2023-08-08</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/linux%E4%B8%8B%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7go/">Linux 下安装和升级 Go</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
         </div>
+        <header class="post-header">
+          <h1 class="post-title">跳数索引：后起新秀ClickHouse</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-08-16 15:31:25 CST">
+                16 Aug 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://dabao-zhao.github.io">@赵大宝</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h3 id="并行能力-cpu-吞吐和性能">并行能力 CPU 吞吐和性能</h3>
+<p>ClickHouse 会充分利用多核，对本地大量数据做快速的计算，所以一个请求就可以用光所有系统资源，官方建议 ClickHouse 的查询 QPS 限制在 100 左右。</p>
+<p>ClickHouse 的场景如果是对用户服务的，最好对这种查询做缓存。而且，界面在加载时要设置 30 秒以上的等待时间，因为我们的请求可能在排队等待别的查询。</p>
+<p>推荐的优化思路是：基于排序字段做范围查询过滤后，再做聚合查询。高并发查询数据的服务和缓慢查询的服务需要隔离开。</p>
+<h3 id="批量写入优化">批量写入优化</h3>
+<p>批量插入数据时，客户端会将要插入的数据先在本地缓存一段时间，直到积累足够配置的 block_size 后才会把数据批量提交到服务端，以此提高写入的性能。</p>
+<p>除了客户端做的合并，ClickHouse 的引擎 MergeTree 也做了类似的工作。MergeTree 采用了批量写入磁盘、定期合并方式（batch write-merge）。</p>
+<p><img src="/images/click_house/click_house.png" alt="click_house"></p>
+<p>当我们批量输入的数据量小于 min_bytes_for_wide_part 设置时，会按 compact part 方式落盘。这种方式会将落盘的数据放到一个 data.bin 文件中，
+merge 时会有很好的写效率，这种方式适合于小量业务数据筛选使用。</p>
+<p>当我们批量输入的数据量大于 min_bytes_for_wide_part 设置时，会按 wide part 方式落盘，落盘数据的时候会按字段生成不同的文件。这个方式适用于字
+段较多的数据，merge 相对会慢一些，但是对于指定参与计算列的统计计算，并行吞吐写入和计算能力会更强，适合分析指定小范围的列计算。</p>
+<h3 id="查询效率">查询效率</h3>
+<p>Clickhouse 有两种索引方式，一种是主键索引，这个是在建表时就需要指定的；另一种是跳表索引，用来跳过一些数据。</p>
+<p>ClickHouse 的查询工作流程：</p>
+<ol>
+<li>根据查询条件，查询过滤出要查询需要读取的 data part 文件夹范围；</li>
+<li>根据 data part 内数据的主键索引、过滤出要查询的 granule；</li>
+<li>使用跳表索引跳过不符合的 granule；</li>
+<li>范围内数据进行计算、汇总、统计、筛选、排序；</li>
+<li>返回结果。</li>
+</ol>
+<p>只有第四步里的几个操作是并行的</p>
+<p>很难做索引查询优化的原因：</p>
+<ol>
+<li>大部分数据的特征不是很明显、建立的索引区分度不够</li>
+<li>目录过多，有多份数据同时散落在多个 data parts 文件夹内，需要加载所有 date part 的索引挨个查询</li>
+</ol>
+<h3 id="其他特性">其他特性</h3>
+<h4 id="物化视图">物化视图</h4>
+<p>物化视图会将数据源的数据通过聚合函数实时统计计算，每次我们查询这个表，就能获得表规定的统计结果</p>
+<h4 id="分布式表">分布式表</h4>
+<p>使用分布式表，我们就需要先在不同服务器手动创建相同结构的分片表，同时在每个服务器创建分布式表映射，这样在每个服务上都能访问这个分布式表。规定一
+个表在一个服务器里只能存在一个分片。</p>
+<h5 id="写入">写入</h5>
+<p>一种是对分布式表插入数据，这样数据会先在本地保存，然后异步转发到对应分片，通过这个方式实现数据的分发存储。<br>
+二种是由客户端根据不同规则（如随机、hash），将分片数据推送到对应的服务器上。这样相对来说性能更好，但是这么做，客户端需要知道所有分片节点的 IP。显然，这种方式不利于失败恢复。</p>
+<h5 id="主从分片">主从分片</h5>
+<p>ClickHouse 的表是按表设置副本（主从同步），副本之间支持同步更新或异步同步。
+主从分片通过分布式表设置在 ZooKeeper 内的相同路径来实现同步，这种设置方式导致 ClickHouse 的分片和复制有很多种组合方式，比如：一个集群内多个子集群、一个集群整体多个分片、
+客户端自行分片写入数据、分布式表代理转发写入数据等多种方式组合。</p>
+<h3 id="总结">总结</h3>
+<p>ClickHouse 通过分片及内存周期顺序落盘，提高了写并发能力；<br>
+通过后台定期合并 data parts 文件，提高了查询效率；<br>
+在索引方面，通过稀疏索引缩小了检索数据的颗粒范围，对于不在主键的查询，则是通过跳数索引来减少遍历数据的数据量；<br>
+另外，ClickHouse 还有多线程并行读取筛选的设计。</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+            <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%AE%9E%E6%88%98%E8%AF%BE/">
+                高并发系统实战课
+              </a>
+            </div>
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+<div class="related-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/posts/%E5%AE%9E%E6%97%B6%E7%BB%9F%E8%AE%A1%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA%E5%AE%9E%E6%97%B6%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%94%A8%E7%AE%97%E6%B3%95/">实时统计：链路跟踪实时计算中的实用算法</a></li>
+    
+    <li><a href="/posts/%E5%BC%95%E6%93%8E%E5%88%86%E7%89%87elasticsearch%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A3%80%E7%B4%A2/">引擎分片：Elasticsearch如何实现大数据检索</a></li>
+    
+    <li><a href="/posts/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA%E5%A6%82%E4%BD%95%E5%AE%9A%E5%88%B6%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA%E7%B3%BB%E7%BB%9F/">链路追踪：如何定制一个分布式链路跟踪系统</a></li>
+    
+  </ul>
+</div>
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -327,6 +248,8 @@
     
   
 </script>
+
+  
 
 </body>
 

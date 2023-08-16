@@ -6,7 +6,27 @@
     <description>Recent content in 高并发系统实战课 on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 16 Aug 2023 14:27:45 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/tags/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%AE%9E%E6%88%98%E8%AF%BE/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Aug 2023 15:31:25 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/tags/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%AE%9E%E6%88%98%E8%AF%BE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>跳数索引：后起新秀ClickHouse</title>
+      <link>https://dabao-zhao.github.io/posts/%E8%B7%B3%E6%95%B0%E7%B4%A2%E5%BC%95%E5%90%8E%E8%B5%B7%E6%96%B0%E7%A7%80clickhouse/</link>
+      <pubDate>Wed, 16 Aug 2023 15:31:25 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E8%B7%B3%E6%95%B0%E7%B4%A2%E5%BC%95%E5%90%8E%E8%B5%B7%E6%96%B0%E7%A7%80clickhouse/</guid>
+      <description>并行能力 CPU 吞吐和性能 ClickHouse 会充分利用多核，对本地大量数据做快速的计算，所以一个请求就可以用光所有系统资源，官方建议 ClickHouse 的查询 QPS 限制在 100 左右。
+ClickHouse 的场景如果是对用户服务的，最好对这种查询做缓存。而且，界面在加载时要设置 30 秒以上的等待时间，因为我们的请求可能在排队等待别的查询。
+推荐的优化思路是：基于排序字段做范围查询过滤后，再做聚合查询。高并发查询数据的服务和缓慢查询的服务需要隔离开。
+批量写入优化 批量插入数据时，客户端会将要插入的数据先在本地缓存一段时间，直到积累足够配置的 block_size 后才会把数据批量提交到服务端，以此提高写入的性能。
+除了客户端做的合并，ClickHouse 的引擎 MergeTree 也做了类似的工作。MergeTree 采用了批量写入磁盘、定期合并方式（batch write-merge）。
+当我们批量输入的数据量小于 min_bytes_for_wide_part 设置时，会按 compact part 方式落盘。这种方式会将落盘的数据放到一个 data.bin 文件中， merge 时会有很好的写效率，这种方式适合于小量业务数据筛选使用。
+当我们批量输入的数据量大于 min_bytes_for_wide_part 设置时，会按 wide part 方式落盘，落盘数据的时候会按字段生成不同的文件。这个方式适用于字 段较多的数据，merge 相对会慢一些，但是对于指定参与计算列的统计计算，并行吞吐写入和计算能力会更强，适合分析指定小范围的列计算。
+查询效率 Clickhouse 有两种索引方式，一种是主键索引，这个是在建表时就需要指定的；另一种是跳表索引，用来跳过一些数据。
+ClickHouse 的查询工作流程：
+根据查询条件，查询过滤出要查询需要读取的 data part 文件夹范围； 根据 data part 内数据的主键索引、过滤出要查询的 granule； 使用跳表索引跳过不符合的 granule； 范围内数据进行计算、汇总、统计、筛选、排序； 返回结果。 只有第四步里的几个操作是并行的
+很难做索引查询优化的原因：
+大部分数据的特征不是很明显、建立的索引区分度不够 目录过多，有多份数据同时散落在多个 data parts 文件夹内，需要加载所有 date part 的索引挨个查询 其他特性 物化视图 物化视图会将数据源的数据通过聚合函数实时统计计算，每次我们查询这个表，就能获得表规定的统计结果</description>
+    </item>
+    
     <item>
       <title>实时统计：链路跟踪实时计算中的实用算法</title>
       <link>https://dabao-zhao.github.io/posts/%E5%AE%9E%E6%97%B6%E7%BB%9F%E8%AE%A1%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA%E5%AE%9E%E6%97%B6%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%94%A8%E7%AE%97%E6%B3%95/</link>
