@@ -6,7 +6,19 @@
     <description>Recent content on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 16 Aug 2023 10:24:58 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Aug 2023 14:27:45 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>实时统计：链路跟踪实时计算中的实用算法</title>
+      <link>https://dabao-zhao.github.io/posts/%E5%AE%9E%E6%97%B6%E7%BB%9F%E8%AE%A1%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA%E5%AE%9E%E6%97%B6%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%94%A8%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Wed, 16 Aug 2023 14:27:45 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E5%AE%9E%E6%97%B6%E7%BB%9F%E8%AE%A1%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA%E5%AE%9E%E6%97%B6%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%94%A8%E7%AE%97%E6%B3%95/</guid>
+      <description>URL 去参数聚合 主要是 RESTful 的接口需要做处理：
+同一个 API 由于不同的参数无法归类 同一网址不同的 method 操作在 RESTful 中实际也是不同的实现 人工配置替换模版 也就是人工配置出一个 URL 规则，用来筛选出符合规则的日志并替换掉关键部分的参数。
+类Radix tree效果： /user - /* - - /info - - - :GET - - - :PUT - - /friend - - - /* (代表这里替换) - - - - :DELETE 具体实现是将网址通过 / 进行分割，逐级在前缀搜索树查找
+数据特征筛选 //根据数据特征过滤网址内参数 function filterUrl($url) { $urlArr = explode(&amp;#34;/&amp;#34;, $url); foreach ($urlArr as $urlIndex =&amp;gt; $urlItem) { $totalChar = 0; //有多少字母 $totalNum = 0; //有多少数值 $totalLen = strlen($urlItem); //总长度 for ($index = 0; $index &amp;lt; $totalLen; $index++) { if (is_numeric($urlItem[$index])) { $totalNum++; } else { $totalChar++; } } //过滤md5 长度32或64 内容有数字 有字符混合 直接认为是md5 if (($totalLen == 32 || $totalLen == 64) &amp;amp;&amp;amp; $totalChar &amp;gt; 0 &amp;amp;&amp;amp; $totalNum &amp;gt;0) { $urlArr[$urlIndex] = &amp;#34;*md*&amp;#34;; continue; } //字符串 data 参数是数字和英文混合 长度超过3(回避v1/v2一类版本) if ($totalLen &amp;gt; 3 &amp;amp;&amp;amp; $totalChar &amp;gt; 0 &amp;amp;&amp;amp; $totalNum &amp;gt; 0) { $urlArr[$urlIndex] = &amp;#34;*data*&amp;#34;; continue; } //全是数字在网址中认为是id一类， 直接进行替换 if ($totalChar == 0 &amp;amp;&amp;amp; $totalNum &amp;gt; 0) { $urlArr[$urlIndex] = &amp;#34;*num*&amp;#34;; continue; } } return implode(&amp;#34;/&amp;#34;, $urlArr); } 时间分块统计 每个数据统计块内聚合了以下指标：</description>
+    </item>
+    
     <item>
       <title>引擎分片：Elasticsearch如何实现大数据检索</title>
       <link>https://dabao-zhao.github.io/posts/%E5%BC%95%E6%93%8E%E5%88%86%E7%89%87elasticsearch%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A3%80%E7%B4%A2/</link>
