@@ -6,7 +6,18 @@
     <description>Recent content in Note on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 15 Aug 2023 15:50:03 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/note/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Aug 2023 10:24:58 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/note/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>引擎分片：Elasticsearch如何实现大数据检索</title>
+      <link>https://dabao-zhao.github.io/posts/%E5%BC%95%E6%93%8E%E5%88%86%E7%89%87elasticsearch%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A3%80%E7%B4%A2/</link>
+      <pubDate>Wed, 16 Aug 2023 10:24:58 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E5%BC%95%E6%93%8E%E5%88%86%E7%89%87elasticsearch%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A3%80%E7%B4%A2/</guid>
+      <description>Elasticsearch 架构 Master 节点：负责集群内调度决策，集群状态、节点信息、索引映射、分片信息、路由信息，Master 真正主节点是通过选举诞生的，一般一个集群内至少要有三个 Master 可竞选成员，防止主节点损坏； Data 存储节点：用于存储数据及计算，分片的主从副本，热点节点，冷数据节点； Client 协调节点：协调多个副本数据查询服务，聚合各个副本的返回结果，返回给客户端； Kibana 计算节点：作用是实时统计分析、聚合分析统计数据、图形聚合展示。 Elasticsearch 索引 Elasticsearch 其底层全文检索使用的是 Lucene 引擎，但 Lucene 不支持分布式，Elasticsearch 的分布式功能是通过基础分片来实现的。
+索引通过倒排索引实现。 Elasticsearch 集群的索引保存在 Lucene 的 segment 文件中，segment 主要保存了三种索引：
+Term Index（单词词典索引）：用于关键词（Term）快速搜索，Term index 是基础 Trie 树改进的 FST（Finite State Transducer 有限状态传感器，占用内存少） 实现的二级索引。平时这个树会放在内存中，用于减少磁盘 IO 加快 Term 查找速度，检索时会通过 FST 快速找到 Term Dictionary 对应的词典文件 block。 Term Dictionary（单词词典）：单词词典索引中保存的是单词（Term）与 Posting List 的关系，而这个单词词典数据会按 block 在磁盘中排序压缩保存，相比 B-Tree 更节省空间，其中保存了单词的前缀后缀，可以用于近似词及相似词查询，通过这个词典可以找到相关的倒排索引列表位置。 Posting List（倒排列表）：倒排列表记录了关键词 Term 出现的文档 ID，以及其所在文档中位置、偏移、词频信息，这是我们查找的最终文档列表，我们拿到这些就可以拿去排序合并了。 Elasticsearch 写入 在数据入库之前，会先进行分词，过滤掉无用符号等分隔词，找出文档中每个关键词（Term）在文档中的位置及频率权重；然后，将这些关键词保存在 Term Index 以及 Term Dictionary 内；最后，将每个关键词对应的文档 ID 和权重、位置等信息排序合并到 Posting List 中进行保存。</description>
+    </item>
+    
     <item>
       <title>链路追踪：如何定制一个分布式链路跟踪系统</title>
       <link>https://dabao-zhao.github.io/posts/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA%E5%A6%82%E4%BD%95%E5%AE%9A%E5%88%B6%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA%E7%B3%BB%E7%BB%9F/</link>
@@ -22,8 +33,9 @@ OpenTelemetry 标准 主要是对数据采集和标准规范的统一，其他�
 TODO 后面出个介绍
 分布式链路跟踪系统 主要功能服务：
 监控日志标准 埋点 SDK（AOP 或侵入式） 日志收集 分布式日志传输 分布式日志存储 分布式检索计算 分布式实时分析 个性化定制指标盘 系统警告 ELK 即可实现以上功能：
-日志收集（Filebeat） 日志传输（Kafka+Logstash） 日志存储（Elasticsearch） 检索计算（Elasticsearch + Kibana） 实时分析（Kibana） 个性定制表格查询（Kibana） 这样之后只需要制定日志格式和埋点 SDK 即可实现一个具有分布式链路跟踪、 Metrics、日志分析的系统。 这里提到的不只是 ELK，还有 EFK TODO 后面出个介绍
-原理 在请求发起方发送请求时或服务被请求时生成一个 UUID（TraceID），被请求期间的业务产生的任何日志（Warning、Info、Debug、Error）、任何依赖资源 请求（MySQL、Kafka、Redis）、任何内部接口调用（Restful、Http、RPC）都会带上这个 UUID。 这样，当我们把所有拥有同样 UUID 的日志收集起来时，就可以根据时间（有误差）、RPCID 或 SpanID，将它们按依赖请求顺序串起来。 只要日志足够详细，我们就能监控到系统大部分的工作状态，比如用户请求一个服务会调用多少个接口，每个数据查询的 SQL 以及具体耗时调用的内网请求参数是什么、 调用的内网请求返回是什么、内网被请求的接口又做了哪些操作、产生了哪些异常信息等等。 同时，我们可以通过对这些日志做归类分析，分析项目之间的调用关系、项目整体健康程度、 对链路深挖自动识别出故障点等，帮助我们主动、快速地查找问题。</description>
+日志收集（Filebeat） 日志传输（Kafka+Logstash） 日志存储（Elasticsearch） 检索计算（Elasticsearch + Kibana） 实时分析（Kibana） 个性定制表格查询（Kibana） 这样之后只需要制定日志格式和埋点 SDK 即可实现一个具有分布式链路跟踪、 Metrics、日志分析的系统。 TODO 后面出个介绍
+原理 在请求发起方发送请求时或服务被请求时生成一个 UUID（TraceID），被请求期间的业务产生的任何日志（Warning、Info、Debug、Error）、任何依赖资源 请求（MySQL、Kafka、Redis）、任何内部接口调用（Restful、Http、RPC）都会带上这个 UUID。 这样，当我们把所有拥有同样 UUID 的日志收集起来时，就可以根据时间（有误差）、RPCID 或 SpanID，将它们按依赖请求顺序串起来。 只要日志足够详细，我们就能监控到系统大部分的工作状态，比如用户请求一个服务会调用多少个接口，每个数据查询的 SQL 以及具体耗时调用的内网请求参数是什么、 调用的内网请求返回是什么、内网被请求的接口又做了哪些操作、产生了哪些异常信息等等。 同时，我们可以通过对这些日志做归类分析，分析项目之间的调用关系、项目整体健康程度、 对链路深挖自动识别出故障点等，帮助我们主动、快速地查找问题。
+TraceID、RPCID、SpanID TraceID 用于标识某一次具体的请求 ID。 SpanID 用于标识单个服务中的一个操作。 RPCID 用于标识操作在整个调用链路中的位置。</description>
     </item>
     
     <item>

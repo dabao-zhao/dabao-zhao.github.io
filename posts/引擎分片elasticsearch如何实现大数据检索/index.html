@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="赵大宝" />
-  <meta property="og:url" content="https://dabao-zhao.github.io/tags/" />
-  <link rel="canonical" href="https://dabao-zhao.github.io/tags/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
+  <meta property="og:url" content="https://dabao-zhao.github.io/posts/%E5%BC%95%E6%93%8E%E5%88%86%E7%89%87elasticsearch%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A3%80%E7%B4%A2/" />
+  <link rel="canonical" href="https://dabao-zhao.github.io/posts/%E5%BC%95%E6%93%8E%E5%88%86%E7%89%87elasticsearch%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A3%80%E7%B4%A2/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
   <link rel="icon" href="images/favicon.ico" />
   <link rel="shortcut" href="images/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://dabao-zhao.github.ioindex.xml" title="赵大宝的博客">
 
@@ -20,10 +20,10 @@
            "@type": "WebPage",
            "@id": "https:\/\/dabao-zhao.github.io"
       },
-      "articleSection" : "tags",
-      "name" : "Tags",
-      "headline" : "Tags",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "引擎分片：Elasticsearch如何实现大数据检索",
+      "headline" : "引擎分片：Elasticsearch如何实现大数据检索",
+      "description" : "Elasticsearch 架构 Master 节点：负责集群内调度决策，集群状态、节点信息、索引映射、分片信息、路由信息，Master 真正主节点是通过选举诞生的，一般一个集群内至少要有三个 Master 可竞选成员，防止主节点损坏； Data 存储节点：用于存储数据及计算，分片的主从副本，热点节点，冷数据节点； Client 协调节点：协调多个副本数据查询服务，聚合各个副本的返回结果，返回给客户端； Kibana 计算节点：作用是实时统计分析、聚合分析统计数据、图形聚合展示。 Elasticsearch 索引 Elasticsearch 其底层全文检索使用的是 Lucene 引擎，但 Lucene 不支持分布式，Elasticsearch 的分布式功能是通过基础分片来实现的。\n索引通过倒排索引实现。 Elasticsearch 集群的索引保存在 Lucene 的 segment 文件中，segment 主要保存了三种索引：\nTerm Index（单词词典索引）：用于关键词（Term）快速搜索，Term index 是基础 Trie 树改进的 FST（Finite State Transducer 有限状态传感器，占用内存少） 实现的二级索引。平时这个树会放在内存中，用于减少磁盘 IO 加快 Term 查找速度，检索时会通过 FST 快速找到 Term Dictionary 对应的词典文件 block。 Term Dictionary（单词词典）：单词词典索引中保存的是单词（Term）与 Posting List 的关系，而这个单词词典数据会按 block 在磁盘中排序压缩保存，相比 B-Tree 更节省空间，其中保存了单词的前缀后缀，可以用于近似词及相似词查询，通过这个词典可以找到相关的倒排索引列表位置。 Posting List（倒排列表）：倒排列表记录了关键词 Term 出现的文档 ID，以及其所在文档中位置、偏移、词频信息，这是我们查找的最终文档列表，我们拿到这些就可以拿去排序合并了。 Elasticsearch 写入 在数据入库之前，会先进行分词，过滤掉无用符号等分隔词，找出文档中每个关键词（Term）在文档中的位置及频率权重；然后，将这些关键词保存在 Term Index 以及 Term Dictionary 内；最后，将每个关键词对应的文档 ID 和权重、位置等信息排序合并到 Posting List 中进行保存。",
       "inLanguage" : "en-US",
       "author" : "赵大宝",
       "creator" : "赵大宝",
@@ -33,15 +33,19 @@
       "copyrightYear" : "2023",
       "datePublished": "2023-08-16 10:24:58 \u002b0800 CST",
       "dateModified" : "2023-08-16 10:24:58 \u002b0800 CST",
-      "url" : "https:\/\/dabao-zhao.github.io\/tags\/",
-      "keywords" : [  ]
+      "url" : "https:\/\/dabao-zhao.github.io\/posts\/%E5%BC%95%E6%93%8E%E5%88%86%E7%89%87elasticsearch%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A3%80%E7%B4%A2\/",
+      "keywords" : [ "高并发系统实战课", ]
   }
 </script>
-<title>Tags</title>
-  <meta property="og:title" content="Tags" />
+<title>引擎分片：Elasticsearch如何实现大数据检索</title>
+  <meta property="og:title" content="引擎分片：Elasticsearch如何实现大数据检索" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="Elasticsearch 架构 Master 节点：负责集群内调度决策，集群状态、节点信息、索引映射、分片信息、路由信息，Master 真正主节点是通过选举诞生的，一般一个集群内至少要有三个 Master 可竞选成员，防止主节点损坏； Data 存储节点：用于存储数据及计算，分片的主从副本，热点节点，冷数据节点； Client 协调节点：协调多个副本数据查询服务，聚合各个副本的返回结果，返回给客户端； Kibana 计算节点：作用是实时统计分析、聚合分析统计数据、图形聚合展示。 Elasticsearch 索引 Elasticsearch 其底层全文检索使用的是 Lucene 引擎，但 Lucene 不支持分布式，Elasticsearch 的分布式功能是通过基础分片来实现的。
+索引通过倒排索引实现。 Elasticsearch 集群的索引保存在 Lucene 的 segment 文件中，segment 主要保存了三种索引：
+Term Index（单词词典索引）：用于关键词（Term）快速搜索，Term index 是基础 Trie 树改进的 FST（Finite State Transducer 有限状态传感器，占用内存少） 实现的二级索引。平时这个树会放在内存中，用于减少磁盘 IO 加快 Term 查找速度，检索时会通过 FST 快速找到 Term Dictionary 对应的词典文件 block。 Term Dictionary（单词词典）：单词词典索引中保存的是单词（Term）与 Posting List 的关系，而这个单词词典数据会按 block 在磁盘中排序压缩保存，相比 B-Tree 更节省空间，其中保存了单词的前缀后缀，可以用于近似词及相似词查询，通过这个词典可以找到相关的倒排索引列表位置。 Posting List（倒排列表）：倒排列表记录了关键词 Term 出现的文档 ID，以及其所在文档中位置、偏移、词频信息，这是我们查找的最终文档列表，我们拿到这些就可以拿去排序合并了。 Elasticsearch 写入 在数据入库之前，会先进行分词，过滤掉无用符号等分隔词，找出文档中每个关键词（Term）在文档中的位置及频率权重；然后，将这些关键词保存在 Term Index 以及 Term Dictionary 内；最后，将每个关键词对应的文档 ID 和权重、位置等信息排序合并到 Posting List 中进行保存。" />
+  <meta name="description" content="Elasticsearch 架构 Master 节点：负责集群内调度决策，集群状态、节点信息、索引映射、分片信息、路由信息，Master 真正主节点是通过选举诞生的，一般一个集群内至少要有三个 Master 可竞选成员，防止主节点损坏； Data 存储节点：用于存储数据及计算，分片的主从副本，热点节点，冷数据节点； Client 协调节点：协调多个副本数据查询服务，聚合各个副本的返回结果，返回给客户端； Kibana 计算节点：作用是实时统计分析、聚合分析统计数据、图形聚合展示。 Elasticsearch 索引 Elasticsearch 其底层全文检索使用的是 Lucene 引擎，但 Lucene 不支持分布式，Elasticsearch 的分布式功能是通过基础分片来实现的。
+索引通过倒排索引实现。 Elasticsearch 集群的索引保存在 Lucene 的 segment 文件中，segment 主要保存了三种索引：
+Term Index（单词词典索引）：用于关键词（Term）快速搜索，Term index 是基础 Trie 树改进的 FST（Finite State Transducer 有限状态传感器，占用内存少） 实现的二级索引。平时这个树会放在内存中，用于减少磁盘 IO 加快 Term 查找速度，检索时会通过 FST 快速找到 Term Dictionary 对应的词典文件 block。 Term Dictionary（单词词典）：单词词典索引中保存的是单词（Term）与 Posting List 的关系，而这个单词词典数据会按 block 在磁盘中排序压缩保存，相比 B-Tree 更节省空间，其中保存了单词的前缀后缀，可以用于近似词及相似词查询，通过这个词典可以找到相关的倒排索引列表位置。 Posting List（倒排列表）：倒排列表记录了关键词 Term 出现的文档 ID，以及其所在文档中位置、偏移、词频信息，这是我们查找的最终文档列表，我们拿到这些就可以拿去排序合并了。 Elasticsearch 写入 在数据入库之前，会先进行分词，过滤掉无用符号等分隔词，找出文档中每个关键词（Term）在文档中的位置及频率权重；然后，将这些关键词保存在 Term Index 以及 Term Dictionary 内；最后，将每个关键词对应的文档 ID 和权重、位置等信息排序合并到 Posting List 中进行保存。" />
   <meta property="og:locale" content="zh-cn" /><meta property="og:image" content="images/favicon.ico" />
   
 
@@ -68,10 +72,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -92,53 +97,113 @@
 </div>
 <div class="header-line"></div>
 
-
-        <h1 class="taxonomy-term"></h1>
-        <div id="posts-list">
-          <section>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-16 10:24:58 CST">2023-08-16</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%AE%9E%E6%88%98%E8%AF%BE/">高并发系统实战课</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-10 16:36:39 CST">2023-08-10</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/tags/raft/">Raft</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-10 16:36:39 CST">2023-08-10</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
         </div>
+        <header class="post-header">
+          <h1 class="post-title">引擎分片：Elasticsearch如何实现大数据检索</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-08-16 10:24:58 CST">
+                16 Aug 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://dabao-zhao.github.io">@赵大宝</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h3 id="elasticsearch-架构">Elasticsearch 架构</h3>
+<ul>
+<li>Master 节点：负责集群内调度决策，集群状态、节点信息、索引映射、分片信息、路由信息，Master 真正主节点是通过选举诞生的，一般一个集群内至少要有三个 Master 可竞选成员，防止主节点损坏；</li>
+<li>Data 存储节点：用于存储数据及计算，分片的主从副本，热点节点，冷数据节点；</li>
+<li>Client 协调节点：协调多个副本数据查询服务，聚合各个副本的返回结果，返回给客户端；</li>
+<li>Kibana 计算节点：作用是实时统计分析、聚合分析统计数据、图形聚合展示。</li>
+</ul>
+<h3 id="elasticsearch-索引">Elasticsearch 索引</h3>
+<p><img src="/images/es/index.png" alt="index">
+<img src="/images/es/index2.png" alt="index2"></p>
+<p>Elasticsearch 其底层全文检索使用的是 Lucene 引擎，但 Lucene 不支持分布式，Elasticsearch 的分布式功能是通过基础分片来实现的。</p>
+<p>索引通过倒排索引实现。
+<img src="/images/es/index3.png" alt="index3"></p>
+<p>Elasticsearch 集群的索引保存在 Lucene 的 segment 文件中，segment 主要保存了三种索引：</p>
+<ul>
+<li>Term Index（单词词典索引）：用于关键词（Term）快速搜索，Term index 是基础 Trie 树改进的 FST（Finite State Transducer 有限状态传感器，占用内存少）
+实现的二级索引。平时这个树会放在内存中，用于减少磁盘 IO 加快 Term 查找速度，检索时会通过 FST 快速找到 Term Dictionary 对应的词典文件 block。</li>
+<li>Term Dictionary（单词词典）：单词词典索引中保存的是单词（Term）与 Posting List 的关系，而这个单词词典数据会按 block 在磁盘中排序压缩保存，相比 B-Tree
+更节省空间，其中保存了单词的前缀后缀，可以用于近似词及相似词查询，通过这个词典可以找到相关的倒排索引列表位置。</li>
+<li>Posting List（倒排列表）：倒排列表记录了关键词 Term 出现的文档 ID，以及其所在文档中位置、偏移、词频信息，这是我们查找的最终文档列表，我们拿到这些就可以拿去排序合并了。</li>
+</ul>
+<h3 id="elasticsearch-写入">Elasticsearch 写入</h3>
+<p>在数据入库之前，会先进行分词，过滤掉无用符号等分隔词，找出文档中每个关键词（Term）在文档中的位置及频率权重；然后，将这些关键词保存在 Term Index 以及 Term
+Dictionary 内；最后，将每个关键词对应的文档 ID 和权重、位置等信息排序合并到 Posting List 中进行保存。</p>
+<h3 id="elasticsearch-查询">Elasticsearch 查询</h3>
+<h4 id="整体看">整体看</h4>
+<p>Elasticsearch 每次查询都是请求索引所在的所有 Data 节点，查询请求时协调节点会在相同数据分片多个副本中，随机选出一个节点发送查询请求，从而实现负载均衡。
+而收到请求的副本会根据关键词权重对结果先进行一次排序，当协调节点拿到所有副本返回的文档 ID 列表后，会再次对结果汇总排序，最后才会用 DocId 去各个副本 Fetch 具体的文档数据将结果返回。</p>
+<p>这种方式查询耗时、QPS 低、网络吞吐性能不高、协助节点需要每次查询结果做分页、翻页跨度越大，查询就越慢。</p>
+<h4 id="倒排索引角度">倒排索引角度</h4>
+<p>而倒排索引的查询过程可以大致分四个步骤：分词、取出相关 DocId、计算权重并重新排序、展示高相关度的记录。
+首先，对用户输入的内容做分词，找出关键词；然后，通过多个关键词对应的倒排索引，取出所有相关的 DocId；接下来，将多个关键词设计索引 ID 做交集后，再根据关键词在每个文档
+的出现次数及频率，以此计算出每条结果的权重，进而给列表排序，并实现基于查询匹配度的评分；然后就可以根据匹配评分来降序排序，列出相关度高的记录。</p>
+<h4 id="底层结构角度">底层结构角度</h4>
+<p>查询时，Elasticsearch 会将用户输入的关键字通过分词解析出来，在内存中的 Term Index 单词索引查找到对应 Term Dictionary 字典的索引所在磁盘的 block。接着，由 Term
+Dictionary 找到对关键词对应的所有相关文档 DocId 及权重，并根据保存的信息和权重算法对查询结果进行排序返回结果</p>
+<blockquote>
+<p>这一篇感觉就是比较乱……从索引这块开始的，结构、查询、写入是混杂的</p>
+</blockquote>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+            <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%AE%9E%E6%88%98%E8%AF%BE/">
+                高并发系统实战课
+              </a>
+            </div>
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+<div class="related-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/posts/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA%E5%A6%82%E4%BD%95%E5%AE%9A%E5%88%B6%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA%E7%B3%BB%E7%BB%9F/">链路追踪：如何定制一个分布式链路跟踪系统</a></li>
+    
+    <li><a href="/posts/%E7%A8%80%E7%96%8F%E7%B4%A2%E5%BC%95%E4%B8%BA%E4%BB%80%E4%B9%88%E9%AB%98%E5%B9%B6%E5%8F%91%E5%86%99%E4%B8%8D%E6%8E%A8%E8%8D%90%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/">稀疏索引：为什么高并发写不推荐关系数据库</a></li>
+    
+    <li><a href="/posts/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E5%A4%9A%E6%9C%8D%E5%8A%A1%E7%9A%842pctcc%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84/">分布式事务：多服务的2PC、TCC都是怎么实现的</a></li>
+    
+  </ul>
+</div>
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -158,6 +223,8 @@
     
   
 </script>
+
+  
 
 </body>
 
