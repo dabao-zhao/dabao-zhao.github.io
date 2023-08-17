@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>赵大宝的博客</title>
-    <link>https://dabao-zhao.github.io/</link>
-    <description>Recent content on 赵大宝的博客</description>
+    <title>笔记 on 赵大宝的博客</title>
+    <link>https://dabao-zhao.github.io/categories/%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 笔记 on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 17 Aug 2023 10:42:35 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Aug 2023 10:42:35 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>实践方案：如何用C&#43;&#43;自实现链路跟踪</title>
       <link>https://dabao-zhao.github.io/posts/%E5%AE%9E%E8%B7%B5%E6%96%B9%E6%A1%88%E5%A6%82%E4%BD%95%E7%94%A8c&#43;&#43;%E8%87%AA%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA/</link>
@@ -155,16 +155,6 @@ CanCommit 阶段：为了减少因等待锁定数据导致的超时情况，提�
     </item>
     
     <item>
-      <title>Raft一致性算法论文中文翻译</title>
-      <link>https://dabao-zhao.github.io/posts/raft%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95%E8%AE%BA%E6%96%87%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91/</link>
-      <pubDate>Thu, 10 Aug 2023 16:36:39 +0800</pubDate>
-      
-      <guid>https://dabao-zhao.github.io/posts/raft%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95%E8%AE%BA%E6%96%87%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91/</guid>
-      <description>对 https://github.com/maemual/raft-zh_cn 的一个副本，防止丢失
-寻找一种易于理解的一致性算法（扩展版） 寻找一种易于理解的一致性算法（扩展版） 摘要 1 介绍 2 复制状态机 3 Paxos 算法的问题 4 为了可理解性的设计 5 Raft 一致性算法 5.1 Raft 基础 5.2 领导人选举 5.3 日志复制 5.4 安全性 5.4.1 选举限制 5.4.2 提交之前任期内的日志条目 5.4.3 安全性论证 5.5 跟随者和候选人崩溃 5.6 时间和可用性 6 集群成员变化 7 日志压缩 8 客户端交互 9 算法实现和评估 9.1 可理解性 9.2 正确性 9.3 性能 10 相关工作 11 结论 12 感谢 参考 摘要 Raft 是一种为了管理复制日志的一致性算法。它提供了和 Paxos 算法相同的功能和性能，但是它的算法结构和 Paxos 不同，使得 Raft 算法更加容易理解并且更容易构建实际的系统。为了提升可理解性，Raft 将一致性算法分解成了几个关键模块，例如领导人选举、日志复制和安全性。同时它通过实施一个更强的一致性来减少需要考虑的状态的数量。一项用户研究的结果表明，对于学生而言，Raft 算法比 Paxos 算法更加容易学习。Raft 算法还包括一个新的机制来允许集群成员的动态改变，它利用重叠的大多数来保证安全性。</description>
-    </item>
-    
-    <item>
       <title>共识Raft：如何保证多机房数据的一致性</title>
       <link>https://dabao-zhao.github.io/posts/%E5%85%B1%E8%AF%86raft%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%A4%9A%E6%9C%BA%E6%88%BF%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7/</link>
       <pubDate>Wed, 09 Aug 2023 11:20:37 +0800</pubDate>
@@ -226,17 +216,6 @@ TODO 后面再找一个 JWT 的教程吧</description>
 尽量减少 m:n 出现的可能性，如果出现要额外用一个关系表来维护关联关系。关系表在高并发系统中一般会降低一致性 要求来满足高并发的情况。主要可能会出现多级依赖。
 历史数据表 一般不会去做缓存，数据量大而且增长量也大
 判断是否适合缓存的核心思路 能够通过 ID 快速匹配的实体，以及通过关系快速查询的数据，适合放在长期缓存当中 通过组合条件筛选统计的数据，也可以放到临时缓存，但是更新有延迟 数据增长量大或者跟设计初衷不一样的表数据，这种不适合、也不建议去做做缓存 总结 核心就是要对数据进行归类，然后再根据归类做对应的处理</description>
-    </item>
-    
-    <item>
-      <title>Linux 下安装和升级 Go</title>
-      <link>https://dabao-zhao.github.io/posts/linux%E4%B8%8B%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7go/</link>
-      <pubDate>Tue, 08 Aug 2023 09:56:13 +0800</pubDate>
-      
-      <guid>https://dabao-zhao.github.io/posts/linux%E4%B8%8B%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7go/</guid>
-      <description>安装 wget https://golang.google.cn/dl/go1.20.7.linux-amd64.tar.gz rm -rf /usr/local/go tar -C /usr/local -xzf go1.20.7.linux-amd64.tar.gz 打开 ~/.bashrc 并输入
-export GOROOT=/usr/local/go export GOPATH=$HOME/gowork export GOBIN=$GOPATH/bin export PATH=$GOPATH:$GOBIN:$GOROOT/bin:$PATH 保存并关闭文件，输入以下命令以使更改生效
-source ~/.bashrc 升级 操作与安装一致</description>
     </item>
     
   </channel>

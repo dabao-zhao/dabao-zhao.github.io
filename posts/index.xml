@@ -6,7 +6,16 @@
     <description>Recent content in Posts on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 16 Aug 2023 15:31:25 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Aug 2023 10:42:35 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>实践方案：如何用C&#43;&#43;自实现链路跟踪</title>
+      <link>https://dabao-zhao.github.io/posts/%E5%AE%9E%E8%B7%B5%E6%96%B9%E6%A1%88%E5%A6%82%E4%BD%95%E7%94%A8c&#43;&#43;%E8%87%AA%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA/</link>
+      <pubDate>Thu, 17 Aug 2023 10:42:35 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E5%AE%9E%E8%B7%B5%E6%96%B9%E6%A1%88%E5%A6%82%E4%BD%95%E7%94%A8c&#43;&#43;%E8%87%AA%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>跳数索引：后起新秀ClickHouse</title>
       <link>https://dabao-zhao.github.io/posts/%E8%B7%B3%E6%95%B0%E7%B4%A2%E5%BC%95%E5%90%8E%E8%B5%B7%E6%96%B0%E7%A7%80clickhouse/</link>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>转载 on 赵大宝的博客</title>
+    <link>https://dabao-zhao.github.io/categories/%E8%BD%AC%E8%BD%BD/</link>
+    <description>Recent content in 转载 on 赵大宝的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 10 Aug 2023 16:36:39 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/%E8%BD%AC%E8%BD%BD/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Raft一致性算法论文中文翻译</title>
+      <link>https://dabao-zhao.github.io/posts/raft%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95%E8%AE%BA%E6%96%87%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91/</link>
+      <pubDate>Thu, 10 Aug 2023 16:36:39 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/raft%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95%E8%AE%BA%E6%96%87%E4%B8%AD%E6%96%87%E7%BF%BB%E8%AF%91/</guid>
+      <description>对 https://github.com/maemual/raft-zh_cn 的一个副本，防止丢失
+寻找一种易于理解的一致性算法（扩展版） 寻找一种易于理解的一致性算法（扩展版） 摘要 1 介绍 2 复制状态机 3 Paxos 算法的问题 4 为了可理解性的设计 5 Raft 一致性算法 5.1 Raft 基础 5.2 领导人选举 5.3 日志复制 5.4 安全性 5.4.1 选举限制 5.4.2 提交之前任期内的日志条目 5.4.3 安全性论证 5.5 跟随者和候选人崩溃 5.6 时间和可用性 6 集群成员变化 7 日志压缩 8 客户端交互 9 算法实现和评估 9.1 可理解性 9.2 正确性 9.3 性能 10 相关工作 11 结论 12 感谢 参考 摘要 Raft 是一种为了管理复制日志的一致性算法。它提供了和 Paxos 算法相同的功能和性能，但是它的算法结构和 Paxos 不同，使得 Raft 算法更加容易理解并且更容易构建实际的系统。为了提升可理解性，Raft 将一致性算法分解成了几个关键模块，例如领导人选举、日志复制和安全性。同时它通过实施一个更强的一致性来减少需要考虑的状态的数量。一项用户研究的结果表明，对于学生而言，Raft 算法比 Paxos 算法更加容易学习。Raft 算法还包括一个新的机制来允许集群成员的动态改变，它利用重叠的大多数来保证安全性。</description>
+    </item>
+    
+  </channel>
+</rss>
