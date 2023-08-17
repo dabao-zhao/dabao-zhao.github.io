@@ -6,7 +6,28 @@
     <description>Recent content in Posts on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 17 Aug 2023 10:42:35 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Aug 2023 14:57:34 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>本地缓存：用本地缓存做服务会遇到哪些坑</title>
+      <link>https://dabao-zhao.github.io/posts/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E7%94%A8%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E5%81%9A%E6%9C%8D%E5%8A%A1%E4%BC%9A%E9%81%87%E5%88%B0%E5%93%AA%E4%BA%9B%E5%9D%91/</link>
+      <pubDate>Thu, 17 Aug 2023 14:57:34 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E7%94%A8%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E5%81%9A%E6%9C%8D%E5%8A%A1%E4%BC%9A%E9%81%87%E5%88%B0%E5%93%AA%E4%BA%9B%E5%9D%91/</guid>
+      <description>缺页中断 Linux 采用虚拟内存的方式管理内存，每个进程都有自己的虚拟内存空间。
+在 Linux 申请的内存不会立刻从物理内存划分出来。系统数据修改时，才会发现物理内存没有分配，此时 CPU 会产生缺页中断，操作系统才会以 page 为单位把物理内存分配给程序。
+系统这么设计，主要是为了降低系统的内存碎片，并且减少内存的浪费。但 page 很小，一般是 4KB，分配大内存时会频繁触发缺页中断，导致程序缓慢、不稳定的问题。
+一般会在服务启动时预先申请一大块内存并填 0，然后再使用。
+Swap Out Linux 会根据统计将我们长时间不访问的数据从内存里挪走，留出空间给其他活跃的内存使用，这个操作叫 Swap Out。
+需要控制缓存在系统中的占用量，需要通过 LRU 淘汰掉一些不频繁访问的数据，同时建议对内存做定期扫描续热，以此预防流量突增时触发大量缺页中断导致服务卡顿、最终宕机的情况。
+锁 公共数据需要加锁，如果不做互斥锁，就会出现多线程修改不一致的问题。但锁多多少少都会影响服务性能。
+一般情况下就是要减少锁的粒度，来减少锁的冲突，例如：可以将一个放大量数据的经常修改的 map 拆分成 256 份甚至更多的分片，每个分片会有一个互斥锁。
+还可以通过全量替换的方式实现数据更新，具体的做法是用两个指针分别指向两个 map，一个 map 用于对外服务，当拿到更新数据离线包时，另一个指针指向的 map 会加载离线全量数据。加载完毕后，两个 map 指针指向互换。
+当然还有一些无锁的操作：atomic、Go 的 sync.Map、sync.Pool、Java 的 volidate、MySQL InnoDB 的 MVCC
+GC 每个语言的 GC 策略不一样，对数据类型的处理也不一样。
+一般情况下，GC 会定期扫描 map 中的对象来判断是否能够回收，这样的话，map 中的对象越多，GC 的速度就越慢。而 Go 的 GC 对此做了优化，如果 map 中没有指针，GC 就不会去遍历。
+如果我们的数据量少，且特点是读多写多，那么将它的 struct 放到 map 中对外服务更合理； 如果我们的数据量大，且特点是读多写少，那么把数据放到一个连续内存中，通过 offset 和 length 访问会更合适。</description>
+    </item>
+    
     <item>
       <title>实践方案：如何用C&#43;&#43;自实现链路跟踪</title>
       <link>https://dabao-zhao.github.io/posts/%E5%AE%9E%E8%B7%B5%E6%96%B9%E6%A1%88%E5%A6%82%E4%BD%95%E7%94%A8c&#43;&#43;%E8%87%AA%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA/</link>
