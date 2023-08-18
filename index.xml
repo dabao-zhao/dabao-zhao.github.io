@@ -6,7 +6,18 @@
     <description>Recent content on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 18 Aug 2023 09:54:16 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Aug 2023 11:19:35 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>流量调度：DNS、全站加速及机房负载均衡</title>
+      <link>https://dabao-zhao.github.io/posts/%E6%B5%81%E9%87%8F%E8%B0%83%E5%BA%A6dns%E5%85%A8%E7%AB%99%E5%8A%A0%E9%80%9F%E5%8F%8A%E6%9C%BA%E6%88%BF%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</link>
+      <pubDate>Fri, 18 Aug 2023 11:19:35 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E6%B5%81%E9%87%8F%E8%B0%83%E5%BA%A6dns%E5%85%A8%E7%AB%99%E5%8A%A0%E9%80%9F%E5%8F%8A%E6%9C%BA%E6%88%BF%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</guid>
+      <description>DNS 域名解析及缓存 域名解析过程可以分成下面三个步骤：
+客户端会请求 ISP 商提供的 DNS 解析服务，而 ISP 商的 DNS 服务会先请求根 DNS 服务器； 通过根 DNS 服务器找到.org顶级域名 DNS 服务器； 再通过顶级域名服务器找到域名主域名服务器（权威 DNS） 当请求主域名解析服务时，主域名服务器会返回服务器所在机房的入口 IP 以及建议缓存的 TTL 时间，在主域名服务返回结果给 ISP DNS 服务时，ISP 的 DNS 服务会先将这个解析结果按 TTL 规定的时间缓存到服务本地，然后才会将解析结果返回给客户端。在 ISP DNS 缓存 TTL 有效期内，同样的域名解析请求都会从 ISP 缓存直接返回结果。
+// 全网刷新域名解析缓存时间 客户端本地解析缓存时间30分钟 + 市级 ISP DNS缓存时间 30分钟 + 省级 ISP DNS缓存时间 30分钟 + 主域名服务商 刷新解析服务器配置耗时 3分钟 + ... 后续ISP子网情况 略 = 域名解析实际更新时间 93分钟以上 根据经验，正常域名修改后全国 DNS 缓存需要 48 小时，才能大部分更新完毕，而刷全世界缓存需要 72 小时。</description>
+    </item>
+    
     <item>
       <title>流量拆分：如何通过架构设计缓解流量压力</title>
       <link>https://dabao-zhao.github.io/posts/%E6%B5%81%E9%87%8F%E6%8B%86%E5%88%86%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%BC%93%E8%A7%A3%E6%B5%81%E9%87%8F%E5%8E%8B%E5%8A%9B/</link>
