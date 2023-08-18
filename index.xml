@@ -6,7 +6,17 @@
     <description>Recent content on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 18 Aug 2023 11:19:35 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Aug 2023 15:32:00 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>数据引擎：统一缓存数据平台</title>
+      <link>https://dabao-zhao.github.io/posts/%E6%95%B0%E6%8D%AE%E5%BC%95%E6%93%8E%E7%BB%9F%E4%B8%80%E7%BC%93%E5%AD%98%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/</link>
+      <pubDate>Fri, 18 Aug 2023 15:32:00 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E6%95%B0%E6%8D%AE%E5%BC%95%E6%93%8E%E7%BB%9F%E4%B8%80%E7%BC%93%E5%AD%98%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/</guid>
+      <description>实体数据主动缓存 建议查询服务使用类似 Redis 的纯文本长链接协议，同时还可以支持批量获取功能。
+L1 缓存及热点缓存延期 多数据引擎平台 多数据引擎 lua 脚本引擎是数据推送的“发动机”，能帮我们把数据动态同步到多个数据源； Elasticsearch 负责提供全文检索功能； Pika 负责提供大容量 KV 查询功能； ClickHouse 负责提供实时查询数据的汇总统计功能； MySQL 引擎负责支撑新维度的数据查询。 </description>
+    </item>
+    
     <item>
       <title>流量调度：DNS、全站加速及机房负载均衡</title>
       <link>https://dabao-zhao.github.io/posts/%E6%B5%81%E9%87%8F%E8%B0%83%E5%BA%A6dns%E5%85%A8%E7%AB%99%E5%8A%A0%E9%80%9F%E5%8F%8A%E6%9C%BA%E6%88%BF%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</link>
