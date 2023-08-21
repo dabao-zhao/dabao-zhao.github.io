@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="赵大宝" />
-  <meta property="og:url" content="https://dabao-zhao.github.io/categories/%E7%AC%94%E8%AE%B0/" />
-  <link rel="canonical" href="https://dabao-zhao.github.io/categories/%E7%AC%94%E8%AE%B0/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
+  <meta property="og:url" content="https://dabao-zhao.github.io/posts/%E6%80%A7%E8%83%BD%E5%8E%8B%E6%B5%8B%E5%8E%8B%E6%B5%8B%E4%B8%8D%E5%AE%8C%E5%96%84%E6%95%88%E6%9E%9C%E5%87%8F%E4%B8%80%E5%8D%8A/" />
+  <link rel="canonical" href="https://dabao-zhao.github.io/posts/%E6%80%A7%E8%83%BD%E5%8E%8B%E6%B5%8B%E5%8E%8B%E6%B5%8B%E4%B8%8D%E5%AE%8C%E5%96%84%E6%95%88%E6%9E%9C%E5%87%8F%E4%B8%80%E5%8D%8A/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
   <link rel="icon" href="images/favicon.ico" />
   <link rel="shortcut" href="images/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://dabao-zhao.github.ioindex.xml" title="赵大宝的博客">
 
@@ -20,10 +20,10 @@
            "@type": "WebPage",
            "@id": "https:\/\/dabao-zhao.github.io"
       },
-      "articleSection" : "categories",
-      "name" : "笔记",
-      "headline" : "笔记",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "性能压测：压测不完善，效果减一半",
+      "headline" : "性能压测：压测不完善，效果减一半",
+      "description" : "压测与架构 并行优化 并行发起请求会造成写放大，需要注意依赖服务的承受能力，不是万能的，适用于读多写少的系统。\n临时缓存服务 临时缓存的优化，针对的是会被频繁重复访问的接口，优化之后，接口的第一次请求还是很缓慢。如果某类服务原有接口依赖响应很慢，而且同参数的请求并不频繁，那这类服务的缓存就是形同虚设的。 临时缓存优化的服务压测的 QPS 高不等于服务的真实性能，线上需要多加关注。\n分片架构 数据分片架构的服务，会根据一些标识id作为分片依据，期望将请求均衡地转发到对应分片。 但要考虑 hash 算法是否足够分散，要不然会造成热点分片的问题，最好是要拿线上的数据做验证。\n数据量 需要考虑到数据量是否会影响到接口的 QPS 和稳定性，如果数据量对接口性能有直接影响，压测时就要针对不同数据量分别做验证，要尽量采用一些脱敏后的线上真实数据来操作。\n对于需要实时汇总大量数据的统计服务，要慎重对外提供服务。如果服务涉及的数据量过多，建议转换实现的思路，用预计算方式去实现。\n要时刻关注相关数据库压力及索引、缓存的命中率情况，预防数据库出现压力过大、响应缓慢的问题。\n压测环境注意事项 总结：能和线上环境一致最好……\n压测环境前后要一致：尽量用同一套服务器及配置环境验证优化效果。 避免缓存干扰：建议在每次压测时，缓一段时间让服务和缓存过期后再进行压测，这样才能验证测试的准确性。 数据状态一致：要尽量保证服务用的数据量、压测用户量以及缓存的状态是一致的。 考虑压测环境和真实环境的差异。 Linux 环境配置优化 Linux内核优化比较常用的配置选项包括：本地可用端口个数限制、文件句柄限制、长链接超时时间、网卡软中断负载均衡、各种IO缓存大小等\n线上压测及影子库 该方式会在压测的请求里带上一个特殊的 header，这样所有的数据读写请求都会转为请求压测数据库，而不是线上库。有了影子数据库，可以帮我们有效地降低业务数据被污染的风险。\n全链路压测以及流量回放测试 模拟交叉复杂的使用情况，可以把多个业务主要场景，设计成并行运行的流程一起跑，比如一组vUser在浏览搜索商品，一组vUser在下单支付，一组vUser在后台点常见功能。\n这种方式压测出来的性能数据，可以作为我们最忙时线上服务压力的上限，如果某个流程核心的接口压力大、响应慢的话，则会拖慢整个流程的效率，这样我们可以通过整体流程的QPS发现瓶颈点和隐患。\n如果压测一段时间服务指标都很稳定，我们可以加大单个流程压测线程数，尝试压垮系统，以此观察系统可能出现的缺陷以及预警系统是否及时预警。\n还可以使用 tcpcopy 工具录制线上的流量请求，生成请求记录文件后，模拟搭建录制时线上数据时的全量数据镜像，然后回放，模拟特别复杂的业务请求。",
       "inLanguage" : "en-US",
       "author" : "赵大宝",
       "creator" : "赵大宝",
@@ -33,15 +33,39 @@
       "copyrightYear" : "2023",
       "datePublished": "2023-08-21 15:01:54 \u002b0800 CST",
       "dateModified" : "2023-08-21 15:01:54 \u002b0800 CST",
-      "url" : "https:\/\/dabao-zhao.github.io\/categories\/%E7%AC%94%E8%AE%B0\/",
-      "keywords" : [  ]
+      "url" : "https:\/\/dabao-zhao.github.io\/posts\/%E6%80%A7%E8%83%BD%E5%8E%8B%E6%B5%8B%E5%8E%8B%E6%B5%8B%E4%B8%8D%E5%AE%8C%E5%96%84%E6%95%88%E6%9E%9C%E5%87%8F%E4%B8%80%E5%8D%8A\/",
+      "keywords" : [ "高并发系统实战课", ]
   }
 </script>
-<title>笔记</title>
-  <meta property="og:title" content="笔记" />
+<title>性能压测：压测不完善，效果减一半</title>
+  <meta property="og:title" content="性能压测：压测不完善，效果减一半" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="压测与架构 并行优化 并行发起请求会造成写放大，需要注意依赖服务的承受能力，不是万能的，适用于读多写少的系统。
+临时缓存服务 临时缓存的优化，针对的是会被频繁重复访问的接口，优化之后，接口的第一次请求还是很缓慢。如果某类服务原有接口依赖响应很慢，而且同参数的请求并不频繁，那这类服务的缓存就是形同虚设的。 临时缓存优化的服务压测的 QPS 高不等于服务的真实性能，线上需要多加关注。
+分片架构 数据分片架构的服务，会根据一些标识id作为分片依据，期望将请求均衡地转发到对应分片。 但要考虑 hash 算法是否足够分散，要不然会造成热点分片的问题，最好是要拿线上的数据做验证。
+数据量 需要考虑到数据量是否会影响到接口的 QPS 和稳定性，如果数据量对接口性能有直接影响，压测时就要针对不同数据量分别做验证，要尽量采用一些脱敏后的线上真实数据来操作。
+对于需要实时汇总大量数据的统计服务，要慎重对外提供服务。如果服务涉及的数据量过多，建议转换实现的思路，用预计算方式去实现。
+要时刻关注相关数据库压力及索引、缓存的命中率情况，预防数据库出现压力过大、响应缓慢的问题。
+压测环境注意事项 总结：能和线上环境一致最好……
+压测环境前后要一致：尽量用同一套服务器及配置环境验证优化效果。 避免缓存干扰：建议在每次压测时，缓一段时间让服务和缓存过期后再进行压测，这样才能验证测试的准确性。 数据状态一致：要尽量保证服务用的数据量、压测用户量以及缓存的状态是一致的。 考虑压测环境和真实环境的差异。 Linux 环境配置优化 Linux内核优化比较常用的配置选项包括：本地可用端口个数限制、文件句柄限制、长链接超时时间、网卡软中断负载均衡、各种IO缓存大小等
+线上压测及影子库 该方式会在压测的请求里带上一个特殊的 header，这样所有的数据读写请求都会转为请求压测数据库，而不是线上库。有了影子数据库，可以帮我们有效地降低业务数据被污染的风险。
+全链路压测以及流量回放测试 模拟交叉复杂的使用情况，可以把多个业务主要场景，设计成并行运行的流程一起跑，比如一组vUser在浏览搜索商品，一组vUser在下单支付，一组vUser在后台点常见功能。
+这种方式压测出来的性能数据，可以作为我们最忙时线上服务压力的上限，如果某个流程核心的接口压力大、响应慢的话，则会拖慢整个流程的效率，这样我们可以通过整体流程的QPS发现瓶颈点和隐患。
+如果压测一段时间服务指标都很稳定，我们可以加大单个流程压测线程数，尝试压垮系统，以此观察系统可能出现的缺陷以及预警系统是否及时预警。
+还可以使用 tcpcopy 工具录制线上的流量请求，生成请求记录文件后，模拟搭建录制时线上数据时的全量数据镜像，然后回放，模拟特别复杂的业务请求。" />
+  <meta name="description" content="压测与架构 并行优化 并行发起请求会造成写放大，需要注意依赖服务的承受能力，不是万能的，适用于读多写少的系统。
+临时缓存服务 临时缓存的优化，针对的是会被频繁重复访问的接口，优化之后，接口的第一次请求还是很缓慢。如果某类服务原有接口依赖响应很慢，而且同参数的请求并不频繁，那这类服务的缓存就是形同虚设的。 临时缓存优化的服务压测的 QPS 高不等于服务的真实性能，线上需要多加关注。
+分片架构 数据分片架构的服务，会根据一些标识id作为分片依据，期望将请求均衡地转发到对应分片。 但要考虑 hash 算法是否足够分散，要不然会造成热点分片的问题，最好是要拿线上的数据做验证。
+数据量 需要考虑到数据量是否会影响到接口的 QPS 和稳定性，如果数据量对接口性能有直接影响，压测时就要针对不同数据量分别做验证，要尽量采用一些脱敏后的线上真实数据来操作。
+对于需要实时汇总大量数据的统计服务，要慎重对外提供服务。如果服务涉及的数据量过多，建议转换实现的思路，用预计算方式去实现。
+要时刻关注相关数据库压力及索引、缓存的命中率情况，预防数据库出现压力过大、响应缓慢的问题。
+压测环境注意事项 总结：能和线上环境一致最好……
+压测环境前后要一致：尽量用同一套服务器及配置环境验证优化效果。 避免缓存干扰：建议在每次压测时，缓一段时间让服务和缓存过期后再进行压测，这样才能验证测试的准确性。 数据状态一致：要尽量保证服务用的数据量、压测用户量以及缓存的状态是一致的。 考虑压测环境和真实环境的差异。 Linux 环境配置优化 Linux内核优化比较常用的配置选项包括：本地可用端口个数限制、文件句柄限制、长链接超时时间、网卡软中断负载均衡、各种IO缓存大小等
+线上压测及影子库 该方式会在压测的请求里带上一个特殊的 header，这样所有的数据读写请求都会转为请求压测数据库，而不是线上库。有了影子数据库，可以帮我们有效地降低业务数据被污染的风险。
+全链路压测以及流量回放测试 模拟交叉复杂的使用情况，可以把多个业务主要场景，设计成并行运行的流程一起跑，比如一组vUser在浏览搜索商品，一组vUser在下单支付，一组vUser在后台点常见功能。
+这种方式压测出来的性能数据，可以作为我们最忙时线上服务压力的上限，如果某个流程核心的接口压力大、响应慢的话，则会拖慢整个流程的效率，这样我们可以通过整体流程的QPS发现瓶颈点和隐患。
+如果压测一段时间服务指标都很稳定，我们可以加大单个流程压测线程数，尝试压垮系统，以此观察系统可能出现的缺陷以及预警系统是否及时预警。
+还可以使用 tcpcopy 工具录制线上的流量请求，生成请求记录文件后，模拟搭建录制时线上数据时的全量数据镜像，然后回放，模拟特别复杂的业务请求。" />
   <meta property="og:locale" content="zh-cn" /><meta property="og:image" content="images/favicon.ico" />
   
 
@@ -68,10 +92,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -92,326 +117,108 @@
 </div>
 <div class="header-line"></div>
 
-
-        <h1 class="taxonomy-term">笔记</h1>
-        <div id="posts-list">
-          <section>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-21 15:01:54 CST">2023-08-21</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E6%80%A7%E8%83%BD%E5%8E%8B%E6%B5%8B%E5%8E%8B%E6%B5%8B%E4%B8%8D%E5%AE%8C%E5%96%84%E6%95%88%E6%9E%9C%E5%87%8F%E4%B8%80%E5%8D%8A/">性能压测：压测不完善，效果减一半</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-21 14:12:05 CST">2023-08-21</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E7%BD%91%E5%85%B3%E7%BC%96%E7%A8%8B%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E7%94%A8%E6%88%B7%E7%BD%91%E5%85%B3%E5%92%8C%E7%BC%93%E5%AD%98%E9%99%8D%E4%BD%8E%E7%A0%94%E5%8F%91%E6%88%90%E6%9C%AC/">网关编程：如何通过用户网关和缓存降低研发成本</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-21 11:28:39 CST">2023-08-21</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%AD%98%E5%82%A8%E6%88%90%E6%9C%AC%E5%A6%82%E4%BD%95%E6%8E%A8%E7%AE%97%E6%97%A5%E5%BF%97%E4%B8%AD%E5%BF%83%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%88%90%E6%9C%AC/">存储成本：如何推算日志中心的实现成本</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-21 09:45:49 CST">2023-08-21</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E4%B8%9A%E5%8A%A1%E7%BC%93%E5%AD%98%E5%85%83%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0/">业务缓存：元数据服务如何实现</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-18 15:32:00 CST">2023-08-18</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E6%95%B0%E6%8D%AE%E5%BC%95%E6%93%8E%E7%BB%9F%E4%B8%80%E7%BC%93%E5%AD%98%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/">数据引擎：统一缓存数据平台</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-18 11:19:35 CST">2023-08-18</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E6%B5%81%E9%87%8F%E8%B0%83%E5%BA%A6dns%E5%85%A8%E7%AB%99%E5%8A%A0%E9%80%9F%E5%8F%8A%E6%9C%BA%E6%88%BF%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">流量调度：DNS、全站加速及机房负载均衡</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-18 09:54:16 CST">2023-08-18</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E6%B5%81%E9%87%8F%E6%8B%86%E5%88%86%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E7%BC%93%E8%A7%A3%E6%B5%81%E9%87%8F%E5%8E%8B%E5%8A%9B/">流量拆分：如何通过架构设计缓解流量压力</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-17 15:58:11 CST">2023-08-17</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E4%B8%9A%E5%8A%A1%E8%84%9A%E6%9C%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4%E5%8F%AF%E7%BC%96%E7%A8%8B%E8%AE%A2%E9%98%85%E5%BC%8F%E7%BC%93%E5%AD%98%E6%9C%8D%E5%8A%A1%E6%9B%B4%E6%9C%89%E7%94%A8/">业务脚本：为什么说可编程订阅式缓存服务更有用</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-17 14:57:34 CST">2023-08-17</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E7%94%A8%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E5%81%9A%E6%9C%8D%E5%8A%A1%E4%BC%9A%E9%81%87%E5%88%B0%E5%93%AA%E4%BA%9B%E5%9D%91/">本地缓存：用本地缓存做服务会遇到哪些坑</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-17 10:42:35 CST">2023-08-17</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%AE%9E%E8%B7%B5%E6%96%B9%E6%A1%88%E5%A6%82%E4%BD%95%E7%94%A8c&#43;&#43;%E8%87%AA%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA/">实践方案：如何用C&#43;&#43;自实现链路跟踪</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-16 15:31:25 CST">2023-08-16</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E8%B7%B3%E6%95%B0%E7%B4%A2%E5%BC%95%E5%90%8E%E8%B5%B7%E6%96%B0%E7%A7%80clickhouse/">跳数索引：后起新秀ClickHouse</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-16 14:27:45 CST">2023-08-16</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%AE%9E%E6%97%B6%E7%BB%9F%E8%AE%A1%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA%E5%AE%9E%E6%97%B6%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%94%A8%E7%AE%97%E6%B3%95/">实时统计：链路跟踪实时计算中的实用算法</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-16 10:24:58 CST">2023-08-16</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%BC%95%E6%93%8E%E5%88%86%E7%89%87elasticsearch%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A3%80%E7%B4%A2/">引擎分片：Elasticsearch如何实现大数据检索</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-15 15:50:03 CST">2023-08-15</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA%E5%A6%82%E4%BD%95%E5%AE%9A%E5%88%B6%E4%B8%80%E4%B8%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA%E7%B3%BB%E7%BB%9F/">链路追踪：如何定制一个分布式链路跟踪系统</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-15 09:51:35 CST">2023-08-15</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E7%A8%80%E7%96%8F%E7%B4%A2%E5%BC%95%E4%B8%BA%E4%BB%80%E4%B9%88%E9%AB%98%E5%B9%B6%E5%8F%91%E5%86%99%E4%B8%8D%E6%8E%A8%E8%8D%90%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/">稀疏索引：为什么高并发写不推荐关系数据库</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-14 14:51:34 CST">2023-08-14</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E5%A4%9A%E6%9C%8D%E5%8A%A1%E7%9A%842pctcc%E9%83%BD%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84/">分布式事务：多服务的2PC、TCC都是怎么实现的</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-14 14:07:19 CST">2023-08-14</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E7%B3%BB%E7%BB%9F%E9%9A%94%E7%A6%BB%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%E9%AB%98%E5%B9%B6%E5%8F%91%E6%B5%81%E9%87%8F%E5%86%B2%E5%87%BB/">系统隔离：如何应对高并发流量冲击</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-14 11:11:17 CST">2023-08-14</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%BC%BA%E4%B8%80%E8%87%B4%E9%94%81%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B8%8B%E7%9A%84%E5%BA%93%E5%AD%98%E4%BA%89%E6%8A%A2%E9%97%AE%E9%A2%98/">强一致锁：如何解决高并发下的库存争抢问题</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-10 17:10:18 CST">2023-08-10</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E9%A2%86%E5%9F%9F%E6%8B%86%E5%88%86%E5%A6%82%E4%BD%95%E5%90%88%E7%90%86%E5%9C%B0%E6%8B%86%E5%88%86%E7%B3%BB%E7%BB%9F/">领域拆分：如何合理地拆分系统</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-09 11:20:37 CST">2023-08-09</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%85%B1%E8%AF%86raft%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%A4%9A%E6%9C%BA%E6%88%BF%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7/">共识Raft：如何保证多机房数据的一致性</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-09 10:58:10 CST">2023-08-09</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E5%90%8C%E5%9F%8E%E5%8F%8C%E6%B4%BB%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%9C%BA%E6%88%BF%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/">同城双活：如何实现机房之间的数据同步</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-08 17:21:24 CST">2023-08-08</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/token%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8E%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E9%89%B4%E6%9D%83%E7%9A%84%E6%B5%81%E9%87%8F%E5%8E%8B%E5%8A%9B/">Token：如何降低用户身份鉴权的流量压力？</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-08 15:22:18 CST">2023-08-08</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E8%AF%BB%E5%A4%9A%E5%86%99%E5%B0%91%E6%97%B6%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E7%BC%93%E5%AD%98%E4%B8%8D%E5%90%8C%E6%AD%A5/">缓存一致：读多写少时，如何解决数据更新缓存不同步</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-08 14:12:36 CST">2023-08-08</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/%E7%BB%93%E6%9E%84%E6%A2%B3%E7%90%86%E5%A4%A7%E5%B9%B6%E5%8F%91%E4%B8%8B%E4%BD%A0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E5%8F%AF%E8%83%BD%E6%88%90%E4%B8%BA%E6%80%A7%E8%83%BD%E9%9A%90%E6%82%A3/">结构梳理：大并发下，你的数据库表可能成为性能隐患</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
         </div>
+        <header class="post-header">
+          <h1 class="post-title">性能压测：压测不完善，效果减一半</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-08-21 15:01:54 CST">
+                21 Aug 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://dabao-zhao.github.io">@赵大宝</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h3 id="压测与架构">压测与架构</h3>
+<h4 id="并行优化">并行优化</h4>
+<p>并行发起请求会造成写放大，需要注意依赖服务的承受能力，不是万能的，适用于读多写少的系统。</p>
+<h4 id="临时缓存服务">临时缓存服务</h4>
+<p>临时缓存的优化，针对的是会被频繁重复访问的接口，优化之后，接口的第一次请求还是很缓慢。如果某类服务原有接口依赖响应很慢，而且同参数的请求并不频繁，那这类服务的缓存就是形同虚设的。
+临时缓存优化的服务压测的 QPS 高不等于服务的真实性能，线上需要多加关注。</p>
+<h4 id="分片架构">分片架构</h4>
+<p>数据分片架构的服务，会根据一些标识id作为分片依据，期望将请求均衡地转发到对应分片。
+但要考虑 hash 算法是否足够分散，要不然会造成热点分片的问题，最好是要拿线上的数据做验证。</p>
+<h3 id="数据量">数据量</h3>
+<p>需要考虑到数据量是否会影响到接口的 QPS 和稳定性，如果数据量对接口性能有直接影响，压测时就要针对不同数据量分别做验证，要尽量采用一些脱敏后的线上真实数据来操作。</p>
+<p>对于需要实时汇总大量数据的统计服务，要慎重对外提供服务。如果服务涉及的数据量过多，建议转换实现的思路，用预计算方式去实现。</p>
+<p>要时刻关注相关数据库压力及索引、缓存的命中率情况，预防数据库出现压力过大、响应缓慢的问题。</p>
+<h3 id="压测环境注意事项">压测环境注意事项</h3>
+<blockquote>
+<p>总结：能和线上环境一致最好……</p>
+</blockquote>
+<ul>
+<li>压测环境前后要一致：尽量用同一套服务器及配置环境验证优化效果。</li>
+<li>避免缓存干扰：建议在每次压测时，缓一段时间让服务和缓存过期后再进行压测，这样才能验证测试的准确性。</li>
+<li>数据状态一致：要尽量保证服务用的数据量、压测用户量以及缓存的状态是一致的。</li>
+<li>考虑压测环境和真实环境的差异。</li>
+<li>Linux 环境配置优化</li>
+</ul>
+<blockquote>
+<p>Linux内核优化比较常用的配置选项包括：本地可用端口个数限制、文件句柄限制、长链接超时时间、网卡软中断负载均衡、各种IO缓存大小等</p>
+</blockquote>
+<h3 id="线上压测及影子库">线上压测及影子库</h3>
+<p>该方式会在压测的请求里带上一个特殊的 header，这样所有的数据读写请求都会转为请求压测数据库，而不是线上库。有了影子数据库，可以帮我们有效地降低业务数据被污染的风险。</p>
+<h3 id="全链路压测以及流量回放测试">全链路压测以及流量回放测试</h3>
+<p>模拟交叉复杂的使用情况，可以把多个业务主要场景，设计成并行运行的流程一起跑，比如一组vUser在浏览搜索商品，一组vUser在下单支付，一组vUser在后台点常见功能。</p>
+<p>这种方式压测出来的性能数据，可以作为我们最忙时线上服务压力的上限，如果某个流程核心的接口压力大、响应慢的话，则会拖慢整个流程的效率，这样我们可以通过整体流程的QPS发现瓶颈点和隐患。</p>
+<p>如果压测一段时间服务指标都很稳定，我们可以加大单个流程压测线程数，尝试压垮系统，以此观察系统可能出现的缺陷以及预警系统是否及时预警。</p>
+<p>还可以使用 <a href="https://github.com/session-replay-tools/tcpcopy">tcpcopy</a> 工具录制线上的流量请求，生成请求记录文件后，模拟搭建录制时线上数据时的全量数据镜像，然后回放，模拟特别复杂的业务请求。</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+            <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%AE%9E%E6%88%98%E8%AF%BE/">
+                高并发系统实战课
+              </a>
+            </div>
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+<div class="related-content">
+  <h3>Related Posts</h3>
+  <ul>
+    
+    <li><a href="/posts/%E7%BD%91%E5%85%B3%E7%BC%96%E7%A8%8B%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E7%94%A8%E6%88%B7%E7%BD%91%E5%85%B3%E5%92%8C%E7%BC%93%E5%AD%98%E9%99%8D%E4%BD%8E%E7%A0%94%E5%8F%91%E6%88%90%E6%9C%AC/">网关编程：如何通过用户网关和缓存降低研发成本</a></li>
+    
+    <li><a href="/posts/%E5%AD%98%E5%82%A8%E6%88%90%E6%9C%AC%E5%A6%82%E4%BD%95%E6%8E%A8%E7%AE%97%E6%97%A5%E5%BF%97%E4%B8%AD%E5%BF%83%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%88%90%E6%9C%AC/">存储成本：如何推算日志中心的实现成本</a></li>
+    
+    <li><a href="/posts/%E4%B8%9A%E5%8A%A1%E7%BC%93%E5%AD%98%E5%85%83%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0/">业务缓存：元数据服务如何实现</a></li>
+    
+  </ul>
+</div>
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -431,6 +238,8 @@
     
   
 </script>
+
+  
 
 </body>
 
