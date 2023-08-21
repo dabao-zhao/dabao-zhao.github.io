@@ -6,7 +6,24 @@
     <description>Recent content in Posts on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 21 Aug 2023 11:28:39 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Aug 2023 14:12:05 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>网关编程：如何通过用户网关和缓存降低研发成本</title>
+      <link>https://dabao-zhao.github.io/posts/%E7%BD%91%E5%85%B3%E7%BC%96%E7%A8%8B%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E7%94%A8%E6%88%B7%E7%BD%91%E5%85%B3%E5%92%8C%E7%BC%93%E5%AD%98%E9%99%8D%E4%BD%8E%E7%A0%94%E5%8F%91%E6%88%90%E6%9C%AC/</link>
+      <pubDate>Mon, 21 Aug 2023 14:12:05 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E7%BD%91%E5%85%B3%E7%BC%96%E7%A8%8B%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E7%94%A8%E6%88%B7%E7%BD%91%E5%85%B3%E5%92%8C%E7%BC%93%E5%AD%98%E9%99%8D%E4%BD%8E%E7%A0%94%E5%8F%91%E6%88%90%E6%9C%AC/</guid>
+      <description>外网网关功能 蜘蛛嗅探识别 对于网络资源的非法引用可以检测请求 refer，如果 refer 不是本站域名就拒绝用户请求。
+对于机器人抓取首先分为两类：匿名用户和登录用户。对于匿名用户需要根据 IP 记录统计请求排行时间块，分析请求热点 IP，请求频率过高的 IP 会被重点关注； 对于登录用户用时间块统计记录单个用户的请求次数及频率，超过一定程度就拒绝请求，同时重点关注该用户。
+对于重点关注的用户请求时，可以通过网关对特定用户或 IP 动态注入 JS 嗅探代码，这个代码会在 Cookie 及 LocalStorage 内写入特殊密文。前端 JS 代码 检测到密文后，就会进入反机器人模式。反机器人模式可以识别客户端是否有鼠标移动及点击动作，以此判断用户是否为机器人。确认用户没问题以后，才会对服务端发 送再次签名的密文请求解锁。如果客户端一直没有回馈，就自动将怀疑用户列为准备封禁的用户，并封禁该请求，当一个IP被封禁的请求达到一定程度就会进行封禁。
+网关鉴权与用户中心解耦 可以通过外网网关请求用户中心进行身份鉴定，如果鉴定通过，用户的信息就会通过 header 传递给后面的服务，业务的 API 只需接收 header 中附带的用户信息即可直接工作。
+内网网关服务 失败重试 服务返回 500、403 或 504 错误时，网关不会马上返回错误，而是让请求等待一会儿后，再次重试，或者直接返回上次的缓存内容
+平滑重启 先让服务停止接收新的请求，等待之前的请求处理完成，如果等待超过10秒则直接退出。
+内外网关综合应用 服务接口缓存 利用网关实现一些接口返回内容的缓存，适合用在服务降级场景，用它短暂地缓解用户流量的冲击，或者用于降低内网流量的冲击。
+这种缓存的数据大小建议不超过 5KB
+服务监控 周期性地聚合访问日志中的错误，将其汇总起来，通过聚合汇总不同接口的请求的错误个数，格式类似“30 秒内出现 500 错误 20 个，504 报错 15 个，某域名接口响应速度大于 1 秒的情况有 40 次”来分析服务状态。</description>
+    </item>
+    
     <item>
       <title>存储成本：如何推算日志中心的实现成本</title>
       <link>https://dabao-zhao.github.io/posts/%E5%AD%98%E5%82%A8%E6%88%90%E6%9C%AC%E5%A6%82%E4%BD%95%E6%8E%A8%E7%AE%97%E6%97%A5%E5%BF%97%E4%B8%AD%E5%BF%83%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%88%90%E6%9C%AC/</link>
