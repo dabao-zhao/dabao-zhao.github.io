@@ -6,7 +6,21 @@
     <description>Recent content in 笔记 on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 18 Aug 2023 15:32:00 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Aug 2023 09:45:49 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>业务缓存：元数据服务如何实现</title>
+      <link>https://dabao-zhao.github.io/posts/%E4%B8%9A%E5%8A%A1%E7%BC%93%E5%AD%98%E5%85%83%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Mon, 21 Aug 2023 09:45:49 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E4%B8%9A%E5%8A%A1%E7%BC%93%E5%AD%98%E5%85%83%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0/</guid>
+      <description>感觉没有讲清楚，具体什么是对象存储，和分布式存储的区别是什么？
+分布式文件存储服务 功能 动态扩容 负载均衡 文件分片或合并 文件归档 冷热点文件管理加速 问题 磁盘监控：监控磁盘的寿命、容量、inode 剩余，同时我们还要故障监控警告及日常维护； 文件管理：使用分布式存储控制器对文件做定期、冷热转换、定期清理以及文件归档等工作。 确保服务稳定：我们还要关注分布式存储副本同步状态及服务带宽。如果服务流量过大，运维和研发还需要处理好热点访问文件缓存的问题。 业务定制化：一些稍微个性点的需求，比如在文件中附加业务类型的标签、增加自动 TTL 清理，现有的分布式存储服务可能无法直接支持，还需要我们阅读相关源码，进一步改进代码才能实现功能。 硬件更新：服务器用的硬盘寿命普遍不长，特别是用于存储服务的硬盘，需要定期更换（比如三年一换） 对象存储 对象存储并不是真正按照我们指定的路径做存储的，实际上文件的路径只是一个 key。
+文件块 用文件块方式压缩存储多个文件，方便管理。小文件更新时会新建一个文件来更新内容，定期整理数据时再把新老数据合并写到新的块里，然后清理掉老数据
+大文本 流量会先到 CDN，CDN 找不到待查文件时，会回源到对象存储查找，如果对象存储也找不到，则回源到服务端生成。
+文件的云中转 文件传输服务给文件发送方生成一个临时授权 token，再将这个文件上传到对象存储，上传成功后，接收方通过地址即可获取到授权 token，进行多线程下载，而临时文件过期后就会自动清除。
+不同存储技术的对比 表头应该依次是硬盘管理、分布式存储、对象存储</description>
+    </item>
+    
     <item>
       <title>数据引擎：统一缓存数据平台</title>
       <link>https://dabao-zhao.github.io/posts/%E6%95%B0%E6%8D%AE%E5%BC%95%E6%93%8E%E7%BB%9F%E4%B8%80%E7%BC%93%E5%AD%98%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/</link>
