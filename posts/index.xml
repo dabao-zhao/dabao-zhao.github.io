@@ -6,7 +6,19 @@
     <description>Recent content in Posts on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 21 Aug 2023 09:45:49 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Aug 2023 11:28:39 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>存储成本：如何推算日志中心的实现成本</title>
+      <link>https://dabao-zhao.github.io/posts/%E5%AD%98%E5%82%A8%E6%88%90%E6%9C%AC%E5%A6%82%E4%BD%95%E6%8E%A8%E7%AE%97%E6%97%A5%E5%BF%97%E4%B8%AD%E5%BF%83%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%88%90%E6%9C%AC/</link>
+      <pubDate>Mon, 21 Aug 2023 11:28:39 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E5%AD%98%E5%82%A8%E6%88%90%E6%9C%AC%E5%A6%82%E4%BD%95%E6%8E%A8%E7%AE%97%E6%97%A5%E5%BF%97%E4%B8%AD%E5%BF%83%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%88%90%E6%9C%AC/</guid>
+      <description>不同类型的系统，我们的投入侧重点：
+读多写少的服务要重点“堆“内存和网络； 强一致服务更关注系统隔离和拆分； 写多读少的系统更加注重存储性能优化； 读多写多的系统更加关注系统的调度和系统类型的转变。 节省成本 临时应对流量方案 减少我们保存日志的周期，从保存 30 天改为保存 7 天，可以节省四分之三的空间； 非核心业务和核心业务的日志区分开，非核心业务只存 7 天，核心业务则存 30 天； 减少日志量，这需要投入人力做分析。可以适当缩减稳定业务的排查日志的输出量； 如果服务器多或磁盘少，服务器 CPU压力不大，数据可以做压缩处理，可以节省一半磁盘； 高并发写的存储冷热分离 当写需求激增时，大量的写用 SSD扛，冷数据存储用普通硬盘
+网卡 千兆的网卡实际测试传输速度大概是 100MB/s 左右
+万兆的网卡实际测试传输速度大概是 900MB/s 左右</description>
+    </item>
+    
     <item>
       <title>业务缓存：元数据服务如何实现</title>
       <link>https://dabao-zhao.github.io/posts/%E4%B8%9A%E5%8A%A1%E7%BC%93%E5%AD%98%E5%85%83%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0/</link>
