@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="赵大宝" />
-  <meta property="og:url" content="https://dabao-zhao.github.io/categories/" />
-  <link rel="canonical" href="https://dabao-zhao.github.io/categories/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
+  <meta property="og:url" content="https://dabao-zhao.github.io/posts/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" />
+  <link rel="canonical" href="https://dabao-zhao.github.io/posts/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
   <link rel="icon" href="images/favicon.ico" />
   <link rel="shortcut" href="images/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://dabao-zhao.github.ioindex.xml" title="赵大宝的博客">
 
@@ -20,10 +20,10 @@
            "@type": "WebPage",
            "@id": "https:\/\/dabao-zhao.github.io"
       },
-      "articleSection" : "categories",
-      "name" : "Categories",
-      "headline" : "Categories",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "Docker常用命令",
+      "headline" : "Docker常用命令",
+      "description" : "Docker常用命令 1. 辅助指令 docker version | 显示 Docker 版本信息 docker info | 显示 Docker 系统信息（包括镜像和容器数） docker --help | 帮助 2. 镜像指令 docker images [OPTIONS] | 列出本机上的镜像（-a: 列出本地所有镜像、-q: 只显示镜像id） docker search [OPTIONS] xxx镜像名 | 搜索镜像名 docker pull xxx镜像名字 | 拉取某镜像 docker rmi xxx镜像id\/镜像名 | 删除某镜像 3. 容器指令 docker run [OPTIONS] IMAGE [COMMAND] [ARG...] | 启动容器 -i:以交互模式运行容器;-t:为容器重新分配一个伪输入终端;-p:指定端口映射;-d:后台运行容器 docker ps [OPTIONS] | 列出当前所有正在运行的容器 -a:列出当前所有正在运行的容器\u002b历史上运行过的;-l:显示最近创建的容器 exit | 交互模式中容器停止并退出交互 ctrl\u002bP\u002bQ | 交互模式中容器不停止退出交互 docker start 容器id\/容器名 | 启动容器 docker restart 容器id\/容器名 | 重启容器 docker stop 容器id\/容器名 | 停止容器 docker kill 容器id\/容器名 | 强制停止容器 docker rm 容器id | 删除已停止的容器 docker rm -f $(docker ps -a -q) | 删除全部容器 docker logs -f -t --tail 容器id | 查看容器日志 docker top 容器id | 查看容器运行的进程 docker inspect 容器id | 查看容器内部信息 docker exec -it 容器id bashShell | 进入容器执行指令 docker attach 容器id | 进入容器交互执行指令 docker cp 容器id:容器内路径 目的主机路径 | 从容器内拷贝文件到主机 ",
       "inLanguage" : "en-US",
       "author" : "赵大宝",
       "creator" : "赵大宝",
@@ -33,15 +33,15 @@
       "copyrightYear" : "2023",
       "datePublished": "2023-08-22 10:41:17 \u002b0800 CST",
       "dateModified" : "2023-08-22 10:41:17 \u002b0800 CST",
-      "url" : "https:\/\/dabao-zhao.github.io\/categories\/",
+      "url" : "https:\/\/dabao-zhao.github.io\/posts\/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4\/",
       "keywords" : [  ]
   }
 </script>
-<title>Categories</title>
-  <meta property="og:title" content="Categories" />
+<title>Docker常用命令</title>
+  <meta property="og:title" content="Docker常用命令" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="Docker常用命令 1. 辅助指令 docker version | 显示 Docker 版本信息 docker info | 显示 Docker 系统信息（包括镜像和容器数） docker --help | 帮助 2. 镜像指令 docker images [OPTIONS] | 列出本机上的镜像（-a: 列出本地所有镜像、-q: 只显示镜像id） docker search [OPTIONS] xxx镜像名 | 搜索镜像名 docker pull xxx镜像名字 | 拉取某镜像 docker rmi xxx镜像id/镜像名 | 删除某镜像 3. 容器指令 docker run [OPTIONS] IMAGE [COMMAND] [ARG...] | 启动容器 -i:以交互模式运行容器;-t:为容器重新分配一个伪输入终端;-p:指定端口映射;-d:后台运行容器 docker ps [OPTIONS] | 列出当前所有正在运行的容器 -a:列出当前所有正在运行的容器&#43;历史上运行过的;-l:显示最近创建的容器 exit | 交互模式中容器停止并退出交互 ctrl&#43;P&#43;Q | 交互模式中容器不停止退出交互 docker start 容器id/容器名 | 启动容器 docker restart 容器id/容器名 | 重启容器 docker stop 容器id/容器名 | 停止容器 docker kill 容器id/容器名 | 强制停止容器 docker rm 容器id | 删除已停止的容器 docker rm -f $(docker ps -a -q) | 删除全部容器 docker logs -f -t --tail 容器id | 查看容器日志 docker top 容器id | 查看容器运行的进程 docker inspect 容器id | 查看容器内部信息 docker exec -it 容器id bashShell | 进入容器执行指令 docker attach 容器id | 进入容器交互执行指令 docker cp 容器id:容器内路径 目的主机路径 | 从容器内拷贝文件到主机 " />
+  <meta name="description" content="Docker常用命令 1. 辅助指令 docker version | 显示 Docker 版本信息 docker info | 显示 Docker 系统信息（包括镜像和容器数） docker --help | 帮助 2. 镜像指令 docker images [OPTIONS] | 列出本机上的镜像（-a: 列出本地所有镜像、-q: 只显示镜像id） docker search [OPTIONS] xxx镜像名 | 搜索镜像名 docker pull xxx镜像名字 | 拉取某镜像 docker rmi xxx镜像id/镜像名 | 删除某镜像 3. 容器指令 docker run [OPTIONS] IMAGE [COMMAND] [ARG...] | 启动容器 -i:以交互模式运行容器;-t:为容器重新分配一个伪输入终端;-p:指定端口映射;-d:后台运行容器 docker ps [OPTIONS] | 列出当前所有正在运行的容器 -a:列出当前所有正在运行的容器&#43;历史上运行过的;-l:显示最近创建的容器 exit | 交互模式中容器停止并退出交互 ctrl&#43;P&#43;Q | 交互模式中容器不停止退出交互 docker start 容器id/容器名 | 启动容器 docker restart 容器id/容器名 | 重启容器 docker stop 容器id/容器名 | 停止容器 docker kill 容器id/容器名 | 强制停止容器 docker rm 容器id | 删除已停止的容器 docker rm -f $(docker ps -a -q) | 删除全部容器 docker logs -f -t --tail 容器id | 查看容器日志 docker top 容器id | 查看容器运行的进程 docker inspect 容器id | 查看容器内部信息 docker exec -it 容器id bashShell | 进入容器执行指令 docker attach 容器id | 进入容器交互执行指令 docker cp 容器id:容器内路径 目的主机路径 | 从容器内拷贝文件到主机 " />
   <meta property="og:locale" content="zh-cn" /><meta property="og:image" content="images/favicon.ico" />
   
 
@@ -68,10 +68,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -92,66 +93,82 @@
 </div>
 <div class="header-line"></div>
 
-
-        <h1 class="taxonomy-term"></h1>
-        <div id="posts-list">
-          <section>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-22 10:41:17 CST">2023-08-22</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/docker/">Docker</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-21 15:01:54 CST">2023-08-21</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-10 16:36:39 CST">2023-08-10</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-08 09:56:13 CST">2023-08-08</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/golang/">Golang</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
         </div>
+        <header class="post-header">
+          <h1 class="post-title">Docker常用命令</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-08-22 10:41:17 CST">
+                22 Aug 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://dabao-zhao.github.io">@赵大宝</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h2 id="docker常用命令">Docker常用命令</h2>
+<h3 id="1-辅助指令">1. 辅助指令</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker version       | 显示 Docker 版本信息
+</span></span><span style="display:flex;"><span>docker info          | 显示 Docker 系统信息（包括镜像和容器数）
+</span></span><span style="display:flex;"><span>docker --help        | 帮助
+</span></span></code></pre></div><h3 id="2-镜像指令">2. 镜像指令</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker images <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span>            | 列出本机上的镜像（-a: 列出本地所有镜像、-q: 只显示镜像id）
+</span></span><span style="display:flex;"><span>docker search <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> xxx镜像名  | 搜索镜像名
+</span></span><span style="display:flex;"><span>docker pull xxx镜像名字            | 拉取某镜像
+</span></span><span style="display:flex;"><span>docker rmi xxx镜像id/镜像名        | 删除某镜像
+</span></span></code></pre></div><h3 id="3-容器指令">3. 容器指令</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> IMAGE <span style="color:#f92672">[</span>COMMAND<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>ARG...<span style="color:#f92672">]</span>  | 启动容器 -i:以交互模式运行容器;-t:为容器重新分配一个伪输入终端;-p:指定端口映射;-d:后台运行容器
+</span></span><span style="display:flex;"><span>docker ps <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span>                            | 列出当前所有正在运行的容器 -a:列出当前所有正在运行的容器+历史上运行过的;-l:显示最近创建的容器
+</span></span><span style="display:flex;"><span>exit                                           | 交互模式中容器停止并退出交互
+</span></span><span style="display:flex;"><span>ctrl+P+Q                                       | 交互模式中容器不停止退出交互
+</span></span><span style="display:flex;"><span>docker start 容器id/容器名                      | 启动容器
+</span></span><span style="display:flex;"><span>docker restart 容器id/容器名                    | 重启容器
+</span></span><span style="display:flex;"><span>docker stop 容器id/容器名                       | 停止容器
+</span></span><span style="display:flex;"><span>docker kill 容器id/容器名                       | 强制停止容器
+</span></span><span style="display:flex;"><span>docker rm 容器id                               | 删除已停止的容器
+</span></span><span style="display:flex;"><span>docker rm -f <span style="color:#66d9ef">$(</span>docker ps -a -q<span style="color:#66d9ef">)</span>                | 删除全部容器
+</span></span><span style="display:flex;"><span>docker logs -f -t --tail 容器id                | 查看容器日志
+</span></span><span style="display:flex;"><span>docker top 容器id                              | 查看容器运行的进程
+</span></span><span style="display:flex;"><span>docker inspect 容器id                          | 查看容器内部信息
+</span></span><span style="display:flex;"><span>docker exec -it 容器id bashShell               | 进入容器执行指令
+</span></span><span style="display:flex;"><span>docker attach 容器id                           | 进入容器交互执行指令
+</span></span><span style="display:flex;"><span>docker cp 容器id:容器内路径 目的主机路径         | 从容器内拷贝文件到主机
+</span></span></code></pre></div>
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -171,6 +188,8 @@
     
   
 </script>
+
+  
 
 </body>
 
