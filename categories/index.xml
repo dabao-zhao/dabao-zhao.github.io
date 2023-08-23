@@ -6,7 +6,16 @@
     <description>Recent content in Categories on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 22 Aug 2023 11:05:57 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Aug 2023 09:46:17 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang</title>
+      <link>https://dabao-zhao.github.io/categories/golang/</link>
+      <pubDate>Wed, 23 Aug 2023 09:46:17 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/categories/golang/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>规范</title>
       <link>https://dabao-zhao.github.io/categories/%E8%A7%84%E8%8C%83/</link>
@@ -40,15 +49,6 @@
       <pubDate>Thu, 10 Aug 2023 16:36:39 +0800</pubDate>
       
       <guid>https://dabao-zhao.github.io/categories/%E8%BD%AC%E8%BD%BD/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Golang</title>
-      <link>https://dabao-zhao.github.io/categories/golang/</link>
-      <pubDate>Tue, 08 Aug 2023 09:56:13 +0800</pubDate>
-      
-      <guid>https://dabao-zhao.github.io/categories/golang/</guid>
       <description></description>
     </item>
     

@@ -6,7 +6,16 @@
     <description>Recent content in Golang on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 08 Aug 2023 09:56:13 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Aug 2023 09:46:17 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 有用的工具</title>
+      <link>https://dabao-zhao.github.io/posts/go%E6%9C%89%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Wed, 23 Aug 2023 09:46:17 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/go%E6%9C%89%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7/</guid>
+      <description> 工具 功能 richgo 用文本装饰丰富 go test 的输出 rts 根据服务器的响应生成 Go 结构体 golines 格式化 Go 代码中的长行为短行 goimports 自动格式化 Go 代码并对所有引入的包进行管理，包括自动增删依赖的包、将依赖包按字母序排序并分类 gomock 接口 Mock 工具 mockery 接口 Mock 工具 gotests 根据 Go 代码自动生成单元测试模板 go-junit-report 将 go test 的输出转化为 junit xml golangci-lint 静态代码检查工具 protoc-go-inject-tag 向通过 protoc 工具生成的 pb.go 文件中注入自定义标签 db2struct 将数据库表一键转换为 go struct，支持自定义 tag 和多种命名格式配置 gsemver 根据 git commit 规范自动生成语义化版本 git-chglog 根据 git commit 自动生成 CHANGELOG github-release 命令行工具，用来创建、修改 github release go-mod-outdated 表格形式展示依赖包是否有更新 depth 通过分析导入的库，将某个包的依赖关系用树状结构显示出来 go-callvis 可视化显示 Go 调用关系 addlicense 通过扫描指定的文件，来确保源码文件有版权头 go-swagger 自动生成 Go Swagger 文档 </description>
+    </item>
+    
     <item>
       <title>Linux 下安装和升级 Go</title>
       <link>https://dabao-zhao.github.io/posts/linux%E4%B8%8B%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%87%E7%BA%A7go/</link>
