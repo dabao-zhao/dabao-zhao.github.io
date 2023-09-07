@@ -261,6 +261,9 @@ targets : prerequisites ; command
 </span></span></code></pre></div><p>可以使用</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">include</span> <span style="color:#960050;background-color:#1e0010">&lt;filenames&gt;...</span>
 </span></span></code></pre></div><p>引入其他的 Makefile</p>
+<p>对了，make 会将第一个 target，也可以认为是第一个规则作为默认执行的目标，可以通过：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span>.DEFAULT_GOAL <span style="color:#f92672">:=</span> all
+</span></span></code></pre></div><p>修改默认执行的目标</p>
 <h3 id="总结">总结</h3>
 <p>信息主要来源于 <a href="https://seisman.github.io/how-to-write-makefile/overview.html">这里</a>，出发点是通读一遍下来，感觉太多关于 C/C++ 编译
 相关的，其实 Go 很多用不到，所以精简了很多形成了本文，同时也打乱了原文的次序。</p>
