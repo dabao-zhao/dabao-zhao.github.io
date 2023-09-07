@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.116.1">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="赵大宝" />
+  <meta property="og:url" content="https://dabao-zhao.github.io/posts/makefile%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" />
+  <link rel="canonical" href="https://dabao-zhao.github.io/posts/makefile%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
+  <link rel="icon" href="images/favicon.ico" />
+  <link rel="shortcut" href="images/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://dabao-zhao.github.ioindex.xml" title="赵大宝的博客">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/dabao-zhao.github.io"
+      },
+      "articleSection" : "posts",
+      "name" : "Makefile简明教程",
+      "headline" : "Makefile简明教程",
+      "description" : "变量 变量的命名字可以包含字符、数字，下划线（可以是数字开头），但不应该含有 : 、 # 、 = 或是空字符（空格、回车等），大小写敏感，推荐大驼峰式写法。\n赋值 # \u0026lt;variable\u0026gt;; = \u0026lt;value\u0026gt;; # \u0026lt;variable\u0026gt;; := \u0026lt;value\u0026gt;; # \u0026lt;variable\u0026gt;; ?= \u0026lt;value\u0026gt;; k = val # 赋值 k1 := val # := 的赋值下，前面的变量不能使用后面的变量 k2 ?= val # ?= 表示如果 k1 未定义就赋值 val，如果已定义就略过 variable := value variable \u002b= more # 值的拼接，结果为 value more，中间是有空格的，:= 可以替换为 = nullstring := space := $(nullstring) # 定义空格 dir := \/foo\/bar # 注释符 # 不止注释的意思，也可以表示变量的终止，这里 dir 表示 \/foo\/bar \u002b 四个空格 使用 x = y y = z z = u a := $($($(x))) # 变量的值可以再当成变量 @echo $(a) foo := a.",
+      "inLanguage" : "en-US",
+      "author" : "赵大宝",
+      "creator" : "赵大宝",
+      "publisher": "赵大宝",
+      "accountablePerson" : "赵大宝",
+      "copyrightHolder" : "赵大宝",
+      "copyrightYear" : "2023",
+      "datePublished": "2023-09-04 14:14:52 \u002b0800 CST",
+      "dateModified" : "2023-09-04 14:14:52 \u002b0800 CST",
+      "url" : "https:\/\/dabao-zhao.github.io\/posts\/makefile%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Makefile简明教程</title>
+  <meta property="og:title" content="Makefile简明教程" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="变量 变量的命名字可以包含字符、数字，下划线（可以是数字开头），但不应该含有 : 、 # 、 = 或是空字符（空格、回车等），大小写敏感，推荐大驼峰式写法。
+赋值 # &amp;lt;variable&amp;gt;; = &amp;lt;value&amp;gt;; # &amp;lt;variable&amp;gt;; := &amp;lt;value&amp;gt;; # &amp;lt;variable&amp;gt;; ?= &amp;lt;value&amp;gt;; k = val # 赋值 k1 := val # := 的赋值下，前面的变量不能使用后面的变量 k2 ?= val # ?= 表示如果 k1 未定义就赋值 val，如果已定义就略过 variable := value variable &#43;= more # 值的拼接，结果为 value more，中间是有空格的，:= 可以替换为 = nullstring := space := $(nullstring) # 定义空格 dir := /foo/bar # 注释符 # 不止注释的意思，也可以表示变量的终止，这里 dir 表示 /foo/bar &#43; 四个空格 使用 x = y y = z z = u a := $($($(x))) # 变量的值可以再当成变量 @echo $(a) foo := a." />
+  <meta name="description" content="变量 变量的命名字可以包含字符、数字，下划线（可以是数字开头），但不应该含有 : 、 # 、 = 或是空字符（空格、回车等），大小写敏感，推荐大驼峰式写法。
+赋值 # &amp;lt;variable&amp;gt;; = &amp;lt;value&amp;gt;; # &amp;lt;variable&amp;gt;; := &amp;lt;value&amp;gt;; # &amp;lt;variable&amp;gt;; ?= &amp;lt;value&amp;gt;; k = val # 赋值 k1 := val # := 的赋值下，前面的变量不能使用后面的变量 k2 ?= val # ?= 表示如果 k1 未定义就赋值 val，如果已定义就略过 variable := value variable &#43;= more # 值的拼接，结果为 value more，中间是有空格的，:= 可以替换为 = nullstring := space := $(nullstring) # 定义空格 dir := /foo/bar # 注释符 # 不止注释的意思，也可以表示变量的终止，这里 dir 表示 /foo/bar &#43; 四个空格 使用 x = y y = z z = u a := $($($(x))) # 变量的值可以再当成变量 @echo $(a) foo := a." />
+  <meta property="og:locale" content="zh-cn" /><meta property="og:image" content="images/favicon.ico" />
+  
+
+  
+    <style>body{font-family:bree serif,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none}a:hover{font-weight:600;text-decoration:underline}.post-ads{margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.site-date-catalog{font-size:2rem}.header-title{font-size:2rem;font-weight:700;margin-top:32px;font-family:bungee shade,sans-serif}.header-title a{text-decoration:none}.header-subtitle{color:#666}.header-items{margin:10px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.lang-switch{font-weight:600}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:12px}.post-header{margin-bottom:50px}.post-title{font-size:2rem;font-weight:600}.post-tags{display:inline;font-weight:600;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:800;font-style:italic}.post-author{float:right;font-weight:600}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{text-align:center}.posts-line{font-size:16px}.markdown-body{font-size:16px}.post-title{font-size:2rem}.post-content p{letter-spacing:.05em}}@media screen and (max-width:48em){.posts-category{display:none}}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="赵大宝的博客">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="header-title">
+    <a href="/"
+      >赵大宝</a
+    >
+  </div>
+  <div class="header-subtitle">以无用之事，修自在之心</div>
+</header>
+<div class="row end-md center-xs header-items">
+  
+  <div class="header-item">
+    <a href="/index.xml" target="_blank">RSS</a>
+  </div>
+  
+</div>
+<div class="row end-xs">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Makefile简明教程</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-09-04 14:14:52 CST">
+                04 Sep 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://dabao-zhao.github.io">@赵大宝</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h3 id="变量">变量</h3>
+<p>变量的命名字可以包含字符、数字，下划线（可以是数字开头），但不应该含有 : 、 # 、 = 或是空字符（空格、回车等），大小写敏感，推荐大驼峰式写法。</p>
+<h4 id="赋值">赋值</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span><span style="color:#75715e"># &lt;variable&gt;; = &lt;value&gt;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># &lt;variable&gt;; := &lt;value&gt;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># &lt;variable&gt;; ?= &lt;value&gt;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>k <span style="color:#f92672">=</span> val <span style="color:#75715e"># 赋值</span>
+</span></span><span style="display:flex;"><span>k1 <span style="color:#f92672">:=</span> val <span style="color:#75715e"># := 的赋值下，前面的变量不能使用后面的变量</span>
+</span></span><span style="display:flex;"><span>k2 <span style="color:#f92672">?=</span> val <span style="color:#75715e"># ?= 表示如果 k1 未定义就赋值 val，如果已定义就略过</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>variable <span style="color:#f92672">:=</span> value
+</span></span><span style="display:flex;"><span>variable <span style="color:#f92672">+=</span> more <span style="color:#75715e"># 值的拼接，结果为 value more，中间是有空格的，:= 可以替换为 =</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nullstring <span style="color:#f92672">:=</span>
+</span></span><span style="display:flex;"><span>space <span style="color:#f92672">:=</span> <span style="color:#66d9ef">$(</span>nullstring<span style="color:#66d9ef">)</span> <span style="color:#75715e"># 定义空格</span>
+</span></span><span style="display:flex;"><span>dir <span style="color:#f92672">:=</span> /foo/bar    <span style="color:#75715e"># 注释符 # 不止注释的意思，也可以表示变量的终止，这里 dir 表示 /foo/bar + 四个空格</span>
+</span></span></code></pre></div><h4 id="使用">使用</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span>x <span style="color:#f92672">=</span> y
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> z
+</span></span><span style="display:flex;"><span>z <span style="color:#f92672">=</span> u
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">:=</span> <span style="color:#66d9ef">$($($(</span>x<span style="color:#66d9ef">)))</span> <span style="color:#75715e"># 变量的值可以再当成变量</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">@echo</span> <span style="color:#66d9ef">$(</span>a<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>foo <span style="color:#f92672">:=</span> a.o b.o c.o
+</span></span><span style="display:flex;"><span>bar <span style="color:#f92672">:=</span> <span style="color:#66d9ef">$(</span>foo:.o<span style="color:#f92672">=</span>.c<span style="color:#66d9ef">)</span> <span style="color:#75715e"># 变量替换，所有以 .o 结尾的替换为 .c</span>
+</span></span><span style="display:flex;"><span>foo <span style="color:#f92672">:=</span> a.o b.o c.o
+</span></span><span style="display:flex;"><span>bar <span style="color:#f92672">:=</span> <span style="color:#66d9ef">$(</span>foo:%.o<span style="color:#f92672">=</span>%.c<span style="color:#66d9ef">)</span> <span style="color:#75715e"># 同上</span>
+</span></span></code></pre></div><h4 id="override">override</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span><span style="color:#75715e"># override &lt;variable&gt;; = &lt;value&gt;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># override &lt;variable&gt;; := &lt;value&gt;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># override &lt;variable&gt;; += &lt;more text&gt;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">override</span> foo <span style="color:#f92672">=</span> bar <span style="color:#75715e"># override 可以保护 Makefile 中的变量值不被命令行参数修改</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">override</span> foo <span style="color:#f92672">+=</span> val <span style="color:#75715e"># 同时，可以对命令行的参数进行追加 </span>
+</span></span></code></pre></div><h4 id="局部变量">局部变量</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span><span style="color:#75715e"># &lt;target ...&gt; : &lt;variable-assignment&gt;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># &lt;target ...&gt; : overide &lt;variable-assignment&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">all</span><span style="color:#f92672">:</span> val = 3
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">.PHONY</span><span style="color:#f92672">:</span> all
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">all</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>	@echo <span style="color:#66d9ef">$(</span>val<span style="color:#66d9ef">)</span> <span style="color:#75715e"># 这里的 val 为局部变量，只在 all 及其所引发的所有规则中可用，其他情况下为空</span>
+</span></span></code></pre></div><h4 id="多行变量">多行变量</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">define</span> <span style="color:#960050;background-color:#1e0010">two-lines</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">echo</span> <span style="color:#960050;background-color:#1e0010">foo</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">echo</span> <span style="color:#66d9ef">$(</span>bar<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">endef</span> <span style="color:#75715e"># define &amp; endef 可以定义多行变量
+</span></span></span></code></pre></div><h3 id="条件判断">条件判断</h3>
+<p>语法：</p>
+<pre tabindex="0"><code>&lt;conditional-directive&gt;
+&lt;text-if-true&gt;
+endif
+
+&lt;conditional-directive&gt;
+&lt;text-if-true&gt;
+else
+text-if-false&gt;
+endif
+</code></pre><p>其中 <!-- raw HTML omitted --> 表示条件关键字，有四种：</p>
+<pre tabindex="0"><code># 比较 arg1 和 arg2 是否相同
+ifeq (&lt;arg1&gt;, &lt;arg2&gt;)
+ifeq &#39;&lt;arg1&gt;&#39; &#39;&lt;arg2&gt;&#39;
+ifeq &#34;&lt;arg1&gt;&#34; &#34;&lt;arg2&gt;&#34;
+ifeq &#34;&lt;arg1&gt;&#34; &#39;&lt;arg2&gt;&#39;
+ifeq &#39;&lt;arg1&gt;&#39; &#34;&lt;arg2&gt;&#34;
+
+# 比较 arg1 和 arg2 是否不同
+ifneq (&lt;arg1&gt;, &lt;arg2&gt;)
+ifneq &#39;&lt;arg1&gt;&#39; &#39;&lt;arg2&gt;&#39;
+ifneq &#34;&lt;arg1&gt;&#34; &#34;&lt;arg2&gt;&#34;
+ifneq &#34;&lt;arg1&gt;&#34; &#39;&lt;arg2&gt;&#39;
+ifneq &#39;&lt;arg1&gt;&#39; &#34;&lt;arg2&gt;&#34;
+
+# 如果变量 &lt;variable-name&gt; 的值非空，那到表达式为真。否则，表达式为假
+ifdef &lt;variable-name&gt;
+
+# 和 ifdef 相反
+ifndef &lt;variable-name&gt;
+</code></pre><h3 id="函数">函数</h3>
+<pre tabindex="0"><code>$(subst &lt;from&gt;,&lt;to&gt;,&lt;text&gt;) # 把字串 &lt;text&gt; 中的 &lt;from&gt; 字符串替换成 &lt;to&gt;
+$(patsubst &lt;pattern&gt;,&lt;replacement&gt;,&lt;text&gt;) # 查找 &lt;text&gt; 中的单词是否符合模式 &lt;pattern&gt; ，如果匹配的话，则以 &lt;replacement&gt; 替换
+$(strip &lt;string&gt;) # 去掉 &lt;string&gt; 字串中开头和结尾的空字符
+$(findstring &lt;find&gt;,&lt;in&gt;) # 在字串 &lt;in&gt; 中查找 &lt;find&gt; 字串
+$(filter &lt;pattern...&gt;,&lt;text&gt;) # 以 &lt;pattern&gt; 模式过滤 &lt;text&gt; 字符串中的单词，保留符合模式 &lt;pattern&gt; 的单词
+$(filter-out &lt;pattern...&gt;,&lt;text&gt;) # 以 &lt;pattern&gt; 模式过滤 &lt;text&gt; 字符串中的单词，去除符合模式 &lt;pattern&gt; 的单词
+$(sort &lt;list&gt;) # 给字符串 &lt;list&gt; 中的单词排序（升序）
+$(word &lt;n&gt;,&lt;text&gt;) # 取字符串 &lt;text&gt; 中第 &lt;n&gt; 个单词
+$(wordlist &lt;ss&gt;,&lt;e&gt;,&lt;text&gt;) # 从字符串 &lt;text&gt; 中取从 &lt;ss&gt; 开始到 &lt;e&gt; 的单词串。 &lt;ss&gt; 和 &lt;e&gt; 是一个数字
+$(words &lt;text&gt;) # 统计 &lt;text&gt; 中字符串中的单词个数
+$(firstword &lt;text&gt;) # 取字符串 &lt;text&gt; 中的第一个单词
+$(dir &lt;names...&gt;) # 从文件名序列 &lt;names&gt; 中取出目录部分
+$(notdir &lt;names...&gt;) # 从文件名序列 &lt;names&gt; 中取出非目录部分
+$(suffix &lt;names...&gt;) # 从文件名序列 &lt;names&gt; 中取出各个文件名的后缀
+$(basename &lt;names...&gt;) # 从文件名序列 &lt;names&gt; 中取出各个文件名的前缀部分
+$(addsuffix &lt;suffix&gt;,&lt;names...&gt;) # 把后缀 &lt;suffix&gt; 加到 &lt;names&gt; 中的每个单词后面
+$(addprefix &lt;prefix&gt;,&lt;names...&gt;) # 把前缀 &lt;prefix&gt; 加到 &lt;names&gt; 中的每个单词前面
+$(join &lt;list1&gt;,&lt;list2&gt;) # 把 &lt;list2&gt; 中的单词对应地加到 &lt;list1&gt; 的单词后面
+$(foreach &lt;var&gt;,&lt;list&gt;,&lt;text&gt;) # 把参数 &lt;list&gt; 中的单词逐一取出放到参数 &lt;var&gt; 所指定的变量中，然后再执行 &lt;text&gt; 所包含的表达式
+$(if &lt;condition&gt;,&lt;then-part&gt;) # if
+$(if &lt;condition&gt;,&lt;then-part&gt;,&lt;else-part&gt;) # if else 
+$(call &lt;expression&gt;,&lt;parm1&gt;,&lt;parm2&gt;,...,&lt;parmn&gt;) # 用 &lt;parm1&gt;,&lt;parm2&gt;,...,&lt;parmn&gt; 取代 &lt;expression&gt; 中的变量并执行 &lt;expression&gt;
+$(origin &lt;variable&gt;) # 返回变量是在哪定义的，或者说哪里来的
+$(shell &lt;shell command&gt;) # 执行 shell 命令并返回结果
+$(error &lt;text ...&gt;) # 错误，并退出
+$(warning &lt;text ...&gt;) # 警告
+</code></pre><h3 id="规则">规则</h3>
+<pre tabindex="0"><code>targets : prerequisites
+    command
+    ...
+targets : prerequisites ; command
+    command
+    ...   
+</code></pre><h4 id="伪目标">伪目标</h4>
+<p>不会生成对应的文件，只会执行其命令</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span><span style="color:#a6e22e">.PHONY </span><span style="color:#f92672">:</span> clean
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">clean </span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    rm *.o temp
+</span></span></code></pre></div><h4 id="命令">命令</h4>
+<h5 id="特殊字符">特殊字符</h5>
+<p><code>@</code> 字符在命令前，例如 <code>@echo xxx</code>，只会输出 <code>xxx</code>
+<code>-</code> 字符在命令前，例如 <code>-rm -f *</code>，会忽略命令的错误，认为是成功的</p>
+<h5 id="执行">执行</h5>
+<p>make 会一条条的执行命令，如果你要让上一条命令的结果应用在下一条命令时，你应该使用分号分隔这两条命令。
+也可以嵌套执行：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span><span style="color:#a6e22e">subsystem</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">$(</span>MAKE<span style="color:#66d9ef">)</span> -C subdir
+</span></span></code></pre></div><p>意思是切换到 subdir 目录下并执行 make，上级 Makefile 的变量可以传递到下级的 Makefile 中，也可以用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span><span style="color:#66d9ef">export </span><span style="color:#960050;background-color:#1e0010">&lt;variable</span> <span style="color:#960050;background-color:#1e0010">...&gt;;</span>
+</span></span></code></pre></div><p>传递，如果想传递所有参数，可以直接使用 <code>export</code>，如果不想某些参数传递，可以：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">un</span><span style="color:#66d9ef">export </span><span style="color:#960050;background-color:#1e0010">&lt;variable</span> <span style="color:#960050;background-color:#1e0010">...&gt;;</span>
+</span></span></code></pre></div><h3 id="makefile">Makefile</h3>
+<p>其实上面的信息组合一下，就是一个 Makefile 了</p>
+<p>Makefile 中反斜杠 <code>\</code> 是换行的意思，将一些长的命令换行可以方便阅读</p>
+<p>Makefile 还必须具备一个 <code>clean</code> 规则：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span><span style="color:#a6e22e">.PHONY </span><span style="color:#f92672">:</span> clean
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">clean </span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    -rm edit <span style="color:#66d9ef">$(</span>objects<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><p>可以使用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-makefile" data-lang="makefile"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">include</span> <span style="color:#960050;background-color:#1e0010">&lt;filenames&gt;...</span>
+</span></span></code></pre></div><p>引入其他的 Makefile</p>
+<h3 id="总结">总结</h3>
+<p>信息主要来源于 <a href="https://seisman.github.io/how-to-write-makefile/overview.html">这里</a>，出发点是通读一遍下来，感觉太多关于 C/C++ 编译
+相关的，其实 Go 很多用不到，所以精简了很多形成了本文，同时也打乱了原文的次序。</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>

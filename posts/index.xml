@@ -6,7 +6,17 @@
     <description>Recent content in Posts on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 23 Aug 2023 09:46:17 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Sep 2023 14:14:52 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Makefile简明教程</title>
+      <link>https://dabao-zhao.github.io/posts/makefile%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Mon, 04 Sep 2023 14:14:52 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/makefile%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/</guid>
+      <description>变量 变量的命名字可以包含字符、数字，下划线（可以是数字开头），但不应该含有 : 、 # 、 = 或是空字符（空格、回车等），大小写敏感，推荐大驼峰式写法。
+赋值 # &amp;lt;variable&amp;gt;; = &amp;lt;value&amp;gt;; # &amp;lt;variable&amp;gt;; := &amp;lt;value&amp;gt;; # &amp;lt;variable&amp;gt;; ?= &amp;lt;value&amp;gt;; k = val # 赋值 k1 := val # := 的赋值下，前面的变量不能使用后面的变量 k2 ?= val # ?= 表示如果 k1 未定义就赋值 val，如果已定义就略过 variable := value variable += more # 值的拼接，结果为 value more，中间是有空格的，:= 可以替换为 = nullstring := space := $(nullstring) # 定义空格 dir := /foo/bar # 注释符 # 不止注释的意思，也可以表示变量的终止，这里 dir 表示 /foo/bar + 四个空格 使用 x = y y = z z = u a := $($($(x))) # 变量的值可以再当成变量 @echo $(a) foo := a.</description>
+    </item>
+    
     <item>
       <title>Go 有用的工具</title>
       <link>https://dabao-zhao.github.io/posts/go%E6%9C%89%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7/</link>
