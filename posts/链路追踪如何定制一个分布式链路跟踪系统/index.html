@@ -202,189 +202,190 @@ RPCID 用于标识操作在整个调用链路中的位置。</p>
 </ul>
 <p>设置类似 X-DEBUG Header 等于 1 时，可以开启在线 debug 模式，在被调用接口及所有依赖的服务都会输出 debug 级别的日志，这样我们临时排查线上问题会更方便</p>
 <h3 id="日志格式样例">日志格式样例</h3>
-<pre tabindex="0"><code>{
-    &#34;name&#34;: &#34;string:全量字段介绍,必填，用于区分日志类型，上面的日志列表内容写这里&#34;,
-    &#34;trace_id&#34;: &#34;string:traceid，必填&#34;,
-    &#34;rpc_id&#34;: &#34;string:RPCID，服务端链路必填，客户端非必填&#34;,
-    &#34;department&#34;:&#34;部门缩写如client_frontend 必填&#34;,
-    &#34;version&#34;: &#34;string:当前服务版本 cpp-client-1.1 php-baseserver-1.4 java-rti-1.
-    &#34;timestamp&#34;: &#34;int:日志记录时间，单位秒，必填&#34;,
-    &#34;duration&#34;: &#34;float:消耗时间，浮点数 单位秒，能填就填&#34;,
-    &#34;module&#34;: &#34;string:模块路径，建议格式应用名称_模块名称_函数名称_动作，必填&#34;,
-    &#34;source&#34;: &#34;string:请求来源 如果是网页可以记录ref page，选填&#34;,
-    &#34;uid&#34;: &#34;string:当前用户uid，如果没有则填写为 0长度字符串，可选填，能够帮助分析用户一段时
-    &#34;pid&#34;: &#34;string:进程pid，如果没有填写为 0长度字符串，如果有线程可以为pid-tid格式，可选填
-    &#34;server_ip&#34;: &#34;string 当前服务器ip，必填&#34;,
-    &#34;client_ip&#34;: &#34;string 客户端ip，选填&#34;,
-    &#34;user_agent&#34;: &#34;string curl/7.29.0 选填&#34;,
-    &#34;host&#34;: &#34;string 链接目标的ip及端口号，用于区分环境12.123.23.1:3306，选填&#34;,
-    &#34;instance_name&#34;: &#34;string 数据库连接配置的标识，比如rti的数据库连接，选填&#34;,
-    &#34;db&#34;: &#34;string 数据库名称如：peiyou_stastic，选填&#34;,
-    &#34;code&#34;: &#34;string:各种驱动或错误或服务的错误码，选填，报错误必填&#34;,
-    &#34;msg&#34;: &#34;string 错误信息或其他提示信息，选填，报错误必填&#34;,
-    &#34;backtrace&#34;: &#34;string 错误的backtrace信息，选填，报错误必填&#34;,
-    &#34;action&#34;: &#34;string 可以是url、sql、redis命令、所有让远程执行的命令，必填&#34;,
-    &#34;param&#34;: &#34;string 通用参数模板，用于和script配合，记录所有请求参数，必填&#34;,
-    &#34;file&#34;: &#34;string userinfo.php，选填&#34;,
-    &#34;line&#34;: &#34;string 232，选填&#34;,
-    &#34;response&#34;: &#34;string:请求返回的结果，可以是本接口或其他资源返回的数据，如果数据太长会影响
-    &#34;response_length&#34;: &#34;int:相应内容结果的长度，选填&#34;,
-    &#34;dns_duration&#34;: &#34;float dns解析时间，一般http mysql请求域名的时候会出现此选项，选填&#34;,
-    &#34;extra&#34;: &#34;json 放什么都可以,用户所有附加数据都扔这里&#34;
-}
-## 样例
-### 被请求日志
-{
-    &#34;x_name&#34;: &#34;request.info&#34;,
-    &#34;x_trace_id&#34;: &#34;123jiojfdsao&#34;,
-    &#34;x_rpc_id&#34;: &#34;0.1&#34;,
-    &#34;x_version&#34;: &#34;php-baseserver-4.0&#34;,
-    &#34;x_department&#34;:&#34;tal_client_frontend&#34;,
-    &#34;x_timestamp&#34;: 1506480162,
-    &#34;x_duration&#34;: 0.021,
-    &#34;x_uid&#34;: &#34;9527&#34;,
-    &#34;x_pid&#34;: &#34;123&#34;,
-    &#34;x_module&#34;: &#34;js_game1_start&#34;,
-    &#34;x_user_agent&#34;: &#34;string curl/7.29.0&#34;,
-    &#34;x_action&#34;: &#34;http://testapi.speiyou.com/v3/user/getinfo?id=9527&#34;,
-    &#34;x_server_ip&#34;: &#34;192.168.1.1:80&#34;,
-    &#34;x_client_ip&#34;: &#34;192.168.1.123&#34;,
-    &#34;x_param&#34;: &#34;json string&#34;,
-    &#34;x_source&#34;: &#34;www.baidu.com&#34;,
-    &#34;x_code&#34;: &#34;200&#34;,
-    &#34;x_response&#34;: &#34;json:api result&#34;,
-    &#34;x_response_len&#34;: 12324
-}
-### mysql 链接性能日志
-{
-    &#34;x_name&#34;: &#34;mysql.connect&#34;,
-    &#34;x_trace_id&#34;: &#34;123jiojfdsao&#34;,
-    &#34;x_rpc_id&#34;: &#34;0.2&#34;,
-    &#34;x_version&#34;: &#34;php-baseserver-4&#34;,
-    &#34;x_department&#34;:&#34;tal_client_frontend&#34;,
-    &#34;x_timestamp&#34;: 1506480162,
-    &#34;x_duration&#34;: 0.024,
-    &#34;x_uid&#34;: &#34;9527&#34;,
-    &#34;x_pid&#34;: &#34;123&#34;,
-    &#34;x_module&#34;: &#34;js_mysql_connect&#34;,
-    &#34;x_instance_name&#34;: &#34;default&#34;,
-    &#34;x_host&#34;: &#34;12.123.23.1:3306&#34;,
-    &#34;x_db&#34;: &#34;tal_game_round&#34;,
-    &#34;x_msg&#34;: &#34;ok&#34;,
-    &#34;x_code&#34;: &#34;1&#34;,
-    &#34;x_response&#34;: &#34;json:****&#34;
-}
-### Mysql 请求日志
-{
-    &#34;x_name&#34;: &#34;mysql.request&#34;,
-    &#34;x_trace_id&#34;: &#34;123jiojfdsao&#34;,
-    &#34;x_rpc_id&#34;: &#34;0.2&#34;,
-    &#34;x_version&#34;: &#34;php-4&#34;,
-    &#34;x_department&#34;:&#34;tal_client_frontend&#34;,
-    &#34;x_timestamp&#34;: 1506480162,
-    &#34;x_duration&#34;: 0.024,
-    &#34;x_uid&#34;: &#34;9527&#34;,
-    &#34;x_pid&#34;: &#34;123&#34;,
-    &#34;x_module&#34;: &#34;js_game1_round_sigup&#34;,
-    &#34;x_instance_name&#34;: &#34;default&#34;,
-    &#34;x_host&#34;: &#34;12.123.23.1:3306&#34;,
-    &#34;x_db&#34;: &#34;tal_game_round&#34;,
-    &#34;x_action&#34;: &#34;select * from xxx where xxxx&#34;,
-    &#34;x_param&#34;: &#34;json string&#34;,
-    &#34;x_code&#34;: &#34;1&#34;,
-    &#34;x_msg&#34;: &#34;ok&#34;,
-    &#34;x_response&#34;: &#34;json:****&#34;
-}
-### http 请求日志
-{
-    &#34;x_name&#34;: &#34;http.post&#34;,
-    &#34;x_trace_id&#34;: &#34;123jiojfdsao&#34;,
-    &#34;x_department&#34;:&#34;tal_client_frontend&#34;,
-    &#34;x_rpc_id&#34;: &#34;0.3&#34;,
-    &#34;x_version&#34;: &#34;php-4&#34;,
-    &#34;x_timestamp&#34;: 1506480162,
-    &#34;x_duration&#34;: 0.214,
-    &#34;x_uid&#34;: &#34;9527&#34;,
-    &#34;x_pid&#34;: &#34;123&#34;,
-    &#34;x_module&#34;: &#34;js_game1_round_win_report&#34;,
-    &#34;x_action&#34;: &#34;http://testapi.speiyou.com/v3/game/report&#34;,
-    &#34;x_param&#34;: &#34;json:&#34;,
-    &#34;x_server_ip&#34;: &#34;192.168.1.1&#34;,
-    &#34;x_msg&#34;: &#34;ok&#34;,
-    &#34;x_code&#34;: &#34;200&#34;,
-    &#34;x_response_len&#34;: 12324,
-    &#34;x_response&#34;: &#34;json:responsexxxx&#34;,
-    &#34;x_dns_duration&#34;: 0.001
-}
-### level log info日志
-{
-    &#34;x_name&#34;: &#34;log.info&#34;,
-    &#34;x_trace_id&#34;: &#34;123jiojfdsao&#34;,
-    &#34;x_department&#34;:&#34;tal_client_frontend&#34;,
-    &#34;x_rpc_id&#34;: &#34;0.3&#34;,
-    &#34;x_version&#34;: &#34;php-4&#34;,
-    &#34;x_timestamp&#34;: 1506480162,
-    &#34;x_duration&#34;: 0.214,
-    &#34;x_uid&#34;: &#34;9527&#34;,
-    &#34;x_pid&#34;: &#34;123&#34;,
-    &#34;x_module&#34;: &#34;game1_round_win_round_end&#34;,
-    &#34;x_file&#34;: &#34;userinfo.php&#34;,
-    &#34;x_line&#34;: &#34;232&#34;,
-    &#34;x_msg&#34;: &#34;ok&#34;,
-    &#34;x_code&#34;: &#34;201&#34;,
-    &#34;extra&#34;: &#34;json game_id lesson_num xxxxx&#34;
-}
-### exception 异常日志
-{
-    &#34;x_name&#34;: &#34;log.exception&#34;,
-    &#34;x_trace_id&#34;: &#34;123jiojfdsao&#34;,
-    
-    &#34;x_department&#34;:&#34;tal_client_frontend&#34;,
-    &#34;x_rpc_id&#34;: &#34;0.3&#34;,
-    &#34;x_version&#34;: &#34;php-4&#34;,
-    &#34;x_timestamp&#34;: 1506480162,
-    &#34;x_duration&#34;: 0.214,
-    &#34;x_uid&#34;: &#34;9527&#34;,
-    &#34;x_pid&#34;: &#34;123&#34;,
-    &#34;x_module&#34;: &#34;game1_round_win&#34;,
-    &#34;x_file&#34;: &#34;userinfo.php&#34;,
-    &#34;x_line&#34;: &#34;232&#34;,
-    &#34;x_msg&#34;: &#34;exception:xxxxx call stack&#34;,
-    &#34;x_code&#34;: &#34;hy20001&#34;,
-    &#34;x_backtrace&#34;: &#34;xxxxx.php(123) gotError:...&#34;
-}
-### 业务自发告警日志
-{
-    &#34;x_name&#34;: &#34;log.alarm&#34;,
-    &#34;x_trace_id&#34;: &#34;123jiojfdsao&#34;,
-    &#34;x_department&#34;:&#34;tal_client_frontend&#34;,
-    &#34;x_rpc_id&#34;: &#34;0.3&#34;,
-    &#34;x_version&#34;: &#34;php-4&#34;,
-    &#34;x_timestamp&#34;: 1506480162,
-    &#34;x_duration&#34;: 0.214,
-    &#34;x_uid&#34;: &#34;9527&#34;,
-    &#34;x_pid&#34;: &#34;123&#34;,
-    &#34;x_module&#34;: &#34;game1_round_win_round_report&#34;,
-    &#34;x_file&#34;: &#34;game_win_notify.php&#34;,
-    &#34;x_line&#34;: &#34;123&#34;,
-    &#34;x_msg&#34;: &#34;game report request fail! retryed three time..&#34;,
-    &#34;x_code&#34;: &#34;201&#34;,
-    &#34;x_extra&#34;: &#34;json game_id lesson_num xxxxx&#34;
-}
-### matrics 计数器
-{
-    &#34;x_name&#34;: &#34;metrix.count&#34;,
-    &#34;x_trace_id&#34;: &#34;123jiojfdsao&#34;,
-    &#34;x_department&#34;:&#34;tal_client_frontend&#34;,
-    &#34;x_rpc_id&#34;: &#34;0.3&#34;,
-    &#34;x_version&#34;: &#34;php-4&#34;,
-    &#34;x_timestamp&#34;: 1506480162,
-    &#34;x_uid&#34;: &#34;9527&#34;,
-    &#34;x_pid&#34;: &#34;123&#34;,
-    &#34;x_module&#34;: &#34;game1_round_win_click&#34;,
-    &#34;x extra&#34;: &#34;json curl invoke count&#34;
-}
-</code></pre><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;string:全量字段介绍,必填，用于区分日志类型，上面的日志列表内容写这里&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;trace_id&#34;</span>: <span style="color:#e6db74">&#34;string:traceid，必填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;rpc_id&#34;</span>: <span style="color:#e6db74">&#34;string:RPCID，服务端链路必填，客户端非必填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;department&#34;</span>:<span style="color:#e6db74">&#34;部门缩写如client_frontend 必填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;string:当前服务版本 cpp-client-1.1 php-baseserver-1.4 java-rti-1.&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;timestamp&#34;</span>: <span style="color:#e6db74">&#34;int:日志记录时间，单位秒，必填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;duration&#34;</span>: <span style="color:#e6db74">&#34;float:消耗时间，浮点数 单位秒，能填就填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;module&#34;</span>: <span style="color:#e6db74">&#34;string:模块路径，建议格式应用名称_模块名称_函数名称_动作，必填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;string:请求来源 如果是网页可以记录ref page，选填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;uid&#34;</span>: <span style="color:#e6db74">&#34;string:当前用户uid，如果没有则填写为 0长度字符串，可选填，能够帮助分析用户一段时&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;pid&#34;</span>: <span style="color:#e6db74">&#34;string:进程pid，如果没有填写为 0长度字符串，如果有线程可以为pid-tid格式，可选填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;server_ip&#34;</span>: <span style="color:#e6db74">&#34;string 当前服务器ip，必填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;client_ip&#34;</span>: <span style="color:#e6db74">&#34;string 客户端ip，选填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;user_agent&#34;</span>: <span style="color:#e6db74">&#34;string curl/7.29.0 选填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;host&#34;</span>: <span style="color:#e6db74">&#34;string 链接目标的ip及端口号，用于区分环境12.123.23.1:3306，选填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;instance_name&#34;</span>: <span style="color:#e6db74">&#34;string 数据库连接配置的标识，比如rti的数据库连接，选填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;db&#34;</span>: <span style="color:#e6db74">&#34;string 数据库名称如：peiyou_stastic，选填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;code&#34;</span>: <span style="color:#e6db74">&#34;string:各种驱动或错误或服务的错误码，选填，报错误必填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;msg&#34;</span>: <span style="color:#e6db74">&#34;string 错误信息或其他提示信息，选填，报错误必填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;backtrace&#34;</span>: <span style="color:#e6db74">&#34;string 错误的backtrace信息，选填，报错误必填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;action&#34;</span>: <span style="color:#e6db74">&#34;string 可以是url、sql、redis命令、所有让远程执行的命令，必填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;param&#34;</span>: <span style="color:#e6db74">&#34;string 通用参数模板，用于和script配合，记录所有请求参数，必填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;file&#34;</span>: <span style="color:#e6db74">&#34;string userinfo.php，选填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;line&#34;</span>: <span style="color:#e6db74">&#34;string 232，选填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;response&#34;</span>: <span style="color:#e6db74">&#34;string:请求返回的结果，可以是本接口或其他资源返回的数据，如果数据太长会影响&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;response_length&#34;</span>: <span style="color:#e6db74">&#34;int:相应内容结果的长度，选填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;dns_duration&#34;</span>: <span style="color:#e6db74">&#34;float dns解析时间，一般http mysql请求域名的时候会出现此选项，选填&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;extra&#34;</span>: <span style="color:#e6db74">&#34;json 放什么都可以,用户所有附加数据都扔这里&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 样例
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 被请求日志
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_name&#34;</span>: <span style="color:#e6db74">&#34;request.info&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_trace_id&#34;</span>: <span style="color:#e6db74">&#34;123jiojfdsao&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_rpc_id&#34;</span>: <span style="color:#e6db74">&#34;0.1&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_version&#34;</span>: <span style="color:#e6db74">&#34;php-baseserver-4.0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_department&#34;</span>:<span style="color:#e6db74">&#34;tal_client_frontend&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_timestamp&#34;</span>: <span style="color:#ae81ff">1506480162</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_duration&#34;</span>: <span style="color:#ae81ff">0.021</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_uid&#34;</span>: <span style="color:#e6db74">&#34;9527&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_pid&#34;</span>: <span style="color:#e6db74">&#34;123&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_module&#34;</span>: <span style="color:#e6db74">&#34;js_game1_start&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_user_agent&#34;</span>: <span style="color:#e6db74">&#34;string curl/7.29.0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_action&#34;</span>: <span style="color:#e6db74">&#34;http://testapi.speiyou.com/v3/user/getinfo?id=9527&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_server_ip&#34;</span>: <span style="color:#e6db74">&#34;192.168.1.1:80&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_client_ip&#34;</span>: <span style="color:#e6db74">&#34;192.168.1.123&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_param&#34;</span>: <span style="color:#e6db74">&#34;json string&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_source&#34;</span>: <span style="color:#e6db74">&#34;www.baidu.com&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_code&#34;</span>: <span style="color:#e6db74">&#34;200&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_response&#34;</span>: <span style="color:#e6db74">&#34;json:api result&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_response_len&#34;</span>: <span style="color:#ae81ff">12324</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// mysql 链接性能日志
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_name&#34;</span>: <span style="color:#e6db74">&#34;mysql.connect&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_trace_id&#34;</span>: <span style="color:#e6db74">&#34;123jiojfdsao&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_rpc_id&#34;</span>: <span style="color:#e6db74">&#34;0.2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_version&#34;</span>: <span style="color:#e6db74">&#34;php-baseserver-4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_department&#34;</span>:<span style="color:#e6db74">&#34;tal_client_frontend&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_timestamp&#34;</span>: <span style="color:#ae81ff">1506480162</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_timestamp&#34;</span>: <span style="color:#ae81ff">1506480162</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_duration&#34;</span>: <span style="color:#ae81ff">0.024</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_uid&#34;</span>: <span style="color:#e6db74">&#34;9527&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_pid&#34;</span>: <span style="color:#e6db74">&#34;123&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_module&#34;</span>: <span style="color:#e6db74">&#34;js_mysql_connect&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_instance_name&#34;</span>: <span style="color:#e6db74">&#34;default&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_host&#34;</span>: <span style="color:#e6db74">&#34;12.123.23.1:3306&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_db&#34;</span>: <span style="color:#e6db74">&#34;tal_game_round&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_msg&#34;</span>: <span style="color:#e6db74">&#34;ok&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_code&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_response&#34;</span>: <span style="color:#e6db74">&#34;json:****&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Mysql 请求日志
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_name&#34;</span>: <span style="color:#e6db74">&#34;mysql.request&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_trace_id&#34;</span>: <span style="color:#e6db74">&#34;123jiojfdsao&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_rpc_id&#34;</span>: <span style="color:#e6db74">&#34;0.2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_version&#34;</span>: <span style="color:#e6db74">&#34;php-4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_department&#34;</span>:<span style="color:#e6db74">&#34;tal_client_frontend&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_timestamp&#34;</span>: <span style="color:#ae81ff">1506480162</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_duration&#34;</span>: <span style="color:#ae81ff">0.024</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_uid&#34;</span>: <span style="color:#e6db74">&#34;9527&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_pid&#34;</span>: <span style="color:#e6db74">&#34;123&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_module&#34;</span>: <span style="color:#e6db74">&#34;js_game1_round_sigup&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_instance_name&#34;</span>: <span style="color:#e6db74">&#34;default&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_host&#34;</span>: <span style="color:#e6db74">&#34;12.123.23.1:3306&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_db&#34;</span>: <span style="color:#e6db74">&#34;tal_game_round&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_action&#34;</span>: <span style="color:#e6db74">&#34;select * from xxx where xxxx&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_param&#34;</span>: <span style="color:#e6db74">&#34;json string&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_code&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_msg&#34;</span>: <span style="color:#e6db74">&#34;ok&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_response&#34;</span>: <span style="color:#e6db74">&#34;json:****&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// http 请求日志
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_name&#34;</span>: <span style="color:#e6db74">&#34;http.post&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_trace_id&#34;</span>: <span style="color:#e6db74">&#34;123jiojfdsao&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_department&#34;</span>:<span style="color:#e6db74">&#34;tal_client_frontend&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_rpc_id&#34;</span>: <span style="color:#e6db74">&#34;0.3&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_version&#34;</span>: <span style="color:#e6db74">&#34;php-4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_timestamp&#34;</span>: <span style="color:#ae81ff">1506480162</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_duration&#34;</span>: <span style="color:#ae81ff">0.214</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_uid&#34;</span>: <span style="color:#e6db74">&#34;9527&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_pid&#34;</span>: <span style="color:#e6db74">&#34;123&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_module&#34;</span>: <span style="color:#e6db74">&#34;js_game1_round_win_report&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_action&#34;</span>: <span style="color:#e6db74">&#34;http://testapi.speiyou.com/v3/game/report&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_param&#34;</span>: <span style="color:#e6db74">&#34;json:&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_server_ip&#34;</span>: <span style="color:#e6db74">&#34;192.168.1.1&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_msg&#34;</span>: <span style="color:#e6db74">&#34;ok&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_code&#34;</span>: <span style="color:#e6db74">&#34;200&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_response_len&#34;</span>: <span style="color:#ae81ff">12324</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_response&#34;</span>: <span style="color:#e6db74">&#34;json:responsexxxx&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_dns_duration&#34;</span>: <span style="color:#ae81ff">0.001</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// level log info日志
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_name&#34;</span>: <span style="color:#e6db74">&#34;log.info&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_trace_id&#34;</span>: <span style="color:#e6db74">&#34;123jiojfdsao&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_department&#34;</span>:<span style="color:#e6db74">&#34;tal_client_frontend&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_rpc_id&#34;</span>: <span style="color:#e6db74">&#34;0.3&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_version&#34;</span>: <span style="color:#e6db74">&#34;php-4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_timestamp&#34;</span>: <span style="color:#ae81ff">1506480162</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_duration&#34;</span>: <span style="color:#ae81ff">0.214</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_uid&#34;</span>: <span style="color:#e6db74">&#34;9527&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_pid&#34;</span>: <span style="color:#e6db74">&#34;123&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_module&#34;</span>: <span style="color:#e6db74">&#34;game1_round_win_round_end&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_file&#34;</span>: <span style="color:#e6db74">&#34;userinfo.php&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_line&#34;</span>: <span style="color:#e6db74">&#34;232&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_msg&#34;</span>: <span style="color:#e6db74">&#34;ok&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_code&#34;</span>: <span style="color:#e6db74">&#34;201&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;extra&#34;</span>: <span style="color:#e6db74">&#34;json game_id lesson_num xxxxx&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// exception 异常日志
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_name&#34;</span>: <span style="color:#e6db74">&#34;log.exception&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_trace_id&#34;</span>: <span style="color:#e6db74">&#34;123jiojfdsao&#34;</span>,
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_department&#34;</span>:<span style="color:#e6db74">&#34;tal_client_frontend&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_rpc_id&#34;</span>: <span style="color:#e6db74">&#34;0.3&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_version&#34;</span>: <span style="color:#e6db74">&#34;php-4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_timestamp&#34;</span>: <span style="color:#ae81ff">1506480162</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_duration&#34;</span>: <span style="color:#ae81ff">0.214</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_uid&#34;</span>: <span style="color:#e6db74">&#34;9527&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_pid&#34;</span>: <span style="color:#e6db74">&#34;123&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_module&#34;</span>: <span style="color:#e6db74">&#34;game1_round_win&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_file&#34;</span>: <span style="color:#e6db74">&#34;userinfo.php&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_line&#34;</span>: <span style="color:#e6db74">&#34;232&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_msg&#34;</span>: <span style="color:#e6db74">&#34;exception:xxxxx call stack&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_code&#34;</span>: <span style="color:#e6db74">&#34;hy20001&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_backtrace&#34;</span>: <span style="color:#e6db74">&#34;xxxxx.php(123) gotError:...&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 业务自发告警日志
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_name&#34;</span>: <span style="color:#e6db74">&#34;log.alarm&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_trace_id&#34;</span>: <span style="color:#e6db74">&#34;123jiojfdsao&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_department&#34;</span>:<span style="color:#e6db74">&#34;tal_client_frontend&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_rpc_id&#34;</span>: <span style="color:#e6db74">&#34;0.3&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_version&#34;</span>: <span style="color:#e6db74">&#34;php-4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_timestamp&#34;</span>: <span style="color:#ae81ff">1506480162</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_duration&#34;</span>: <span style="color:#ae81ff">0.214</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_uid&#34;</span>: <span style="color:#e6db74">&#34;9527&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_pid&#34;</span>: <span style="color:#e6db74">&#34;123&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_module&#34;</span>: <span style="color:#e6db74">&#34;game1_round_win_round_report&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_file&#34;</span>: <span style="color:#e6db74">&#34;game_win_notify.php&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_line&#34;</span>: <span style="color:#e6db74">&#34;123&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_msg&#34;</span>: <span style="color:#e6db74">&#34;game report request fail! retryed three time..&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_code&#34;</span>: <span style="color:#e6db74">&#34;201&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_extra&#34;</span>: <span style="color:#e6db74">&#34;json game_id lesson_num xxxxx&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// matrics 计数器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_name&#34;</span>: <span style="color:#e6db74">&#34;metrix.count&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_trace_id&#34;</span>: <span style="color:#e6db74">&#34;123jiojfdsao&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_department&#34;</span>:<span style="color:#e6db74">&#34;tal_client_frontend&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_rpc_id&#34;</span>: <span style="color:#e6db74">&#34;0.3&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_version&#34;</span>: <span style="color:#e6db74">&#34;php-4&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_timestamp&#34;</span>: <span style="color:#ae81ff">1506480162</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_uid&#34;</span>: <span style="color:#e6db74">&#34;9527&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_pid&#34;</span>: <span style="color:#e6db74">&#34;123&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x_module&#34;</span>: <span style="color:#e6db74">&#34;game1_round_win_click&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;x extra&#34;</span>: <span style="color:#e6db74">&#34;json curl invoke count&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
 <p>Q: 为什么大部分设计都是记录依赖资源的日志呢？<br>
 A: 在于在没有 IO 的情况下，程序大部分都是可控的（侧重计算的服务除外）。只有 IO 类操作容易出现不稳定因素，并且日志记录过多也会影响系统性能，通过记录对数据源的操作能帮助我们排查业务逻辑的错误。<br>
 Q: 如何提高日志的写吞吐能力?<br>
