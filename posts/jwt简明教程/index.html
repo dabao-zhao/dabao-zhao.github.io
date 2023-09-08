@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="赵大宝" />
-  <meta property="og:url" content="https://dabao-zhao.github.io/categories/" />
-  <link rel="canonical" href="https://dabao-zhao.github.io/categories/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
+  <meta property="og:url" content="https://dabao-zhao.github.io/posts/jwt%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" />
+  <link rel="canonical" href="https://dabao-zhao.github.io/posts/jwt%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
   <link rel="icon" href="images/favicon.ico" />
   <link rel="shortcut" href="images/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://dabao-zhao.github.ioindex.xml" title="赵大宝的博客">
 
@@ -20,10 +20,10 @@
            "@type": "WebPage",
            "@id": "https:\/\/dabao-zhao.github.io"
       },
-      "articleSection" : "categories",
-      "name" : "Categories",
-      "headline" : "Categories",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "JWT简明教程",
+      "headline" : "JWT简明教程",
+      "description" : "信息主要来源于这里\n组成 头部（Header）：包含关于 JWT 的元数据，例如令牌的类型和使用的加密算法。 载荷（Payload）：包含声明的具体信息，例如用户 ID、权限等。 签名（Signature）：使用头部和载荷生成的数字签名，用于验证 JWT 的完整性和真实性。\n编码输出之后的组成为 Header.Payload.Signature\n头部（Header） { \u0026#34;alg\u0026#34;: \u0026#34;HS256\u0026#34;, \u0026#34;typ\u0026#34;: \u0026#34;JWT\u0026#34; } alg 表示加密算法，typ 表示令牌的类型\n载荷（Payload） { \u0026#34;sub\u0026#34;: \u0026#34;1234567890\u0026#34;, \u0026#34;exp\u0026#34;: 1516239244, \u0026#34;iat\u0026#34;: 1516233244, \u0026#34;name\u0026#34;: \u0026#34;John Doe\u0026#34; } 这一块就比较自由，可以参考这里，比较常用的 sub（主题）、exp（令牌过期时间）、 iat（令牌创建时间）等，需要携带的自定义信息一般也是放在这里\n签名（Signature） 签名主要用于验证消息在传输过程中没有发生更改，例如使用 HMAC SHA256 算法时，通过以下方式签名\nHMACSHA256( base64UrlEncode(header) \u002b \u0026#34;.\u0026#34; \u002b base64UrlEncode(payload), secret) 需要注意的 JWT 的信息是通过 base64 进行编码的，也就是说，JWT 的所有信息都是公开的，别人是可以看到其中的信息的，所以不要将敏感信息放在 JWT 里面。\n还有就是不要在后端存储 JWT，要不然无状态就没有了意义。那这里其实就存在一个问题：如何让一个 JWT 失效？\n如何让一个 JWT 失效 目前看在不存储 JWT 的情况下，是无法做到的。\n一般来说可以不考虑这个问题，需要删除的时候前端删除掉即可。",
       "inLanguage" : "en-US",
       "author" : "赵大宝",
       "creator" : "赵大宝",
@@ -33,15 +33,33 @@
       "copyrightYear" : "2023",
       "datePublished": "2023-09-08 14:56:13 \u002b0800 CST",
       "dateModified" : "2023-09-08 14:56:13 \u002b0800 CST",
-      "url" : "https:\/\/dabao-zhao.github.io\/categories\/",
+      "url" : "https:\/\/dabao-zhao.github.io\/posts\/jwt%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B\/",
       "keywords" : [  ]
   }
 </script>
-<title>Categories</title>
-  <meta property="og:title" content="Categories" />
+<title>JWT简明教程</title>
+  <meta property="og:title" content="JWT简明教程" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="信息主要来源于这里
+组成 头部（Header）：包含关于 JWT 的元数据，例如令牌的类型和使用的加密算法。 载荷（Payload）：包含声明的具体信息，例如用户 ID、权限等。 签名（Signature）：使用头部和载荷生成的数字签名，用于验证 JWT 的完整性和真实性。
+编码输出之后的组成为 Header.Payload.Signature
+头部（Header） { &amp;#34;alg&amp;#34;: &amp;#34;HS256&amp;#34;, &amp;#34;typ&amp;#34;: &amp;#34;JWT&amp;#34; } alg 表示加密算法，typ 表示令牌的类型
+载荷（Payload） { &amp;#34;sub&amp;#34;: &amp;#34;1234567890&amp;#34;, &amp;#34;exp&amp;#34;: 1516239244, &amp;#34;iat&amp;#34;: 1516233244, &amp;#34;name&amp;#34;: &amp;#34;John Doe&amp;#34; } 这一块就比较自由，可以参考这里，比较常用的 sub（主题）、exp（令牌过期时间）、 iat（令牌创建时间）等，需要携带的自定义信息一般也是放在这里
+签名（Signature） 签名主要用于验证消息在传输过程中没有发生更改，例如使用 HMAC SHA256 算法时，通过以下方式签名
+HMACSHA256( base64UrlEncode(header) &#43; &amp;#34;.&amp;#34; &#43; base64UrlEncode(payload), secret) 需要注意的 JWT 的信息是通过 base64 进行编码的，也就是说，JWT 的所有信息都是公开的，别人是可以看到其中的信息的，所以不要将敏感信息放在 JWT 里面。
+还有就是不要在后端存储 JWT，要不然无状态就没有了意义。那这里其实就存在一个问题：如何让一个 JWT 失效？
+如何让一个 JWT 失效 目前看在不存储 JWT 的情况下，是无法做到的。
+一般来说可以不考虑这个问题，需要删除的时候前端删除掉即可。" />
+  <meta name="description" content="信息主要来源于这里
+组成 头部（Header）：包含关于 JWT 的元数据，例如令牌的类型和使用的加密算法。 载荷（Payload）：包含声明的具体信息，例如用户 ID、权限等。 签名（Signature）：使用头部和载荷生成的数字签名，用于验证 JWT 的完整性和真实性。
+编码输出之后的组成为 Header.Payload.Signature
+头部（Header） { &amp;#34;alg&amp;#34;: &amp;#34;HS256&amp;#34;, &amp;#34;typ&amp;#34;: &amp;#34;JWT&amp;#34; } alg 表示加密算法，typ 表示令牌的类型
+载荷（Payload） { &amp;#34;sub&amp;#34;: &amp;#34;1234567890&amp;#34;, &amp;#34;exp&amp;#34;: 1516239244, &amp;#34;iat&amp;#34;: 1516233244, &amp;#34;name&amp;#34;: &amp;#34;John Doe&amp;#34; } 这一块就比较自由，可以参考这里，比较常用的 sub（主题）、exp（令牌过期时间）、 iat（令牌创建时间）等，需要携带的自定义信息一般也是放在这里
+签名（Signature） 签名主要用于验证消息在传输过程中没有发生更改，例如使用 HMAC SHA256 算法时，通过以下方式签名
+HMACSHA256( base64UrlEncode(header) &#43; &amp;#34;.&amp;#34; &#43; base64UrlEncode(payload), secret) 需要注意的 JWT 的信息是通过 base64 进行编码的，也就是说，JWT 的所有信息都是公开的，别人是可以看到其中的信息的，所以不要将敏感信息放在 JWT 里面。
+还有就是不要在后端存储 JWT，要不然无状态就没有了意义。那这里其实就存在一个问题：如何让一个 JWT 失效？
+如何让一个 JWT 失效 目前看在不存储 JWT 的情况下，是无法做到的。
+一般来说可以不考虑这个问题，需要删除的时候前端删除掉即可。" />
   <meta property="og:locale" content="zh-cn" /><meta property="og:image" content="images/favicon.ico" />
   
 
@@ -68,10 +86,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -92,105 +111,90 @@
 </div>
 <div class="header-line"></div>
 
-
-        <h1 class="taxonomy-term"></h1>
-        <div id="posts-list">
-          <section>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-09-08 14:56:13 CST">2023-09-08</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/jwt/">JWT</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-09-04 14:14:52 CST">2023-09-04</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/golang/">Golang</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-09-04 14:14:52 CST">2023-09-04</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/makefile/">Makefile</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-22 11:05:57 CST">2023-08-22</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/%E8%A7%84%E8%8C%83/">规范</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-22 10:41:17 CST">2023-08-22</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/docker/">Docker</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-21 15:01:54 CST">2023-08-21</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-10 16:36:39 CST">2023-08-10</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
         </div>
+        <header class="post-header">
+          <h1 class="post-title">JWT简明教程</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-09-08 14:56:13 CST">
+                08 Sep 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://dabao-zhao.github.io">@赵大宝</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <blockquote>
+<p>信息主要来源于<a href="https://jwt.io/introduction">这里</a></p>
+</blockquote>
+<h3 id="组成">组成</h3>
+<p>头部（Header）：包含关于 JWT 的元数据，例如令牌的类型和使用的加密算法。
+载荷（Payload）：包含声明的具体信息，例如用户 ID、权限等。
+签名（Signature）：使用头部和载荷生成的数字签名，用于验证 JWT 的完整性和真实性。</p>
+<p>编码输出之后的组成为 <code>Header.Payload.Signature</code></p>
+<h4 id="头部header">头部（Header）</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;alg&#34;</span>: <span style="color:#e6db74">&#34;HS256&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;typ&#34;</span>: <span style="color:#e6db74">&#34;JWT&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>alg 表示加密算法，typ 表示令牌的类型</p>
+<h4 id="载荷payload">载荷（Payload）</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;sub&#34;</span>: <span style="color:#e6db74">&#34;1234567890&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;exp&#34;</span>: <span style="color:#ae81ff">1516239244</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;iat&#34;</span>: <span style="color:#ae81ff">1516233244</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;John Doe&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这一块就比较自由，可以参考<a href="https://www.iana.org/assignments/jwt/jwt.xhtml">这里</a>，比较常用的 sub（主题）、exp（令牌过期时间）、
+iat（令牌创建时间）等，需要携带的自定义信息一般也是放在这里</p>
+<h4 id="签名signature">签名（Signature）</h4>
+<p>签名主要用于验证消息在传输过程中没有发生更改，例如使用 HMAC SHA256 算法时，通过以下方式签名</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">HMACSHA256</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">base64UrlEncode</span>(<span style="color:#a6e22e">header</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.&#34;</span> <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">base64UrlEncode</span>(<span style="color:#a6e22e">payload</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">secret</span>)
+</span></span></code></pre></div><h3 id="需要注意的">需要注意的</h3>
+<p>JWT 的信息是通过 base64 进行编码的，也就是说，JWT 的所有信息都是公开的，别人是可以看到其中的信息的，所以不要将敏感信息放在 JWT 里面。<br>
+还有就是不要在后端存储 JWT，要不然无状态就没有了意义。那这里其实就存在一个问题：如何让一个 JWT 失效？</p>
+<h3 id="如何让一个-jwt-失效">如何让一个 JWT 失效</h3>
+<p>目前看在不存储 JWT 的情况下，是无法做到的。<br>
+一般来说可以不考虑这个问题，需要删除的时候前端删除掉即可。</p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -210,6 +214,8 @@
     
   
 </script>
+
+  
 
 </body>
 

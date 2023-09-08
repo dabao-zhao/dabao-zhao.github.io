@@ -6,7 +6,25 @@
     <description>Recent content on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 04 Sep 2023 14:14:52 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 Sep 2023 14:56:13 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JWT简明教程</title>
+      <link>https://dabao-zhao.github.io/posts/jwt%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Fri, 08 Sep 2023 14:56:13 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/jwt%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/</guid>
+      <description>信息主要来源于这里
+组成 头部（Header）：包含关于 JWT 的元数据，例如令牌的类型和使用的加密算法。 载荷（Payload）：包含声明的具体信息，例如用户 ID、权限等。 签名（Signature）：使用头部和载荷生成的数字签名，用于验证 JWT 的完整性和真实性。
+编码输出之后的组成为 Header.Payload.Signature
+头部（Header） { &amp;#34;alg&amp;#34;: &amp;#34;HS256&amp;#34;, &amp;#34;typ&amp;#34;: &amp;#34;JWT&amp;#34; } alg 表示加密算法，typ 表示令牌的类型
+载荷（Payload） { &amp;#34;sub&amp;#34;: &amp;#34;1234567890&amp;#34;, &amp;#34;exp&amp;#34;: 1516239244, &amp;#34;iat&amp;#34;: 1516233244, &amp;#34;name&amp;#34;: &amp;#34;John Doe&amp;#34; } 这一块就比较自由，可以参考这里，比较常用的 sub（主题）、exp（令牌过期时间）、 iat（令牌创建时间）等，需要携带的自定义信息一般也是放在这里
+签名（Signature） 签名主要用于验证消息在传输过程中没有发生更改，例如使用 HMAC SHA256 算法时，通过以下方式签名
+HMACSHA256( base64UrlEncode(header) + &amp;#34;.&amp;#34; + base64UrlEncode(payload), secret) 需要注意的 JWT 的信息是通过 base64 进行编码的，也就是说，JWT 的所有信息都是公开的，别人是可以看到其中的信息的，所以不要将敏感信息放在 JWT 里面。
+还有就是不要在后端存储 JWT，要不然无状态就没有了意义。那这里其实就存在一个问题：如何让一个 JWT 失效？
+如何让一个 JWT 失效 目前看在不存储 JWT 的情况下，是无法做到的。
+一般来说可以不考虑这个问题，需要删除的时候前端删除掉即可。</description>
+    </item>
+    
     <item>
       <title>Makefile简明教程</title>
       <link>https://dabao-zhao.github.io/posts/makefile%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/</link>

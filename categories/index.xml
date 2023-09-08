@@ -6,7 +6,16 @@
     <description>Recent content in Categories on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 04 Sep 2023 14:14:52 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 Sep 2023 14:56:13 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JWT</title>
+      <link>https://dabao-zhao.github.io/categories/jwt/</link>
+      <pubDate>Fri, 08 Sep 2023 14:56:13 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/categories/jwt/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Golang</title>
       <link>https://dabao-zhao.github.io/categories/golang/</link>
