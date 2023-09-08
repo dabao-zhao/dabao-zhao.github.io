@@ -391,8 +391,7 @@ CanCommit 阶段：为了减少因等待锁定数据导致的超时情况，提�
       <pubDate>Wed, 09 Aug 2023 10:58:10 +0800</pubDate>
       
       <guid>https://dabao-zhao.github.io/posts/%E5%90%8C%E5%9F%8E%E5%8F%8C%E6%B4%BB%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%9C%BA%E6%88%BF%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/</guid>
-      <description>答：otter
-TODO 后面再找一个 otter 的教程吧
+      <description>答：otter，看这
 常见的网络延迟参考 指一次 RTT 请求
 同机房服务器：0.1 ms 同城服务器（100 公里以内）：1ms 北京到上海：38ms 北京到广州：53ms </description>
     </item>
