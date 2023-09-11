@@ -6,7 +6,22 @@
     <description>Recent content on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 11 Sep 2023 10:01:36 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Sep 2023 16:06:24 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ELK 和 EFK</title>
+      <link>https://dabao-zhao.github.io/posts/elk%E5%92%8Cefk/</link>
+      <pubDate>Mon, 11 Sep 2023 16:06:24 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/elk%E5%92%8Cefk/</guid>
+      <description>ELK 和 EFK 中的 E 和 K 是相同的，分别是 Elasticsearch 和 Kibana，主要是收集和处理的过程不同。
+ELK 数据流动基本是： Filebeats 》 Logstash 》 Kafka 》 Elasticsearch 》 Kibana
+Filebeats 是 Golang 实现的轻量型日志采集器，功能比较单一，所以日志的处理需要 Logstash 辅助。 Logstash 既可以收集数据，也可以对数据进行各种处理，但是对内存占用比较高，所以收集这块的功能交给了 Filebeats。
+EFK 数据流动基本是： Fluentd 》 Kafka 》 Elasticsearch 》 Kibana
+Fluentd 的功能和 Logstash 类似，不过性能会更好，内存占用也更低。
+参考 Filebeat 介绍
+Fluentd vs Logstash: A Comparison of Log Collectors</description>
+    </item>
+    
     <item>
       <title>OpenTelemetry 简介</title>
       <link>https://dabao-zhao.github.io/posts/opentelemetry%E7%AE%80%E4%BB%8B/</link>

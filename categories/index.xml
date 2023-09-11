@@ -6,13 +6,13 @@
     <description>Recent content in Categories on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 11 Sep 2023 10:01:36 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Sep 2023 16:06:24 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Makefile</title>
-      <link>https://dabao-zhao.github.io/categories/makefile/</link>
-      <pubDate>Mon, 11 Sep 2023 10:01:36 +0800</pubDate>
+      <title>OpenTelemetry</title>
+      <link>https://dabao-zhao.github.io/categories/opentelemetry/</link>
+      <pubDate>Mon, 11 Sep 2023 16:06:24 +0800</pubDate>
       
-      <guid>https://dabao-zhao.github.io/categories/makefile/</guid>
+      <guid>https://dabao-zhao.github.io/categories/opentelemetry/</guid>
       <description></description>
     </item>
     
@@ -31,6 +31,15 @@
       <pubDate>Fri, 08 Sep 2023 14:56:13 +0800</pubDate>
       
       <guid>https://dabao-zhao.github.io/categories/jwt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Makefile</title>
+      <link>https://dabao-zhao.github.io/categories/makefile/</link>
+      <pubDate>Mon, 04 Sep 2023 14:14:52 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/categories/makefile/</guid>
       <description></description>
     </item>
     
