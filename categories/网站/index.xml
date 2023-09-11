@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>网站 on 赵大宝的博客</title>
+    <link>https://dabao-zhao.github.io/categories/%E7%BD%91%E7%AB%99/</link>
+    <description>Recent content in 网站 on 赵大宝的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 11 Sep 2023 09:56:14 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/categories/%E7%BD%91%E7%AB%99/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>学习类网站</title>
+      <link>https://dabao-zhao.github.io/posts/%E5%AD%A6%E4%B9%A0%E7%B1%BB%E7%BD%91%E7%AB%99/</link>
+      <pubDate>Mon, 11 Sep 2023 09:56:14 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E5%AD%A6%E4%B9%A0%E7%B1%BB%E7%BD%91%E7%AB%99/</guid>
+      <description> Hello 算法 </description>
+    </item>
+    
+  </channel>
+</rss>
