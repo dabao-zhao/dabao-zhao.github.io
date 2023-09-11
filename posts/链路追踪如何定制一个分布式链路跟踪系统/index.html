@@ -23,7 +23,7 @@
       "articleSection" : "posts",
       "name" : "链路追踪：如何定制一个分布式链路跟踪系统",
       "headline" : "链路追踪：如何定制一个分布式链路跟踪系统",
-      "description" : "Metrics、Tracing 和 Logging 常见监控系统主要有三种类型：Metrics、Tracing 和 Logging。\n常见的开源 Metrics 有 Zabbix、Nagios、Prometheus、InfluxDb、OpenFalcon。主要做各种量化指标汇总统计，比如监控系统的容量剩余、每秒请求量、平均响应速度、某个时段请求量多少。\n常见的开源链路跟踪有 Jaeger、Zipkin、Pinpoint、Skywalking。主要是通过分析每次请求链路监控分析的系统，可以通过 TraceID 查找一次请求的依赖及调用链路，分析故障点和传导过程的耗时。\n常见的开源 Logging 有 ELK、Loki、Loggly。主要是对文本日志的收集归类整理，可以对错误日志进行汇总、警告，并分析系统错误异常等情况。\n三种监控体系最大的区别就是日志格式标准。\nOpenTelemetry 标准 主要是对数据采集和标准规范的统一，其他的不参与。可以看这里\n分布式链路跟踪系统 主要功能服务：\n监控日志标准 埋点 SDK（AOP 或侵入式） 日志收集 分布式日志传输 分布式日志存储 分布式检索计算 分布式实时分析 个性化定制指标盘 系统警告 ELK 即可实现以上功能：\n日志收集（Filebeat） 日志传输（Kafka\u002bLogstash） 日志存储（Elasticsearch） 检索计算（Elasticsearch \u002b Kibana） 实时分析（Kibana） 个性定制表格查询（Kibana） 这样之后只需要制定日志格式和埋点 SDK 即可实现一个具有分布式链路跟踪、 Metrics、日志分析的系统。 TODO 后面出个介绍\n原理 在请求发起方发送请求时或服务被请求时生成一个 UUID（TraceID），被请求期间的业务产生的任何日志（Warning、Info、Debug、Error）、任何依赖资源 请求（MySQL、Kafka、Redis）、任何内部接口调用（Restful、Http、RPC）都会带上这个 UUID。 这样，当我们把所有拥有同样 UUID 的日志收集起来时，就可以根据时间（有误差）、RPCID 或 SpanID，将它们按依赖请求顺序串起来。 只要日志足够详细，我们就能监控到系统大部分的工作状态，比如用户请求一个服务会调用多少个接口，每个数据查询的 SQL 以及具体耗时调用的内网请求参数是什么、 调用的内网请求返回是什么、内网被请求的接口又做了哪些操作、产生了哪些异常信息等等。 同时，我们可以通过对这些日志做归类分析，分析项目之间的调用关系、项目整体健康程度、 对链路深挖自动识别出故障点等，帮助我们主动、快速地查找问题。\nTraceID、RPCID、SpanID TraceID 用于标识某一次具体的请求 ID。 SpanID 用于标识单个服务中的一个操作。 RPCID 用于标识操作在整个调用链路中的位置。",
+      "description" : "Metrics、Tracing 和 Logging 常见监控系统主要有三种类型：Metrics、Tracing 和 Logging。\n常见的开源 Metrics 有 Zabbix、Nagios、Prometheus、InfluxDb、OpenFalcon。主要做各种量化指标汇总统计，比如监控系统的容量剩余、每秒请求量、平均响应速度、某个时段请求量多少。\n常见的开源链路跟踪有 Jaeger、Zipkin、Pinpoint、Skywalking。主要是通过分析每次请求链路监控分析的系统，可以通过 TraceID 查找一次请求的依赖及调用链路，分析故障点和传导过程的耗时。\n常见的开源 Logging 有 ELK、Loki、Loggly。主要是对文本日志的收集归类整理，可以对错误日志进行汇总、警告，并分析系统错误异常等情况。\n三种监控体系最大的区别就是日志格式标准。\nOpenTelemetry 标准 主要是对数据采集和标准规范的统一，其他的不参与。可以看这里\n分布式链路跟踪系统 主要功能服务：\n监控日志标准 埋点 SDK（AOP 或侵入式） 日志收集 分布式日志传输 分布式日志存储 分布式检索计算 分布式实时分析 个性化定制指标盘 系统警告 ELK 即可实现以上功能：\n日志收集（Filebeat） 日志传输（Kafka\u002bLogstash） 日志存储（Elasticsearch） 检索计算（Elasticsearch \u002b Kibana） 实时分析（Kibana） 个性定制表格查询（Kibana） 这样之后只需要制定日志格式和埋点 SDK 即可实现一个具有分布式链路跟踪、 Metrics、日志分析的系统。 可以看下ELK 和 EFK\n原理 在请求发起方发送请求时或服务被请求时生成一个 UUID（TraceID），被请求期间的业务产生的任何日志（Warning、Info、Debug、Error）、任何依赖资源 请求（MySQL、Kafka、Redis）、任何内部接口调用（Restful、Http、RPC）都会带上这个 UUID。 这样，当我们把所有拥有同样 UUID 的日志收集起来时，就可以根据时间（有误差）、RPCID 或 SpanID，将它们按依赖请求顺序串起来。 只要日志足够详细，我们就能监控到系统大部分的工作状态，比如用户请求一个服务会调用多少个接口，每个数据查询的 SQL 以及具体耗时调用的内网请求参数是什么、 调用的内网请求返回是什么、内网被请求的接口又做了哪些操作、产生了哪些异常信息等等。 同时，我们可以通过对这些日志做归类分析，分析项目之间的调用关系、项目整体健康程度、 对链路深挖自动识别出故障点等，帮助我们主动、快速地查找问题。\nTraceID、RPCID、SpanID TraceID 用于标识某一次具体的请求 ID。 SpanID 用于标识单个服务中的一个操作。 RPCID 用于标识操作在整个调用链路中的位置。",
       "inLanguage" : "en-US",
       "author" : "赵大宝",
       "creator" : "赵大宝",
@@ -48,7 +48,7 @@
 OpenTelemetry 标准 主要是对数据采集和标准规范的统一，其他的不参与。可以看这里
 分布式链路跟踪系统 主要功能服务：
 监控日志标准 埋点 SDK（AOP 或侵入式） 日志收集 分布式日志传输 分布式日志存储 分布式检索计算 分布式实时分析 个性化定制指标盘 系统警告 ELK 即可实现以上功能：
-日志收集（Filebeat） 日志传输（Kafka&#43;Logstash） 日志存储（Elasticsearch） 检索计算（Elasticsearch &#43; Kibana） 实时分析（Kibana） 个性定制表格查询（Kibana） 这样之后只需要制定日志格式和埋点 SDK 即可实现一个具有分布式链路跟踪、 Metrics、日志分析的系统。 TODO 后面出个介绍
+日志收集（Filebeat） 日志传输（Kafka&#43;Logstash） 日志存储（Elasticsearch） 检索计算（Elasticsearch &#43; Kibana） 实时分析（Kibana） 个性定制表格查询（Kibana） 这样之后只需要制定日志格式和埋点 SDK 即可实现一个具有分布式链路跟踪、 Metrics、日志分析的系统。 可以看下ELK 和 EFK
 原理 在请求发起方发送请求时或服务被请求时生成一个 UUID（TraceID），被请求期间的业务产生的任何日志（Warning、Info、Debug、Error）、任何依赖资源 请求（MySQL、Kafka、Redis）、任何内部接口调用（Restful、Http、RPC）都会带上这个 UUID。 这样，当我们把所有拥有同样 UUID 的日志收集起来时，就可以根据时间（有误差）、RPCID 或 SpanID，将它们按依赖请求顺序串起来。 只要日志足够详细，我们就能监控到系统大部分的工作状态，比如用户请求一个服务会调用多少个接口，每个数据查询的 SQL 以及具体耗时调用的内网请求参数是什么、 调用的内网请求返回是什么、内网被请求的接口又做了哪些操作、产生了哪些异常信息等等。 同时，我们可以通过对这些日志做归类分析，分析项目之间的调用关系、项目整体健康程度、 对链路深挖自动识别出故障点等，帮助我们主动、快速地查找问题。
 TraceID、RPCID、SpanID TraceID 用于标识某一次具体的请求 ID。 SpanID 用于标识单个服务中的一个操作。 RPCID 用于标识操作在整个调用链路中的位置。" />
   <meta name="description" content="Metrics、Tracing 和 Logging 常见监控系统主要有三种类型：Metrics、Tracing 和 Logging。
@@ -59,7 +59,7 @@ TraceID、RPCID、SpanID TraceID 用于标识某一次具体的请求 ID。 Span
 OpenTelemetry 标准 主要是对数据采集和标准规范的统一，其他的不参与。可以看这里
 分布式链路跟踪系统 主要功能服务：
 监控日志标准 埋点 SDK（AOP 或侵入式） 日志收集 分布式日志传输 分布式日志存储 分布式检索计算 分布式实时分析 个性化定制指标盘 系统警告 ELK 即可实现以上功能：
-日志收集（Filebeat） 日志传输（Kafka&#43;Logstash） 日志存储（Elasticsearch） 检索计算（Elasticsearch &#43; Kibana） 实时分析（Kibana） 个性定制表格查询（Kibana） 这样之后只需要制定日志格式和埋点 SDK 即可实现一个具有分布式链路跟踪、 Metrics、日志分析的系统。 TODO 后面出个介绍
+日志收集（Filebeat） 日志传输（Kafka&#43;Logstash） 日志存储（Elasticsearch） 检索计算（Elasticsearch &#43; Kibana） 实时分析（Kibana） 个性定制表格查询（Kibana） 这样之后只需要制定日志格式和埋点 SDK 即可实现一个具有分布式链路跟踪、 Metrics、日志分析的系统。 可以看下ELK 和 EFK
 原理 在请求发起方发送请求时或服务被请求时生成一个 UUID（TraceID），被请求期间的业务产生的任何日志（Warning、Info、Debug、Error）、任何依赖资源 请求（MySQL、Kafka、Redis）、任何内部接口调用（Restful、Http、RPC）都会带上这个 UUID。 这样，当我们把所有拥有同样 UUID 的日志收集起来时，就可以根据时间（有误差）、RPCID 或 SpanID，将它们按依赖请求顺序串起来。 只要日志足够详细，我们就能监控到系统大部分的工作状态，比如用户请求一个服务会调用多少个接口，每个数据查询的 SQL 以及具体耗时调用的内网请求参数是什么、 调用的内网请求返回是什么、内网被请求的接口又做了哪些操作、产生了哪些异常信息等等。 同时，我们可以通过对这些日志做归类分析，分析项目之间的调用关系、项目整体健康程度、 对链路深挖自动识别出故障点等，帮助我们主动、快速地查找问题。
 TraceID、RPCID、SpanID TraceID 用于标识某一次具体的请求 ID。 SpanID 用于标识单个服务中的一个操作。 RPCID 用于标识操作在整个调用链路中的位置。" />
   <meta property="og:locale" content="zh-cn" /><meta property="og:image" content="images/favicon.ico" />
@@ -170,9 +170,7 @@ TraceID、RPCID、SpanID TraceID 用于标识某一次具体的请求 ID。 Span
 这样之后只需要制定日志格式和埋点 SDK 即可实现一个具有分布式链路跟踪、 Metrics、日志分析的系统。</li>
 </ul>
 <p><img src="/images/elk/elk.png" alt="elk"></p>
-<blockquote>
-<p>TODO 后面出个介绍</p>
-</blockquote>
+<p>可以看下<a href="/posts/elk%E5%92%8Cefk/">ELK 和 EFK</a></p>
 <h4 id="原理">原理</h4>
 <p>在请求发起方发送请求时或服务被请求时生成一个 UUID（TraceID），被请求期间的业务产生的任何日志（Warning、Info、Debug、Error）、任何依赖资源
 请求（MySQL、Kafka、Redis）、任何内部接口调用（Restful、Http、RPC）都会带上这个 UUID。

@@ -23,7 +23,7 @@
       "articleSection" : "posts",
       "name" : "ELK 和 EFK",
       "headline" : "ELK 和 EFK",
-      "description" : "ELK 和 EFK 中的 E 和 K 是相同的，分别是 Elasticsearch 和 Kibana，主要是收集和处理的过程不同。\nELK 数据流动基本是： Filebeats 》 Logstash 》 Kafka 》 Elasticsearch 》 Kibana\nFilebeats 是 Golang 实现的轻量型日志采集器，功能比较单一，所以日志的处理需要 Logstash 辅助。 Logstash 既可以收集数据，也可以对数据进行各种处理，但是对内存占用比较高，所以收集这块的功能交给了 Filebeats。\nEFK 数据流动基本是： Fluentd 》 Kafka 》 Elasticsearch 》 Kibana\nFluentd 的功能和 Logstash 类似，不过性能会更好，内存占用也更低。\n参考 Filebeat 介绍\nFluentd vs Logstash: A Comparison of Log Collectors",
+      "description" : "ELK 和 EFK 中的 E 和 K 是相同的，分别是 Elasticsearch 和 Kibana，主要是收集和处理的过程不同。\nELK 数据流动基本是： Filebeats \u0026gt; Logstash \u0026gt; Kafka \u0026gt; Elasticsearch \u0026gt; Kibana\nFilebeats 是 Golang 实现的轻量型日志采集器，功能比较单一，所以日志的处理需要 Logstash 辅助。 Logstash 既可以收集数据，也可以对数据进行各种处理，但是对内存占用比较高，所以收集这块的功能交给了 Filebeats。\nEFK 数据流动基本是： Fluentd \u0026gt; Kafka \u0026gt; Elasticsearch \u0026gt; Kibana\nFluentd 的功能和 Logstash 类似，不过性能会更好，内存占用也更低。\n参考 Filebeat 介绍\nFluentd vs Logstash: A Comparison of Log Collectors",
       "inLanguage" : "en-US",
       "author" : "赵大宝",
       "creator" : "赵大宝",
@@ -41,16 +41,16 @@
   <meta property="og:title" content="ELK 和 EFK" />
   <meta property="og:type" content="article" />
   <meta property="og:description" content="ELK 和 EFK 中的 E 和 K 是相同的，分别是 Elasticsearch 和 Kibana，主要是收集和处理的过程不同。
-ELK 数据流动基本是： Filebeats 》 Logstash 》 Kafka 》 Elasticsearch 》 Kibana
+ELK 数据流动基本是： Filebeats &amp;gt; Logstash &amp;gt; Kafka &amp;gt; Elasticsearch &amp;gt; Kibana
 Filebeats 是 Golang 实现的轻量型日志采集器，功能比较单一，所以日志的处理需要 Logstash 辅助。 Logstash 既可以收集数据，也可以对数据进行各种处理，但是对内存占用比较高，所以收集这块的功能交给了 Filebeats。
-EFK 数据流动基本是： Fluentd 》 Kafka 》 Elasticsearch 》 Kibana
+EFK 数据流动基本是： Fluentd &amp;gt; Kafka &amp;gt; Elasticsearch &amp;gt; Kibana
 Fluentd 的功能和 Logstash 类似，不过性能会更好，内存占用也更低。
 参考 Filebeat 介绍
 Fluentd vs Logstash: A Comparison of Log Collectors" />
   <meta name="description" content="ELK 和 EFK 中的 E 和 K 是相同的，分别是 Elasticsearch 和 Kibana，主要是收集和处理的过程不同。
-ELK 数据流动基本是： Filebeats 》 Logstash 》 Kafka 》 Elasticsearch 》 Kibana
+ELK 数据流动基本是： Filebeats &amp;gt; Logstash &amp;gt; Kafka &amp;gt; Elasticsearch &amp;gt; Kibana
 Filebeats 是 Golang 实现的轻量型日志采集器，功能比较单一，所以日志的处理需要 Logstash 辅助。 Logstash 既可以收集数据，也可以对数据进行各种处理，但是对内存占用比较高，所以收集这块的功能交给了 Filebeats。
-EFK 数据流动基本是： Fluentd 》 Kafka 》 Elasticsearch 》 Kibana
+EFK 数据流动基本是： Fluentd &amp;gt; Kafka &amp;gt; Elasticsearch &amp;gt; Kibana
 Fluentd 的功能和 Logstash 类似，不过性能会更好，内存占用也更低。
 参考 Filebeat 介绍
 Fluentd vs Logstash: A Comparison of Log Collectors" />
@@ -133,12 +133,12 @@ Fluentd vs Logstash: A Comparison of Log Collectors" />
           <p>ELK 和 EFK 中的 E 和 K 是相同的，分别是 Elasticsearch 和 Kibana，主要是收集和处理的过程不同。</p>
 <h3 id="elk">ELK</h3>
 <p>数据流动基本是：
-Filebeats 》 Logstash 》 Kafka 》 Elasticsearch 》 Kibana</p>
+Filebeats &gt; Logstash &gt; Kafka &gt; Elasticsearch &gt; Kibana</p>
 <p>Filebeats 是 Golang 实现的轻量型日志采集器，功能比较单一，所以日志的处理需要 Logstash 辅助。
 Logstash 既可以收集数据，也可以对数据进行各种处理，但是对内存占用比较高，所以收集这块的功能交给了 Filebeats。</p>
 <h3 id="efk">EFK</h3>
 <p>数据流动基本是：
-Fluentd 》 Kafka 》 Elasticsearch 》 Kibana</p>
+Fluentd &gt; Kafka &gt; Elasticsearch &gt; Kibana</p>
 <p>Fluentd 的功能和 Logstash 类似，不过性能会更好，内存占用也更低。</p>
 <h3 id="参考">参考</h3>
 <p><a href="https://zhuanlan.zhihu.com/p/141439013">Filebeat 介绍</a><br>

@@ -14,9 +14,9 @@
       
       <guid>https://dabao-zhao.github.io/posts/elk%E5%92%8Cefk/</guid>
       <description>ELK 和 EFK 中的 E 和 K 是相同的，分别是 Elasticsearch 和 Kibana，主要是收集和处理的过程不同。
-ELK 数据流动基本是： Filebeats 》 Logstash 》 Kafka 》 Elasticsearch 》 Kibana
+ELK 数据流动基本是： Filebeats &amp;gt; Logstash &amp;gt; Kafka &amp;gt; Elasticsearch &amp;gt; Kibana
 Filebeats 是 Golang 实现的轻量型日志采集器，功能比较单一，所以日志的处理需要 Logstash 辅助。 Logstash 既可以收集数据，也可以对数据进行各种处理，但是对内存占用比较高，所以收集这块的功能交给了 Filebeats。
-EFK 数据流动基本是： Fluentd 》 Kafka 》 Elasticsearch 》 Kibana
+EFK 数据流动基本是： Fluentd &amp;gt; Kafka &amp;gt; Elasticsearch &amp;gt; Kibana
 Fluentd 的功能和 Logstash 类似，不过性能会更好，内存占用也更低。
 参考 Filebeat 介绍
 Fluentd vs Logstash: A Comparison of Log Collectors</description>
@@ -317,7 +317,7 @@ Term Index（单词词典索引）：用于关键词（Term）快速搜索，Ter
 OpenTelemetry 标准 主要是对数据采集和标准规范的统一，其他的不参与。可以看这里
 分布式链路跟踪系统 主要功能服务：
 监控日志标准 埋点 SDK（AOP 或侵入式） 日志收集 分布式日志传输 分布式日志存储 分布式检索计算 分布式实时分析 个性化定制指标盘 系统警告 ELK 即可实现以上功能：
-日志收集（Filebeat） 日志传输（Kafka+Logstash） 日志存储（Elasticsearch） 检索计算（Elasticsearch + Kibana） 实时分析（Kibana） 个性定制表格查询（Kibana） 这样之后只需要制定日志格式和埋点 SDK 即可实现一个具有分布式链路跟踪、 Metrics、日志分析的系统。 TODO 后面出个介绍
+日志收集（Filebeat） 日志传输（Kafka+Logstash） 日志存储（Elasticsearch） 检索计算（Elasticsearch + Kibana） 实时分析（Kibana） 个性定制表格查询（Kibana） 这样之后只需要制定日志格式和埋点 SDK 即可实现一个具有分布式链路跟踪、 Metrics、日志分析的系统。 可以看下ELK 和 EFK
 原理 在请求发起方发送请求时或服务被请求时生成一个 UUID（TraceID），被请求期间的业务产生的任何日志（Warning、Info、Debug、Error）、任何依赖资源 请求（MySQL、Kafka、Redis）、任何内部接口调用（Restful、Http、RPC）都会带上这个 UUID。 这样，当我们把所有拥有同样 UUID 的日志收集起来时，就可以根据时间（有误差）、RPCID 或 SpanID，将它们按依赖请求顺序串起来。 只要日志足够详细，我们就能监控到系统大部分的工作状态，比如用户请求一个服务会调用多少个接口，每个数据查询的 SQL 以及具体耗时调用的内网请求参数是什么、 调用的内网请求返回是什么、内网被请求的接口又做了哪些操作、产生了哪些异常信息等等。 同时，我们可以通过对这些日志做归类分析，分析项目之间的调用关系、项目整体健康程度、 对链路深挖自动识别出故障点等，帮助我们主动、快速地查找问题。
 TraceID、RPCID、SpanID TraceID 用于标识某一次具体的请求 ID。 SpanID 用于标识单个服务中的一个操作。 RPCID 用于标识操作在整个调用链路中的位置。</description>
     </item>
