@@ -132,16 +132,16 @@
 </ul>
 <h4 id="人工配置替换模版">人工配置替换模版</h4>
 <p>也就是人工配置出一个 URL 规则，用来筛选出符合规则的日志并替换掉关键部分的参数。</p>
-<pre tabindex="0"><code>类Radix tree效果：
-/user
-- /*
-- - /info
-- - - :GET
-- - - :PUT
-- - /friend
-- - - /* (代表这里替换)
-- - - - :DELETE
-</code></pre><p>具体实现是将网址通过 / 进行分割，逐级在前缀搜索树查找</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>类Radix tree效果：
+</span></span><span style="display:flex;"><span>/user
+</span></span><span style="display:flex;"><span>- /*
+</span></span><span style="display:flex;"><span>- - /info
+</span></span><span style="display:flex;"><span>- - - :GET
+</span></span><span style="display:flex;"><span>- - - :PUT
+</span></span><span style="display:flex;"><span>- - /friend
+</span></span><span style="display:flex;"><span>- - - /* (代表这里替换)
+</span></span><span style="display:flex;"><span>- - - - :DELETE
+</span></span></code></pre></div><p>具体实现是将网址通过 / 进行分割，逐级在前缀搜索树查找</p>
 <h4 id="数据特征筛选">数据特征筛选</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#75715e">//根据数据特征过滤网址内参数
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">filterUrl</span>($url)
