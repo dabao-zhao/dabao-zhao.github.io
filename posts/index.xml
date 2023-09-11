@@ -6,7 +6,16 @@
     <description>Recent content in Posts on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 11 Sep 2023 09:56:14 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Sep 2023 10:01:36 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OpenTelemetry 简介</title>
+      <link>https://dabao-zhao.github.io/posts/opentelemetry%E7%AE%80%E4%BB%8B/</link>
+      <pubDate>Mon, 11 Sep 2023 10:01:36 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/opentelemetry%E7%AE%80%E4%BB%8B/</guid>
+      <description>先看这里</description>
+    </item>
+    
     <item>
       <title>学习类网站</title>
       <link>https://dabao-zhao.github.io/posts/%E5%AD%A6%E4%B9%A0%E7%B1%BB%E7%BD%91%E7%AB%99/</link>
@@ -290,8 +299,7 @@ Term Index（单词词典索引）：用于关键词（Term）快速搜索，Ter
 常见的开源链路跟踪有 Jaeger、Zipkin、Pinpoint、Skywalking。主要是通过分析每次请求链路监控分析的系统，可以通过 TraceID 查找一次请求的依赖及调用链路，分析故障点和传导过程的耗时。
 常见的开源 Logging 有 ELK、Loki、Loggly。主要是对文本日志的收集归类整理，可以对错误日志进行汇总、警告，并分析系统错误异常等情况。
 三种监控体系最大的区别就是日志格式标准。
-OpenTelemetry 标准 主要是对数据采集和标准规范的统一，其他的不参与。
-TODO 后面出个介绍
+OpenTelemetry 标准 主要是对数据采集和标准规范的统一，其他的不参与。可以看这里
 分布式链路跟踪系统 主要功能服务：
 监控日志标准 埋点 SDK（AOP 或侵入式） 日志收集 分布式日志传输 分布式日志存储 分布式检索计算 分布式实时分析 个性化定制指标盘 系统警告 ELK 即可实现以上功能：
 日志收集（Filebeat） 日志传输（Kafka+Logstash） 日志存储（Elasticsearch） 检索计算（Elasticsearch + Kibana） 实时分析（Kibana） 个性定制表格查询（Kibana） 这样之后只需要制定日志格式和埋点 SDK 即可实现一个具有分布式链路跟踪、 Metrics、日志分析的系统。 TODO 后面出个介绍
