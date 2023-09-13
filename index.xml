@@ -6,7 +6,22 @@
     <description>Recent content on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 11 Sep 2023 16:06:24 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Sep 2023 15:09:36 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>限流算法</title>
+      <link>https://dabao-zhao.github.io/posts/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Wed, 13 Sep 2023 15:09:36 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/</guid>
+      <description>固定窗口（Window）限流算法 通过维护一个固定大小的窗口，在每个时间点只允许一定数量的请求通过，超出数量的请求将被拒绝。 但存在当流量在上一个时间窗口下半段和下一个时间窗口上半段集中爆发，那么这两段组成的时间窗口内流量是会超过限制的。 滑动窗口（Sliding Window）限流算法 与固定窗口限流算法不同的是，滑动窗口限流算法会不断地移动窗口，使得窗口内的请求数量始终保持在限制范围内。 可以避免固定窗口出现的放过两倍请求的问题。
+漏桶（Leaky Bucket）限流算法 基本思想是将请求流看作是一个不断向桶中注入水的过程，而桶上有一个漏洞，允许水以一定的速率流出。如果水流入的速度超过了漏洞的流出速度，那么多余的水将被存储在桶中，直到桶中的水被消耗完为止。 令牌桶（Token Bucket）限流算法 基本思想是通过维护一个固定容量的令牌桶，按照一定的速率向桶中放入令牌。当请求到达时，需要从令牌桶中取出一个令牌，才能允许该请求被处理。如果令牌桶中没有令牌，则该请求将被拒绝，直到有令牌可用为止。 参考 skyhackvip/ratelimit
+uber-go/ratelimit
+juju/ratelimit
+yudeguang/ratelimit
+yangwenmai/ratelimit
+jiaxwu/limiter</description>
+    </item>
+    
     <item>
       <title>ELK 和 EFK</title>
       <link>https://dabao-zhao.github.io/posts/elk%E5%92%8Cefk/</link>

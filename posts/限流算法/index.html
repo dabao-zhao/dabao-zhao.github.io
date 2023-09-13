@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="赵大宝" />
-  <meta property="og:url" content="https://dabao-zhao.github.io/categories/" />
-  <link rel="canonical" href="https://dabao-zhao.github.io/categories/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
+  <meta property="og:url" content="https://dabao-zhao.github.io/posts/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/" />
+  <link rel="canonical" href="https://dabao-zhao.github.io/posts/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/" /><link rel="apple-touch-icon" href="images/favicon.ico" />
   <link rel="icon" href="images/favicon.ico" />
   <link rel="shortcut" href="images/favicon.ico" /><link rel="alternate" type="application/atom+xml" href="https://dabao-zhao.github.ioindex.xml" title="赵大宝的博客">
 
@@ -20,10 +20,10 @@
            "@type": "WebPage",
            "@id": "https:\/\/dabao-zhao.github.io"
       },
-      "articleSection" : "categories",
-      "name" : "Categories",
-      "headline" : "Categories",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "限流算法",
+      "headline" : "限流算法",
+      "description" : "固定窗口（Window）限流算法 通过维护一个固定大小的窗口，在每个时间点只允许一定数量的请求通过，超出数量的请求将被拒绝。 但存在当流量在上一个时间窗口下半段和下一个时间窗口上半段集中爆发，那么这两段组成的时间窗口内流量是会超过限制的。 滑动窗口（Sliding Window）限流算法 与固定窗口限流算法不同的是，滑动窗口限流算法会不断地移动窗口，使得窗口内的请求数量始终保持在限制范围内。 可以避免固定窗口出现的放过两倍请求的问题。\n漏桶（Leaky Bucket）限流算法 基本思想是将请求流看作是一个不断向桶中注入水的过程，而桶上有一个漏洞，允许水以一定的速率流出。如果水流入的速度超过了漏洞的流出速度，那么多余的水将被存储在桶中，直到桶中的水被消耗完为止。 令牌桶（Token Bucket）限流算法 基本思想是通过维护一个固定容量的令牌桶，按照一定的速率向桶中放入令牌。当请求到达时，需要从令牌桶中取出一个令牌，才能允许该请求被处理。如果令牌桶中没有令牌，则该请求将被拒绝，直到有令牌可用为止。 参考 skyhackvip\/ratelimit\nuber-go\/ratelimit\njuju\/ratelimit\nyudeguang\/ratelimit\nyangwenmai\/ratelimit\njiaxwu\/limiter",
       "inLanguage" : "en-US",
       "author" : "赵大宝",
       "creator" : "赵大宝",
@@ -33,15 +33,27 @@
       "copyrightYear" : "2023",
       "datePublished": "2023-09-13 15:09:36 \u002b0800 CST",
       "dateModified" : "2023-09-13 15:09:36 \u002b0800 CST",
-      "url" : "https:\/\/dabao-zhao.github.io\/categories\/",
+      "url" : "https:\/\/dabao-zhao.github.io\/posts\/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95\/",
       "keywords" : [  ]
   }
 </script>
-<title>Categories</title>
-  <meta property="og:title" content="Categories" />
+<title>限流算法</title>
+  <meta property="og:title" content="限流算法" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="固定窗口（Window）限流算法 通过维护一个固定大小的窗口，在每个时间点只允许一定数量的请求通过，超出数量的请求将被拒绝。 但存在当流量在上一个时间窗口下半段和下一个时间窗口上半段集中爆发，那么这两段组成的时间窗口内流量是会超过限制的。 滑动窗口（Sliding Window）限流算法 与固定窗口限流算法不同的是，滑动窗口限流算法会不断地移动窗口，使得窗口内的请求数量始终保持在限制范围内。 可以避免固定窗口出现的放过两倍请求的问题。
+漏桶（Leaky Bucket）限流算法 基本思想是将请求流看作是一个不断向桶中注入水的过程，而桶上有一个漏洞，允许水以一定的速率流出。如果水流入的速度超过了漏洞的流出速度，那么多余的水将被存储在桶中，直到桶中的水被消耗完为止。 令牌桶（Token Bucket）限流算法 基本思想是通过维护一个固定容量的令牌桶，按照一定的速率向桶中放入令牌。当请求到达时，需要从令牌桶中取出一个令牌，才能允许该请求被处理。如果令牌桶中没有令牌，则该请求将被拒绝，直到有令牌可用为止。 参考 skyhackvip/ratelimit
+uber-go/ratelimit
+juju/ratelimit
+yudeguang/ratelimit
+yangwenmai/ratelimit
+jiaxwu/limiter" />
+  <meta name="description" content="固定窗口（Window）限流算法 通过维护一个固定大小的窗口，在每个时间点只允许一定数量的请求通过，超出数量的请求将被拒绝。 但存在当流量在上一个时间窗口下半段和下一个时间窗口上半段集中爆发，那么这两段组成的时间窗口内流量是会超过限制的。 滑动窗口（Sliding Window）限流算法 与固定窗口限流算法不同的是，滑动窗口限流算法会不断地移动窗口，使得窗口内的请求数量始终保持在限制范围内。 可以避免固定窗口出现的放过两倍请求的问题。
+漏桶（Leaky Bucket）限流算法 基本思想是将请求流看作是一个不断向桶中注入水的过程，而桶上有一个漏洞，允许水以一定的速率流出。如果水流入的速度超过了漏洞的流出速度，那么多余的水将被存储在桶中，直到桶中的水被消耗完为止。 令牌桶（Token Bucket）限流算法 基本思想是通过维护一个固定容量的令牌桶，按照一定的速率向桶中放入令牌。当请求到达时，需要从令牌桶中取出一个令牌，才能允许该请求被处理。如果令牌桶中没有令牌，则该请求将被拒绝，直到有令牌可用为止。 参考 skyhackvip/ratelimit
+uber-go/ratelimit
+juju/ratelimit
+yudeguang/ratelimit
+yangwenmai/ratelimit
+jiaxwu/limiter" />
   <meta property="og:locale" content="zh-cn" /><meta property="og:image" content="images/favicon.ico" />
   
 
@@ -68,10 +80,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -92,144 +105,77 @@
 </div>
 <div class="header-line"></div>
 
-
-        <h1 class="taxonomy-term"></h1>
-        <div id="posts-list">
-          <section>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-09-13 15:09:36 CST">2023-09-13</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/%E9%99%90%E6%B5%81/">限流</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-09-11 16:06:24 CST">2023-09-11</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/opentelemetry/">OpenTelemetry</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-09-11 09:56:14 CST">2023-09-11</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/%E7%BD%91%E7%AB%99/">网站</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-09-08 14:56:13 CST">2023-09-08</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/jwt/">JWT</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-09-04 14:14:52 CST">2023-09-04</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/makefile/">Makefile</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-23 09:46:17 CST">2023-08-23</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/golang/">Golang</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-22 11:05:57 CST">2023-08-22</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/%E8%A7%84%E8%8C%83/">规范</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-22 10:41:17 CST">2023-08-22</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/docker/">Docker</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-21 15:01:54 CST">2023-08-21</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2023-08-10 16:36:39 CST">2023-08-10</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/categories/%E8%BD%AC%E8%BD%BD/">转载</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
         </div>
+        <header class="post-header">
+          <h1 class="post-title">限流算法</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2023-09-13 15:09:36 CST">
+                13 Sep 2023
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+              <div class="post-author">
+                <a target="_blank" href="https://dabao-zhao.github.io">@赵大宝</a>
+              </div>
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h3 id="固定窗口window限流算法">固定窗口（Window）限流算法</h3>
+<p>通过维护一个固定大小的窗口，在每个时间点只允许一定数量的请求通过，超出数量的请求将被拒绝。
+<img src="/images/limit/window1.jpg" alt="window">
+但存在当流量在上一个时间窗口下半段和下一个时间窗口上半段集中爆发，那么这两段组成的时间窗口内流量是会超过限制的。
+<img src="/images/limit/window2.jpg" alt="window"></p>
+<h3 id="滑动窗口sliding-window限流算法">滑动窗口（Sliding Window）限流算法</h3>
+<p>与固定窗口限流算法不同的是，滑动窗口限流算法会不断地移动窗口，使得窗口内的请求数量始终保持在限制范围内。
+<img src="/images/limit/slidingwindow1.jpg" alt="window">
+可以避免固定窗口出现的放过两倍请求的问题。</p>
+<h3 id="漏桶leaky-bucket限流算法">漏桶（Leaky Bucket）限流算法</h3>
+<p>基本思想是将请求流看作是一个不断向桶中注入水的过程，而桶上有一个漏洞，允许水以一定的速率流出。如果水流入的速度超过了漏洞的流出速度，那么多余的水将被存储在桶中，直到桶中的水被消耗完为止。
+<img src="/images/limit/leakybucket1.png" alt="window"></p>
+<h3 id="令牌桶token-bucket限流算法">令牌桶（Token Bucket）限流算法</h3>
+<p>基本思想是通过维护一个固定容量的令牌桶，按照一定的速率向桶中放入令牌。当请求到达时，需要从令牌桶中取出一个令牌，才能允许该请求被处理。如果令牌桶中没有令牌，则该请求将被拒绝，直到有令牌可用为止。
+<img src="/images/limit/tokenbucket1.png" alt="window"></p>
+<h3 id="参考">参考</h3>
+<p><a href="https://github.com/skyhackvip/ratelimit">skyhackvip/ratelimit</a><br>
+<a href="https://github.com/uber-go/ratelimit">uber-go/ratelimit</a><br>
+<a href="https://github.com/juju/ratelimit">juju/ratelimit</a><br>
+<a href="https://github.com/yudeguang/ratelimit">yudeguang/ratelimit</a><br>
+<a href="https://github.com/yangwenmai/ratelimit">yangwenmai/ratelimit</a><br>
+<a href="https://github.com/jiaxwu/limiter">jiaxwu/limiter</a></p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -249,6 +195,8 @@
     
   
 </script>
+
+  
 
 </body>
 
