@@ -6,7 +6,23 @@
     <description>Recent content in Posts on 赵大宝的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 13 Sep 2023 15:09:36 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Sep 2023 16:52:02 +0800</lastBuildDate><atom:link href="https://dabao-zhao.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OLTP、OLAP 和 HTAP</title>
+      <link>https://dabao-zhao.github.io/posts/oltpolaphtap/</link>
+      <pubDate>Wed, 13 Sep 2023 16:52:02 +0800</pubDate>
+      
+      <guid>https://dabao-zhao.github.io/posts/oltpolaphtap/</guid>
+      <description>OLTP 联机事务处理（on-line transaction processing）
+数据库是OLTP（联机事务处理）应用的场景，其存储的主要是与业务直接相关的数据，强调准确、低时延、高并发，如果没有特别强调，基本上数据库里只会去存储与业务相关的数据。
+OLAP 联机分析处理（on-line analytical processing）
+数据仓库是 OLAP（联机分析处理）的主要应用，其支持的对象只要是面向分析场景的应用，提供结构化的、主题化的数据提供给运营，做业务反馈和辅助决策用，同时，有些场景下，也可以由数据仓库对业务进行支持。
+HTAP 混合事务分析处理（Hybrid Transaction/Analytical Processing）
+将联机事务处理（OLTP）和联机分析处理（OLAP）能力结合在一起形成的。
+参考 什么是OLTP、OLAP、数据库和数据仓库？
+到底什么才是真正的HTAP？ 什么是真正的HTAP？（二）挑战篇</description>
+    </item>
+    
     <item>
       <title>限流算法</title>
       <link>https://dabao-zhao.github.io/posts/%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95/</link>
