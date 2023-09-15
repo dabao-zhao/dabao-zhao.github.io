@@ -23,7 +23,7 @@
       "articleSection" : "posts",
       "name" : "OLTP、OLAP 和 HTAP",
       "headline" : "OLTP、OLAP 和 HTAP",
-      "description" : "OLTP 联机事务处理（on-line transaction processing）\n数据库是OLTP（联机事务处理）应用的场景，其存储的主要是与业务直接相关的数据，强调准确、低时延、高并发，如果没有特别强调，基本上数据库里只会去存储与业务相关的数据。\nOLAP 联机分析处理（on-line analytical processing）\n数据仓库是 OLAP（联机分析处理）的主要应用，其支持的对象只要是面向分析场景的应用，提供结构化的、主题化的数据提供给运营，做业务反馈和辅助决策用，同时，有些场景下，也可以由数据仓库对业务进行支持。\nHTAP 混合事务分析处理（Hybrid Transaction\/Analytical Processing）\n将联机事务处理（OLTP）和联机分析处理（OLAP）能力结合在一起形成的。\n参考 什么是OLTP、OLAP、数据库和数据仓库？\n到底什么才是真正的HTAP？ 什么是真正的HTAP？（二）挑战篇",
+      "description" : "OLTP 联机事务处理（on-line transaction processing）\n数据库是OLTP（联机事务处理）应用的场景，其存储的主要是与业务直接相关的数据，强调准确、低时延、高并发，如果没有特别强调，基本上数据库里只会去存储与业务相关的数据。\n倾向于使用行式存储。\nOLAP 联机分析处理（on-line analytical processing）\n数据仓库是 OLAP（联机分析处理）的主要应用，其支持的对象只要是面向分析场景的应用，提供结构化的、主题化的数据提供给运营，做业务反馈和辅助决策用，同时，有些场景下，也可以由数据仓库对业务进行支持。\n倾向于列式存储。\nHTAP 混合事务分析处理（Hybrid Transaction\/Analytical Processing）\n将联机事务处理（OLTP）和联机分析处理（OLAP）能力结合在一起形成的。\n参考 什么是OLTP、OLAP、数据库和数据仓库？\n到底什么才是真正的HTAP？ 什么是真正的HTAP？（二）挑战篇",
       "inLanguage" : "en-US",
       "author" : "赵大宝",
       "creator" : "赵大宝",
@@ -42,16 +42,20 @@
   <meta property="og:type" content="article" />
   <meta property="og:description" content="OLTP 联机事务处理（on-line transaction processing）
 数据库是OLTP（联机事务处理）应用的场景，其存储的主要是与业务直接相关的数据，强调准确、低时延、高并发，如果没有特别强调，基本上数据库里只会去存储与业务相关的数据。
+倾向于使用行式存储。
 OLAP 联机分析处理（on-line analytical processing）
 数据仓库是 OLAP（联机分析处理）的主要应用，其支持的对象只要是面向分析场景的应用，提供结构化的、主题化的数据提供给运营，做业务反馈和辅助决策用，同时，有些场景下，也可以由数据仓库对业务进行支持。
+倾向于列式存储。
 HTAP 混合事务分析处理（Hybrid Transaction/Analytical Processing）
 将联机事务处理（OLTP）和联机分析处理（OLAP）能力结合在一起形成的。
 参考 什么是OLTP、OLAP、数据库和数据仓库？
 到底什么才是真正的HTAP？ 什么是真正的HTAP？（二）挑战篇" />
   <meta name="description" content="OLTP 联机事务处理（on-line transaction processing）
 数据库是OLTP（联机事务处理）应用的场景，其存储的主要是与业务直接相关的数据，强调准确、低时延、高并发，如果没有特别强调，基本上数据库里只会去存储与业务相关的数据。
+倾向于使用行式存储。
 OLAP 联机分析处理（on-line analytical processing）
 数据仓库是 OLAP（联机分析处理）的主要应用，其支持的对象只要是面向分析场景的应用，提供结构化的、主题化的数据提供给运营，做业务反馈和辅助决策用，同时，有些场景下，也可以由数据仓库对业务进行支持。
+倾向于列式存储。
 HTAP 混合事务分析处理（Hybrid Transaction/Analytical Processing）
 将联机事务处理（OLTP）和联机分析处理（OLAP）能力结合在一起形成的。
 参考 什么是OLTP、OLAP、数据库和数据仓库？
@@ -135,9 +139,11 @@ HTAP 混合事务分析处理（Hybrid Transaction/Analytical Processing）
           <h3 id="oltp">OLTP</h3>
 <p>联机事务处理（on-line transaction processing）</p>
 <p>数据库是OLTP（联机事务处理）应用的场景，其存储的主要是与业务直接相关的数据，强调准确、低时延、高并发，如果没有特别强调，基本上数据库里只会去存储与业务相关的数据。</p>
+<p>倾向于使用行式存储。</p>
 <h3 id="olap">OLAP</h3>
 <p>联机分析处理（on-line analytical processing）</p>
 <p>数据仓库是 OLAP（联机分析处理）的主要应用，其支持的对象只要是面向分析场景的应用，提供结构化的、主题化的数据提供给运营，做业务反馈和辅助决策用，同时，有些场景下，也可以由数据仓库对业务进行支持。</p>
+<p>倾向于列式存储。</p>
 <h3 id="htap">HTAP</h3>
 <p>混合事务分析处理（Hybrid Transaction/Analytical Processing）</p>
 <p>将联机事务处理（OLTP）和联机分析处理（OLAP）能力结合在一起形成的。</p>
